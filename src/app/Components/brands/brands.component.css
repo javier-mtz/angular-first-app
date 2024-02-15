@@ -1,0 +1,27 @@
+/*Imagen principal*/
+.container-image {
+    position: relative;
+    width: 100%; /* Ancho de la pantalla */
+    height: 400px; /* Altura de la pantalla */
+    overflow: hidden; /* Para recortar la imagen si es necesario */
+}
+
+.container-image img {
+    width: 100%; /* Ancho del contenedor */
+    height: auto; /* Altura proporcional */
+    object-fit: cover; /* Ajuste de la imagen */
+}
+
+.image-text {
+    padding-top: 10%;
+    font-size: 45px;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.container-text {
+    background-color: #f4f4f4;
+    padding-bottom: 5%;
+    margin-top: -3%;
+}
