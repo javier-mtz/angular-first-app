@@ -1,8 +1,16 @@
+.container {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
 /*Imagen principal*/
 .container-image {
     position: relative;
-    width: 100%; /* Ancho de la pantalla */
-    height: 400px; /* Altura de la pantalla */
+    width: 100%; /* El ancho de la imagen es el 100% del contenedor */
+    max-width: 100%; /* Evita que la imagen se extienda más allá del contenedor */
+    height: auto; /* Altura proporcional */
+    max-height: 400px; /* Altura máxima de 400px */
     overflow: hidden; /* Para recortar la imagen si es necesario */
 }
 
@@ -14,14 +22,41 @@
 
 .image-text {
     padding-top: 10%;
-    font-size: 45px;
-    color: #333;
+    padding-left: 5%;
+    font-size: 65px;
+    color: #000000;
     font-weight: bold;
 }
 
-
 .container-text {
-    background-color: #f4f4f4;
+    background-color: #b9b8b8;
     padding-bottom: 5%;
     margin-top: -3%;
 }
+
+/*Grids*/
+mat-grid-tile {
+    background: rgba(87, 87, 87, 0.2);
+    border-radius: 40px;
+}
+
+.mat-grid-list {
+    width: 100%; 
+    margin: 0;
+}
+
+.image {
+    width: 40%; 
+    height: auto;
+}
+
+.image.porsche{
+    width: 80%;
+    height: auto;
+}
+
+.image.audi{
+    width: 60%;
+    height: auto;
+}
+
