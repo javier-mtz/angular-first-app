@@ -1,0 +1,42 @@
+.profile-container {
+  background-size: cover; /* Cubrir todo el contenedor */
+  background-position: center; /* Centrar la imagen */
+}
+
+.profile-content {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo gris semitransparente */
+  color: white; /* Texto blanco */
+  padding: 20px; /* Espaciado interior */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+.profile-header {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  height: 50vh; /* La mitad de la altura de la ventana */
+  object-fit: cover; /* Para asegurarse de que la imagen cubra todo el espacio */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espacio por encima del botón */
+}
+
+.header-toolbar {
+  background-color: black;
+}
+
+.profile-title {
+  margin: 0 auto; /* Centrar horizontalmente */
+}
