@@ -1,1 +1,335 @@
-<p>profile works!</p>
+<!-- profile.component.html -->
+
+
+ <!-- NOTA: AQUI ES DONDE ESTA CADA PERFIL DEL AUTO, SE SUPONE QUE CUANDO ESTE SE DE CLICK EN UNO DE LOS ICONOS EN BRANDS
+SE TENDRIA QUE DIRIGIR A LA MARCA QUE SELECCIONO, POR ESO ESTA EL "ng-container" DONDE DICE QUE DEPENDIENDO DE LA MARCA MOSTRARA
+EL HTML. -->
+
+<div class="profile-container mat-elevation-z2">
+   <!-- BMW-->
+    <ng-container *ngIf="brand === 'BMW'">
+
+      <div class="profile-container mat-elevation-z2">
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <mat-toolbar color="primary" class="header-toolbar">
+            <mat-toolbar-row>
+              <span class="profile-title">Perfil del Automóvil - BMW</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        
+        <!-- Imagen del perfil -->
+        <img src="../../../assets/img/profile/bmw-profile.jpeg" class="image">
+      
+        <!-- Contenido del perfil -->
+        <div class="profile-content">
+          <mat-card>
+            <mat-card-content>
+              <h2 class="profile-subtitle">BMW</h2>
+              <p><strong>Tipo:</strong> Deportivo</p>
+              <p><strong>Descripción:</strong> BMW es una marca alemana reconocida por sus automóviles deportivos de lujo y alto rendimiento. Es conocida por su diseño elegante, tecnología avanzada y experiencia de conducción excepcional. Los vehículos BMW ofrecen un equilibrio entre rendimiento, confort y prestigio.</p>
+              <p><strong>Características:</strong></p>
+              <ul>
+                <li>Motores potentes</li>
+                <li>Diseño aerodinámico y elegante</li>
+                <li>Tecnología avanzada</li>
+                <li>Experiencia de conducción deportiva</li>
+              </ul>
+              <!-- Botón "Ver Modelo" -->
+              <div class="button-container">
+                <button mat-raised-button color="primary">Ver Modelo</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      
+
+    </ng-container>
+    <ng-container *ngIf="brand === 'Porsche'">
+
+      <div class="profile-container mat-elevation-z2">
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <mat-toolbar color="primary" class="header-toolbar">
+            <mat-toolbar-row>
+              <span class="profile-title">Perfil del Automóvil - Porsche</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        
+        <!-- Imagen del perfil -->
+        <img src="../../../assets/img/profile/porsche-profile.jpeg" class="image">
+        
+        <!-- Contenido del perfil -->
+        <div class="profile-content">
+          <mat-card>
+            <mat-card-content>
+              <h2 class="profile-subtitle">Porsche</h2>
+              <p><strong>Tipo:</strong> Deportivo</p>
+              <p><strong>Descripción:</strong> Porsche es una marca alemana de automóviles deportivos de lujo, reconocida por su diseño distintivo, alto rendimiento y experiencia de conducción emocionante. Fundada en 1931, Porsche ha sido pionera en la innovación automotriz, creando algunos de los coches más icónicos y deseables del mundo.</p>
+              <p><strong>Características:</strong></p>
+              <ul>
+                <li>Diseño elegante y aerodinámico</li>
+                <li>Motor potente y ágil</li>
+                <li>Experiencia de conducción deportiva y emocionante</li>
+                <li>Innovación tecnológica continua</li>
+              </ul>
+              <!-- Botón "Ver Modelo" -->
+              <div class="button-container">
+                <button mat-raised-button color="primary">Ver Modelo</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      
+   
+
+
+
+    </ng-container>
+    <ng-container *ngIf="brand === 'Mercedes'">
+ 
+      <div class="profile-container mat-elevation-z2">
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <mat-toolbar color="primary" class="header-toolbar">
+            <mat-toolbar-row>
+              <span class="profile-title">Perfil del Automóvil - Mercedes</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        
+        <!-- Imagen del perfil -->
+        <img src="../../../assets/img/profile/mercedes-profile.jpeg" class="image">
+        
+        <!-- Contenido del perfil -->
+        <div class="profile-content">
+          <mat-card>
+            <mat-card-content>
+              <h2 class="profile-subtitle">Mercedes</h2>
+              <p><strong>Tipo:</strong> Lujo</p>
+              <p><strong>Descripción:</strong> Mercedes-Benz es una marca alemana reconocida por sus automóviles de lujo, calidad y tecnología avanzada. Con un enfoque en la innovación y la seguridad, los vehículos Mercedes ofrecen un equilibrio entre elegancia, confort y rendimiento.</p>
+              <p><strong>Características:</strong></p>
+              <ul>
+                <li>Diseño elegante y sofisticado</li>
+                <li>Tecnología avanzada y sistemas de seguridad</li>
+                <li>Confort y prestaciones de lujo</li>
+                <li>Experiencia de conducción refinada</li>
+              </ul>
+              <!-- Botón "Ver Modelo" -->
+              <div class="button-container">
+                <button mat-raised-button color="primary">Ver Modelo</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      
+
+
+
+    </ng-container>
+    <ng-container *ngIf="brand === 'Ferrari'">
+
+      <div class="profile-container mat-elevation-z2">
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <mat-toolbar color="primary" class="header-toolbar">
+            <mat-toolbar-row>
+              <span class="profile-title">Perfil del Automóvil - Ferrari</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        
+        <!-- Imagen del perfil -->
+        <img src="../../../assets/img/profile/ferrari-profile.webp" class="image">
+        
+        <!-- Contenido del perfil -->
+        <div class="profile-content">
+          <mat-card>
+            <mat-card-content>
+              <h2 class="profile-subtitle">Ferrari</h2>
+              <p><strong>Tipo:</strong> Deportivo</p>
+              <p><strong>Descripción:</strong> Ferrari es una marca italiana reconocida por sus automóviles deportivos de lujo y alta gama. Reconocida por su diseño elegante, motores potentes y rendimiento excepcional en carretera. Los vehículos Ferrari son símbolos de prestigio y exclusividad.</p>
+              <p><strong>Características:</strong></p>
+              <ul>
+                <li>Diseño distintivo y aerodinámico</li>
+                <li>Motores de alto rendimiento</li>
+                <li>Prestaciones deportivas</li>
+                <li>Experiencia de conducción emocionante</li>
+              </ul>
+              <!-- Botón "Ver Modelo" -->
+              <div class="button-container">
+                <button mat-raised-button color="primary">Ver Modelo</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      
+    </ng-container>
+    <ng-container *ngIf="brand === 'Audi'">
+
+      <div class="profile-container mat-elevation-z2">
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <mat-toolbar color="primary" class="header-toolbar">
+            <mat-toolbar-row>
+              <span class="profile-title">Perfil del Automóvil - Audi</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        
+        <!-- Imagen del perfil -->
+        <img src="../../../assets/img/profile/audi-profile.jpeg" class="image">
+        
+        <!-- Contenido del perfil -->
+        <div class="profile-content">
+          <mat-card>
+            <mat-card-content>
+              <h2 class="profile-subtitle">Audi</h2>
+              <p><strong>Tipo:</strong> Premium</p>
+              <p><strong>Descripción:</strong> Audi es una marca alemana reconocida por sus automóviles premium, diseño vanguardista y tecnología innovadora. Con un enfoque en el rendimiento, la calidad y la elegancia, los vehículos Audi ofrecen una experiencia de conducción de lujo y distinción.</p>
+              <p><strong>Características:</strong></p>
+              <ul>
+                <li>Diseño moderno y vanguardista</li>
+                <li>Tecnología innovadora y sistemas de asistencia avanzada al conductor</li>
+                <li>Rendimiento y potencia</li>
+                <li>Confort y lujo</li>
+              </ul>
+              <!-- Botón "Ver Modelo" -->
+              <div class="button-container">
+                <button mat-raised-button color="primary">Ver Modelo</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      
+    </ng-container>
+    <ng-container *ngIf="brand === 'Lamborghini'">
+
+      <div class="profile-container mat-elevation-z2">
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <mat-toolbar color="primary" class="header-toolbar">
+            <mat-toolbar-row>
+              <span class="profile-title">Perfil del Automóvil - Lamborghini</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        
+        <!-- Imagen del perfil -->
+        <img src="../../../assets/img/profile/lamborghini-profile.webp" class="image">
+        
+        <!-- Contenido del perfil -->
+        <div class="profile-content">
+          <mat-card>
+            <mat-card-content>
+              <h2 class="profile-subtitle">Lamborghini</h2>
+              <p><strong>Tipo:</strong> Supercar</p>
+              <p><strong>Descripción:</strong> Lamborghini es una marca italiana de automóviles de lujo y deportivos, conocida por sus elegantes y potentes supercoches. Fundada en 1963, Lamborghini se ha convertido en un símbolo de prestigio y exclusividad, con vehículos que combinan diseño innovador y alto rendimiento.</p>
+              <p><strong>Características:</strong></p>
+              <ul>
+                <li>Diseño icónico y futurista</li>
+                <li>Motores potentes y de alto rendimiento</li>
+                <li>Velocidad y aceleración excepcionales</li>
+                <li>Tecnología de vanguardia en ingeniería automotriz</li>
+              </ul>
+              <!-- Botón "Ver Modelo" -->
+              <div class="button-container">
+                <button mat-raised-button color="primary">Ver Modelo</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      
+  
+  
+
+
+    </ng-container>
+    <ng-container *ngIf="brand === 'Nissan'">
+
+      <div class="profile-container mat-elevation-z2">
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <mat-toolbar color="primary" class="header-toolbar">
+            <mat-toolbar-row>
+              <span class="profile-title">Perfil del Automóvil - Nissan</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        
+        <!-- Imagen del perfil -->
+        <img src="../../../assets/img/profile/nissan-profile.jpeg" class="image">
+        
+        <!-- Contenido del perfil -->
+        <div class="profile-content">
+          <mat-card>
+            <mat-card-content>
+              <h2 class="profile-subtitle">Nissan</h2>
+              <p><strong>Tipo:</strong> Versátil</p>
+              <p><strong>Descripción:</strong> Nissan es una marca japonesa conocida por ofrecer una amplia gama de vehículos versátiles y confiables. Desde automóviles compactos y económicos hasta camionetas y SUVs robustas, Nissan se destaca por su calidad, durabilidad y variedad de opciones.</p>
+              <p><strong>Características:</strong></p>
+              <ul>
+                <li>Vehículos versátiles y confiables</li>
+                <li>Amplia variedad de opciones, desde compactos hasta SUVs</li>
+                <li>Tecnología innovadora y sistemas de seguridad avanzados</li>
+                <li>Rendimiento y eficiencia</li>
+              </ul>
+              <!-- Botón "Ver Modelo" -->
+              <div class="button-container">
+                <button mat-raised-button color="primary">Ver Modelo</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      
+    </ng-container>
+    <ng-container *ngIf="brand === 'Mitsubishi'">
+
+      <div class="profile-container mat-elevation-z2">
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+          <mat-toolbar color="primary" class="header-toolbar">
+            <mat-toolbar-row>
+              <span class="profile-title">Perfil del Automóvil - Mitsubishi</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        
+        <!-- Imagen del perfil -->
+        <img src="../../../assets/img/profile/mitsubishi-profile.jpeg" class="image">
+        
+        <!-- Contenido del perfil -->
+        <div class="profile-content">
+          <mat-card>
+            <mat-card-content>
+              <h2 class="profile-subtitle">Mitsubishi</h2>
+              <p><strong>Tipo:</strong> Todo terreno</p>
+              <p><strong>Descripción:</strong> Mitsubishi es una marca japonesa reconocida por sus vehículos todo terreno, especialmente SUVs y camionetas. Con una sólida reputación en la fabricación de vehículos robustos y resistentes, Mitsubishi se destaca en condiciones adversas y terrenos difíciles.</p>
+              <p><strong>Características:</strong></p>
+              <ul>
+                <li>Vehículos todo terreno con tracción en las cuatro ruedas</li>
+                <li>Robustos y resistentes</li>
+                <li>Capacidad de manejo en condiciones adversas</li>
+                <li>Amplio espacio interior y capacidad de carga</li>
+              </ul>
+              <!-- Botón "Ver Modelo" -->
+              <div class="button-container">
+                <button mat-raised-button color="primary">Ver Modelo</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+  
