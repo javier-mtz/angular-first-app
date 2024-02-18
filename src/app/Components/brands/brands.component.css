@@ -1,7 +1,7 @@
 .container {
-    /* background-image: url('../../../assets/img/brands/Carretera\ noche.jpg'); 
+    background-image: url('../../../assets/img/brands/Carretera\ noche2.jpg'); 
     background-size: cover; 
-    background-position: center;  */
+    background-position: center; 
     max-width: 100%;
     padding: 5%;
 }
@@ -12,7 +12,7 @@
     width: 100%; /* El ancho de la imagen es el 100% del contenedor */
     max-width: 100%; /* Evita que la imagen se extienda más allá del contenedor */
     height: auto; /* Altura proporcional */
-    max-height: 400px; /* Altura máxima de 400px */
+    max-height: 470px; /* Altura máxima de 400px */
     overflow: hidden; /* Para recortar la imagen si es necesario */
 }
 
@@ -24,6 +24,7 @@
 
 .image-text {
     padding-top: 10%;
+    padding-bottom: 5%;
     padding-left: 5%;
     font-size: 100px;
     color: #000000;
@@ -32,9 +33,14 @@
 }
 
 .container-text {
-    background-color: #b9b8b8;
-    padding-bottom: 5%;
+    background-color: #636363;
     margin-top: -3%;
+}
+
+.profile-content {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo gris semitransparente */
+    color: white; /* Texto blanco */
+    padding: 20px; /* Espaciado interior */
 }
 
 /*Grids*/
@@ -67,16 +73,16 @@
 }
 
 .image {
-    width: 40%; 
+    width: 60%; 
     height: auto;
 }
 
 .image.porsche{
-    width: 80%;
+    width: 110%;
     height: auto;
 }
 
 .image.audi{
-    width: 60%;
+    width: 80%;
     height: auto;
 }

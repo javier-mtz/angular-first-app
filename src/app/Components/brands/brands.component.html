@@ -1,50 +1,70 @@
 <div class="container-image">
-    <img src="../../../assets/img/brands/banner.jpeg" class="img-fluid" alt="...">
+    <img src="../../../assets/img/brands/banner.avif" class="img-fluid" alt="...">
 </div>
 <div class="container-text">
     <div class="image-text">Brands</div>
+    <div class="profile-content">
+        <mat-card>
+            <mat-card-content>
+                <h2 class="profile-subtitle">
+                    Los autos deportivos son vehículos diseñados para ofrecer un rendimiento excepcional y una experiencia de conducción emocionante. 
+                    Con motores altamente potentes, diseños aerodinámicos y tecnología de ultima generacion, estos automóviles representan la combinación 
+                    perfecta entre velocidad, estilo y adrenalina para los entusiastas del automovilismo.
+                </h2>
+                <h2 class="profile-subtitle">
+                    Los apasionados de los autos deportivos son verdaderos entusiastas que encuentran una fuente de emoción y fascinación en cada aspecto de estos vehículos. 
+                    Desde el rugido de sus motores hasta la elegancia de sus diseños, cada detalle despierta una pasión ardiente por la velocidad, el rendimiento y la 
+                    ingeniería automotriz. Estos aficionados disfrutan de compartir su conocimiento, experiencias y amor por los autos deportivos en comunidades y eventos 
+                    dedicados, donde la admiración por estas máquinas son el centro de atención.
+                </h2>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>
 <div class="container">
     <mat-grid-list cols="4" rowHeight="0.4:0.6">
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'BMW']" class="brand-link">
+        <a [routerLink]="['/profile', 'BMW']" class="brand-link">
+            <mat-grid-tile>
                 <img src="../../../assets/img/brands/BMW.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Porsche']" class="brandPorsche-link">
+            </mat-grid-tile>
+        </a>
+        <a [routerLink]="['/profile', 'Porsche']" class="brandPorsche-link">
+            <mat-grid-tile>
                 <img src="../../../assets/img/brands/Porsche-Logo.png" class="image porsche">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Mercedes']" class="brand-link">
+            </mat-grid-tile>
+        </a>
+        <a [routerLink]="['/profile', 'Mercedes']" class="brand-link">
+            <mat-grid-tile>
                 <img src="../../../assets/img/brands/logoMercedes.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Ferrari']" class="brand-link">
+            </mat-grid-tile>
+        </a>
+        <a [routerLink]="['/profile', 'Ferrari']" class="brand-link">
+            <mat-grid-tile>
                 <img src="../../../assets/img/brands/logo-ferrari.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Audi']" class="brand-link">
-                <img src="../../../assets/img/brands/audi'logo.png" class="image audi">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Lamborghini']" class="brand-link">
+            </mat-grid-tile>
+        </a>
+
+        <br>
+
+        <a [routerLink]="['/profile', 'Audi']" class="brand-link">
+            <mat-grid-tile>
+                <img src="../../../assets/img/brands/audi-logo.png" class="image audi">
+            </mat-grid-tile>
+        </a>
+        <a [routerLink]="['/profile', 'Lamborghini']" class="brand-link">
+            <mat-grid-tile>
                 <img src="../../../assets/img/brands/Lamborghini_Logo.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Nissan']" class="brand-link">
+            </mat-grid-tile>
+        </a>
+        <a [routerLink]="['/profile', 'Nissan']" class="brand-link">
+            <mat-grid-tile>
                 <img src="../../../assets/img/brands/Nissan_logo.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Mitsubishi']" class="brand-link">
+            </mat-grid-tile>
+        </a>
+        <a [routerLink]="['/profile', 'Mitsubishi']" class="brand-link">
+            <mat-grid-tile>
                 <img src="../../../assets/img/brands/Mitsubishi_logo.png" class="image">
-            </a>
-        </mat-grid-tile>
-    </mat-grid-list>    
+            </mat-grid-tile>
+        </a>
+    </mat-grid-list>
 </div>

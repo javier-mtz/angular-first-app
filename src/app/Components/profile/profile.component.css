@@ -23,7 +23,7 @@
 
 .image {
   width: 100%;
-  height: 50vh; /* La mitad de la altura de la ventana */
+  height: 55vh; /* La mitad de la altura de la ventana */
   object-fit: cover; /* Para asegurarse de que la imagen cubra todo el espacio */
 }
 
