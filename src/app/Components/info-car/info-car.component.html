@@ -1,1 +1,39 @@
-<p>info-car works!</p>
+<div class="container-image">
+    <img src="../../../assets/img/info-car/banner.avif" class="img-fluid" alt="...">
+</div>
+<div class="container">
+    <div class="images">
+        <div class="image-thumbnail-container">
+            <img *ngIf="filteredData[0]?.imagenes?.length" [src]="filteredData[0].imagenes[0]" class="image-small" id="main-image">        
+        </div>
+        <div class="horizontal-images-container">
+            <img *ngFor="let image of filteredData[0]?.imagenes?.slice(1)" [src]="image" class="horizontal-image">
+        </div>
+    </div>
+    <div class="sidebar">
+        <h1>{{ filteredData[0]?.modelo }}</h1>
+        <hr>
+        <div class="descr">
+            <ng-container>
+                <p>{{ filteredData[0]?.descripcion }}</p>
+                <p>Precio: {{ filteredData[0]?.precio }}</p>
+                <p>Motor: {{ filteredData[0]?.motor }}</p>
+            </ng-container>
+        </div>
+        <hr>
+        <div class="datasheet">
+            <p>Sitio oficial</p>
+            <section>
+                <div class="example-button-row">
+                    <div class="example-flex-container">
+                        <div class="example-button-container">
+                            <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                                <mat-icon>navigate_next</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

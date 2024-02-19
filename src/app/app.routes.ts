@@ -11,7 +11,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'brands', component: BrandsComponent },
-    { path: 'info-car', component: InfoCarComponent },
+    { path: 'info-car/:modelo', component: InfoCarComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'profile/:brand', component: ProfileComponent } // Ruta dinámica para el perfil con parámetro brand
 ];
