@@ -35,6 +35,7 @@ export class InfoCarComponent implements OnInit {
     motor: '',
     imagenes: []
   };
+  marca!: string ;
 
   constructor(private route: ActivatedRoute, private breadcrumbsService: BreadcrumbsService) { }
 
@@ -45,6 +46,7 @@ export class InfoCarComponent implements OnInit {
       const modelo = params['modelo'];
       for (let i = 0; i < data.length; i++) {
         const carrosFiltrados = data[i].carros.filter(carro => carro.modelo === modelo);
+        this.marca = data[i].marca;
         if (carrosFiltrados.length > 0) {
           this.carroSeleccionado = carrosFiltrados[0];
           break;
@@ -55,7 +57,9 @@ export class InfoCarComponent implements OnInit {
     // Establece las migas de pan para este componente
     this.breadcrumbsService.setBreadcrumbs([
       { label: 'Home', url: '/home' },
-      { label: 'Brands', url: '/brands' }
+      { label: 'Brands', url: '/brands' },
+      { label: this.marca, url: `/profile/${this.marca}` },
+      { label: this.carroSeleccionado.modelo, url: `/brands/${this.marca}/${this.carroSeleccionado.modelo}` }
     ]);
   }
 }
