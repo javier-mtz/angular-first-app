@@ -2,7 +2,7 @@ export const data = [
     {
         marca: "BMW",
         paletaColores: ['#1c69d4'],
-        logo: 'https://www.carlogos.org/car-logos/bmw-logo-1963-download.png',
+        logo: 'https://1000logos.net/wp-content/uploads/2018/02/BMW-Logo-1997.png',
         carros: [
             {
                 modelo: 'BMW M1',
@@ -169,7 +169,7 @@ export const data = [
     {
         marca: 'Mercedes',
         paletaColores: ['#000000'],
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Mercedes-Benz_Star_2022.svg/1200px-Mercedes-Benz_Star_2022.svg.png',
+        logo: 'https://pngimg.com/uploads/mercedes_logos/small/mercedes_logos_PNG1.png',
         carros: [
             {
                 modelo: '300SL',
