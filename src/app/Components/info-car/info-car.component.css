@@ -114,8 +114,9 @@ span {
 }
 
 .image-small {
-    padding-top: 5%;
+    margin-top: 5%;
     width: 55%;
+    border-radius: 40px;
 }
 
 p {

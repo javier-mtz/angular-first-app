@@ -5,7 +5,7 @@ export const data = [
         logo: 'https://1000logos.net/wp-content/uploads/2018/02/BMW-Logo-1997.png',
         carros: [
             {
-                modelo: 'BMW M1',
+                modelo: 'M1',
                 descripcion: 'La necesidad de homologar unidades de producción en serie para crear el de competición sirvió para que BMW produjera este modelo diseñado por Giorgetto Giugiaro. Solo se hicieron 456 ejemplares en tres años, y fue el primero con la “M” en su denominación. Su diseño afilado no pasó desapercibido, como tampoco su motor de seis cilindros en línea con 3,5 litros de cubicaje que desarrollaba 277 caballos de potencia.',
                 precio: '750,000.00',
                 motor: '6 cilindros en línea',
@@ -17,7 +17,7 @@ export const data = [
                 ]
             },
             {
-                modelo: 'BMW M3 E30',
+                modelo: 'M3 E30',
                 descripcion: 'El primer derivado M de la Serie 3, con código E30, supuso un antes y un después en la marca gracias a su ingeniería. También nació para ser la base del coche de competición, y por ello equipó un propulsor de 4 cilindros, 2,3 litros y 16 válvulas que rendía 200 CV en su primera versión y 238 CV con 2,5 litros en su última evolución. Su bajo peso, carrocería ensanchada y chasis mejorado le hacen aún hoy un prodigio de la conducción.',
                 precio: '200,000.00',
                 motor: '4 cilindros',
@@ -29,7 +29,7 @@ export const data = [
                 ]
             },
             {
-                modelo: 'BMW Z3 M Coupé',
+                modelo: 'Z3 M Coupé',
                 descripcion: 'Este modelo rompió moldes a finales de los 90 y hoy la variante M es de lo más codiciada. Su carrocería coupé le hacía mucho más rígido que su equivalente descapotable, y eso se traducía en una gran capacidad dinámica. Dotado de diferencial autoblocante trasero y un motor de 6 cilindros en línea de 3,2 litros y 321 caballos, solo necesitaba 5,4 segundos para pasar de 0 a 100 km/h.',
                 precio: '15,000.00',
                 motor: '6 cilindros en línea',
@@ -41,7 +41,7 @@ export const data = [
                 ]
             },
             {
-                modelo: 'BMW M5 E39',
+                modelo: 'M5 E39',
                 descripcion: 'Dos años después del M3, BMW empezó a lanzar versiones M de la berlina de mayor tamaño, y en 1998 destacó esta tercera generación, única de la saga que montó el motor V8 de 4,9 litros atmosférico. Con distribución variable para la admisión y el escape, la potencia llegaba hasta los 400 CV y conseguía acelerar de 0 a 100 km/h en 4,8 segundos, además de llegar sin limitación hasta los 298 km/h. Fue considerado en su época el sedán de producción más rápido del mercado.',
                 precio: '300,000.00',
                 motor: '8 cilindros en V',
