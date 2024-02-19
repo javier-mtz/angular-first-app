@@ -1,7 +1,7 @@
 export const data = [
     {
         marca: "BMW",
-        paletaColores: ['#007bff', '#dc3545', '#28a745', '#ffc107'],
+        paletaColores: ['#1c69d4'],
         logo: 'https://www.carlogos.org/car-logos/bmw-logo-1963-download.png',
         carros: [
             {
@@ -57,7 +57,7 @@ export const data = [
     },
     {
         marca: 'Ferrari',
-        paletaColores: ['#dc3545', '#ff0000', '#ffd700', '#000000'],
+        paletaColores: ['#f93d38'],
         logo: 'https://1000marcas.net/wp-content/uploads/2019/12/Ferrari-Logo.png',
         carros: [
             {
@@ -112,7 +112,7 @@ export const data = [
     },
     {
         marca: 'Porsche',
-        paletaColores: ['#0d6efd', '#198754', '#ffc107', '#000000'],
+        paletaColores: ['#9db1ba'],
         logo: 'https://pngimg.com/uploads/porsche_logo/porsche_logo_PNG6.png',
         carros: [
             {
@@ -168,7 +168,7 @@ export const data = [
     },
     {
         marca: 'Mercedes',
-        paletaColores: ['#0d6efd', '#28a745', '#ffc107', '#6c757d'],
+        paletaColores: ['#000000'],
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Mercedes-Benz_Star_2022.svg/1200px-Mercedes-Benz_Star_2022.svg.png',
         carros: [
             {
