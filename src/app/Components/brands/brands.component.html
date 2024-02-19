@@ -8,6 +8,11 @@
 <div class="container-text">
   <div class="image-text">Brands</div>
 </div>
+<!-- breadcrumbs -->
+<app-breadcrumbs></app-breadcrumbs>
+
+
+
 <div class="brands-content">
   <mat-card *ngFor="let car of data; let i = index" class="card">
     <a [routerLink]="['/profile', car.marca]" class="image-container">
