@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common'; // Asegúrate de importar CommonModule
 import { data } from '../../../assets/data/info';
+import { RouterModule } from '@angular/router'; 
 
 
 @Component({
@@ -14,11 +15,12 @@ import { data } from '../../../assets/data/info';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true,
-  imports: [RouterOutlet, MatSlideToggleModule, MatGridListModule, MatCardModule, MatToolbarModule, CommonModule],
+  imports: [RouterOutlet, MatSlideToggleModule, MatGridListModule, MatCardModule, MatToolbarModule, CommonModule, RouterModule ],
 })
 export class ProfileComponent implements OnInit {
-[x: string]: any;
+  [x: string]: any;
   brand: string = ''; // Inicializando la propiedad brand
+  infoCar: string = ''; // Inicializando la propiedad brand
   filteredData: any[] | undefined = []; 
   constructor(private route: ActivatedRoute) { }
 
@@ -35,6 +37,8 @@ export class ProfileComponent implements OnInit {
         this.filteredData = data.filter((data) => data.marca === this.brand);
       }
     });
+
+    
   }
 }
 

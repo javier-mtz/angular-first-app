@@ -27,7 +27,7 @@
       <!-- Contenido del perfil -->
       <div class="profile-content">
         <ng-container *ngFor="let car of filteredData?.[0].carros; let i = index">
-          <mat-card (click)="onCardClick(i)" [style.backgroundImage]="'url(' + car.imagenes[0] + ')'" class="card">
+          <mat-card [routerLink]="['/info-car', car.modelo]" (click)="onCardClick(i)" [style.backgroundImage]="'url(' + car.imagenes[0] + ')'" class="card">
             <mat-card-header>
               <mat-card-title>{{car.modelo}}</mat-card-title>
             </mat-card-header>
