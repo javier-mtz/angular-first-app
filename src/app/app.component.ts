@@ -20,6 +20,10 @@ export class AppComponent {
       if (typeof window !== 'undefined') {
         window.scrollTo(0, 0);
       }
+      // cuando sea la ruta / redirigir a /home
+      if (evt.url === '/') {
+        this.router.navigate(['/home']);
+      }
     });
   }
 }
