@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './info-car.component.html',
   styleUrl: './info-car.component.css'
 })
+
 export class InfoCarComponent implements OnInit {
   filteredData: any; // Suponiendo que filteredData es donde tienes almacenada la información del carro
 
@@ -22,6 +23,14 @@ export class InfoCarComponent implements OnInit {
   infoCar: string = ''; // Inicializando la propiedad brand
 
   model: string = '';
+  
+  carroSeleccionado: Carro = {
+    modelo: '',
+    descripcion: '',
+    precio: '',
+    motor: '',
+    imagenes: []
+  };
 
   constructor(private route: ActivatedRoute) { }
 
@@ -30,12 +39,20 @@ export class InfoCarComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       const modelo = params['modelo'];
-      console.log(modelo);
-      
-      if (this.model) {
-        this.filteredData = data.filter((data) => data.marca === this.model);
+      for (let i = 0; i < data.length; i++) {
+        const carrosFiltrados = data[i].carros.filter(carro => carro.modelo === modelo);
+        if (carrosFiltrados.length > 0) {
+          this.carroSeleccionado = carrosFiltrados[0];
+          break;
+        }
       }
-
     });
   }
+}
+interface Carro {
+  modelo: string;
+  descripcion: string;
+  precio: string;
+  motor: string;
+  imagenes: string[];
 }
