@@ -1,14 +1,73 @@
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+  background-color: #f0f0f0;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  width: calc(33.33% - 20px);
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+}
+
+.footer-section h1 {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #333;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Agrega una clase a la sección de derechos reservados en tu HTML */
+.reserved-rights {
+  border-left: none;
+  border-right: none;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-section {
+    width: calc(50% - 20px);
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer-section {
     width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
-    transition: background-color 0.5s ease;
+    border-left: none;
+    border-right: none;
   }
-  
-  .footer:hover {
-    background-color: gray;
-  }
+}
