@@ -9,21 +9,23 @@ import { CommonModule } from '@angular/common'; // Asegúrate de importar Common
 import { data } from '../../../assets/data/info';
 import { RouterModule } from '@angular/router'; 
 
+import { BreadcrumbsService } from '../../breadcrumbs.service';
+import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true,
-  imports: [RouterOutlet, MatSlideToggleModule, MatGridListModule, MatCardModule, MatToolbarModule, CommonModule, RouterModule ],
+  imports: [RouterOutlet, MatSlideToggleModule, MatGridListModule, MatCardModule, MatToolbarModule, CommonModule, RouterModule, BreadcrumbsComponent],
+  providers: [BreadcrumbsService],
 })
 export class ProfileComponent implements OnInit {
   [x: string]: any;
   brand: string = ''; // Inicializando la propiedad brand
   infoCar: string = ''; // Inicializando la propiedad brand
   filteredData: any[] | undefined = []; 
-  constructor(private route: ActivatedRoute) { }
-
+  constructor(private route: ActivatedRoute, private breadcrumbsService: BreadcrumbsService) { }
   onCardClick(index: number) {
     console.log(`Card ${index} was clicked.`);
     //NavigationPreloadManager.navigate(['/profile', this.filteredData[index].marca]);
@@ -38,7 +40,12 @@ export class ProfileComponent implements OnInit {
       }
     });
 
-    
+    // Establece las migas de pan para este componente
+    this.breadcrumbsService.setBreadcrumbs([
+      { label: 'Home', url: '/home' },
+      { label: 'Brands', url: '/brands' },
+      { label: this.brand, url: `/brands/${this.brand}` }
+    ]);
   }
 }
 

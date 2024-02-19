@@ -7,12 +7,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'; 
 import { ActivatedRoute } from '@angular/router';
 
+import { BreadcrumbsService } from '../../breadcrumbs.service';
+import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
+
 @Component({
   selector: 'app-info-car',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, RouterModule],
   templateUrl: './info-car.component.html',
-  styleUrl: './info-car.component.css'
+  styleUrl: './info-car.component.css',
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, RouterModule, BreadcrumbsComponent],
+  providers: [BreadcrumbsService]
 })
 
 export class InfoCarComponent implements OnInit {
@@ -32,7 +36,7 @@ export class InfoCarComponent implements OnInit {
     imagenes: []
   };
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private breadcrumbsService: BreadcrumbsService) { }
 
   ngOnInit(): void {
     this.filteredData = data; 
@@ -47,6 +51,12 @@ export class InfoCarComponent implements OnInit {
         }
       }
     });
+
+    // Establece las migas de pan para este componente
+    this.breadcrumbsService.setBreadcrumbs([
+      { label: 'Home', url: '/home' },
+      { label: 'Brands', url: '/brands' }
+    ]);
   }
 }
 interface Carro {
