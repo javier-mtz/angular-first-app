@@ -1,12 +1,18 @@
 .profile-container {
-  background-size: cover; /* Cubrir todo el contenedor */
-  background-position: center; /* Centrar la imagen */
+  background-size: cover;
+  background-position: center; 
 }
 
 .profile-content {
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo gris semitransparente */
-  color: white; /* Texto blanco */
-  padding: 20px; /* Espaciado interior */
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: white;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  flex-wrap: wrap; 
+  justify-content: space-around;
+  justify-content: center;
+  padding: 20px; 
 }
 
 .button-container {
@@ -16,25 +22,40 @@
 
 
 .profile-header {
-  background-color: black;
-  color: white;
   text-align: center;
 }
 
-.image {
-  width: 100%;
-  height: 50vh; /* La mitad de la altura de la ventana */
-  object-fit: cover; /* Para asegurarse de que la imagen cubra todo el espacio */
+.logo {
+  width: 100px;
+  height: 100px; 
+  margin: 0 auto;
+  display: block; 
 }
 
 .button-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px; /* Espacio por encima del botón */
+  margin-top: 20px; 
 }
 
-.header-toolbar {
-  background-color: black;
+.card {
+  margin: 2%;
+  flex-basis: calc(100% / 4 - 4%);
+  box-sizing: border-box;
+  height: 45vh;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+  border-radius: 5vh; 
+}
+
+.card:active {
+  transform: scale(0.95);
+  
+}
+.card:hover {
+  cursor: pointer;
+  filter: brightness(80%);
 }
 
 .profile-title {

@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { RouterModule } from '@angular/router'; // Asegúrate de importar RouterModule
+import { ActivatedRoute, RouterModule } from '@angular/router'; // Asegúrate de importar RouterModule
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { data } from '../../../assets/data/info';
 
 
 @Component({
-  selector: 'app-brands',
-  standalone: true,
-  imports: [MatGridListModule, RouterModule],
-  templateUrl: './brands.component.html',
-  styleUrl: './brands.component.css'
+    selector: 'app-brands',
+    standalone: true,
+    templateUrl: './brands.component.html',
+    styleUrl: './brands.component.css',
+    imports: [MatGridListModule, RouterModule, CommonModule, MatCardModule]
 })
-export class BrandsComponent {
-
+export class BrandsComponent{
+  [x: string]: any;
+  brand: string = ''; // Inicializando la propiedad brand
+  data = data;
 }

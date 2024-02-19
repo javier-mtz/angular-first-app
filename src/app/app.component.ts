@@ -1,14 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FooterComponent } from "../app/Components/footer/footer.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, MatSlideToggleModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [RouterOutlet, MatSlideToggleModule, FooterComponent, FooterComponent]
 })
 export class AppComponent {
   title = 'CarHistory';
+  constructor(private router: Router) {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      if (typeof window !== 'undefined') {
+        window.scrollTo(0, 0);
+      }
+    });
+  }
 }

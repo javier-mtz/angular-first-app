@@ -1,50 +1,17 @@
 <div class="container-image">
-    <img src="../../../assets/img/brands/banner.jpeg" class="img-fluid" alt="...">
+  <img
+    src="../../../assets/img/brands/banner.jpeg"
+    class="img-fluid"
+    alt="..."
+  />
 </div>
 <div class="container-text">
-    <div class="image-text">Brands</div>
+  <div class="image-text">Brands</div>
 </div>
-<div class="container">
-    <mat-grid-list cols="4" rowHeight="0.4:0.6">
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'BMW']" class="brand-link">
-                <img src="../../../assets/img/brands/BMW.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Porsche']" class="brandPorsche-link">
-                <img src="../../../assets/img/brands/Porsche-Logo.png" class="image porsche">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Mercedes']" class="brand-link">
-                <img src="../../../assets/img/brands/logoMercedes.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Ferrari']" class="brand-link">
-                <img src="../../../assets/img/brands/logo-ferrari.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Audi']" class="brand-link">
-                <img src="../../../assets/img/brands/audi'logo.png" class="image audi">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Lamborghini']" class="brand-link">
-                <img src="../../../assets/img/brands/Lamborghini_Logo.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Nissan']" class="brand-link">
-                <img src="../../../assets/img/brands/Nissan_logo.png" class="image">
-            </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <a [routerLink]="['/profile', 'Mitsubishi']" class="brand-link">
-                <img src="../../../assets/img/brands/Mitsubishi_logo.png" class="image">
-            </a>
-        </mat-grid-tile>
-    </mat-grid-list>    
+<div class="brands-content">
+  <mat-card *ngFor="let car of data; let i = index" class="card">
+    <a [routerLink]="['/profile', car.marca]" class="image-container">
+      <img [src]="car.logo" class="image"/>
+    </a>
+  </mat-card>
 </div>

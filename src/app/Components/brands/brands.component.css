@@ -1,82 +1,73 @@
-.container {
-    /* background-image: url('../../../assets/img/brands/Carretera\ noche.jpg'); 
-    background-size: cover; 
-    background-position: center;  */
-    max-width: 100%;
-    padding: 5%;
-}
 
-/*Imagen principal*/
 .container-image {
-    position: relative;
-    width: 100%; /* El ancho de la imagen es el 100% del contenedor */
-    max-width: 100%; /* Evita que la imagen se extienda más allá del contenedor */
-    height: auto; /* Altura proporcional */
-    max-height: 400px; /* Altura máxima de 400px */
-    overflow: hidden; /* Para recortar la imagen si es necesario */
+  position: relative;
+  width: 100%; 
+  max-width: 100%; 
+  height: auto; 
+  max-height: 400px;
+  overflow: hidden; 
 }
 
 .container-image img {
-    width: 100%; /* Ancho del contenedor */
-    height: auto; /* Altura proporcional */
-    object-fit: cover; /* Ajuste de la imagen */
+  width: 100%;
+  height: auto; 
+  object-fit: cover;
 }
 
 .image-text {
-    padding-top: 10%;
-    padding-left: 5%;
-    font-size: 100px;
-    color: #000000;
-    font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+  padding-top: 10%;
+  padding-left: 5%;
+  font-size: 100px;
+  color: #000000;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .container-text {
-    background-color: #b9b8b8;
-    padding-bottom: 5%;
-    margin-top: -3%;
-}
-
-/*Grids*/
-.mat-grid-tile {
-    background: rgba(87, 87, 87, 0.2);
-    border-radius: 40px;
-    max-width: 20%;
-} 
-
-.mat-grid-tile::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Color del overlay */
-    border-radius: 40px;
-    opacity: 0; /* Inicialmente, el overlay es transparente */
-    transition: opacity 0.3s; /* Transición suave de la opacidad */
-}
-
-.mat-grid-tile:hover::before {
-    opacity: 1; /* Cuando el mouse está sobre el grid, el overlay se hace visible */
-}
-
-.mat-grid-list {
-    max-width: 100%; 
-    margin: 0;
+  background-color: #b9b8b8;
+  padding-bottom: 5%;
+  margin-top: -3%;
 }
 
 .image {
-    width: 40%; 
-    height: auto;
+  width: 40%;
+  height: auto;
 }
 
-.image.porsche{
-    width: 80%;
-    height: auto;
+.card {
+  margin: 2%;
+  flex-basis: calc(100% / 4 - 4%);
+  background-color: #b9b8b8;
+  box-sizing: border-box;
+  height: 45vh;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+  border-radius: 5vh; /* Ajusta este valor según tus necesidades */
 }
 
-.image.audi{
-    width: 60%;
-    height: auto;
+.brands-content {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  justify-content: center;
+  padding: 20px; /* Espaciado interior */
 }
+
+.card:active {
+  transform: scale(0.95);
+}
+.card:hover {
+  cursor: pointer;
+  filter: brightness(80%);
+}
+
+.image-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100%; 
+  }
