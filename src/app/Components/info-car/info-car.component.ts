@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 import { data } from '../../../assets/data/info';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import { BreadcrumbsService } from '../../breadcrumbs.service';
@@ -13,21 +13,15 @@ import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 @Component({
   selector: 'app-info-car',
   standalone: true,
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, RouterModule, BreadcrumbsComponent ],
+  providers: [BreadcrumbsService],
   templateUrl: './info-car.component.html',
-  styleUrl: './info-car.component.css',
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, RouterModule, BreadcrumbsComponent],
-  providers: [BreadcrumbsService]
+  styleUrl: './info-car.component.css'
 })
 
 export class InfoCarComponent implements OnInit {
   filteredData: any; // Suponiendo que filteredData es donde tienes almacenada la información del carro
 
-  logoUrl?: string; // Variable para almacenar la URL del logo
-
-  infoCar: string = ''; // Inicializando la propiedad brand
-
-  model: string = '';
-  
   carroSeleccionado: Carro = {
     modelo: '',
     descripcion: '',
@@ -35,13 +29,15 @@ export class InfoCarComponent implements OnInit {
     motor: '',
     imagenes: []
   };
-  marca!: string ;
+
+  marca: string = '';
+
+  imagenSeleccionada: string = '';
+  imagenSeleccionadaIndex: number = 0;
 
   constructor(private route: ActivatedRoute, private breadcrumbsService: BreadcrumbsService) { }
 
   ngOnInit(): void {
-    this.filteredData = data; 
-
     this.route.params.subscribe(params => {
       const modelo = params['modelo'];
       for (let i = 0; i < data.length; i++) {
@@ -49,6 +45,8 @@ export class InfoCarComponent implements OnInit {
         this.marca = data[i].marca;
         if (carrosFiltrados.length > 0) {
           this.carroSeleccionado = carrosFiltrados[0];
+          // Establecer la imagen seleccionada por defecto
+          this.imagenSeleccionada = this.carroSeleccionado.imagenes[0];
           break;
         }
       }
@@ -61,6 +59,12 @@ export class InfoCarComponent implements OnInit {
       { label: this.marca, url: `/profile/${this.marca}` },
       { label: this.carroSeleccionado.modelo, url: `/brands/${this.marca}/${this.carroSeleccionado.modelo}` }
     ]);
+  }
+
+  seleccionarImagen(imagen: string, index: number) {
+    // Actualizar la imagen seleccionada y su índice
+    this.imagenSeleccionada = imagen;
+    this.imagenSeleccionadaIndex = index;
   }
 }
 interface Carro {

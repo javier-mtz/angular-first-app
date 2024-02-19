@@ -14,7 +14,6 @@
 .container {
     display: flex;
     margin-bottom: 5%;
-    padding-bottom: 10%;
 }
 
 .images {
@@ -23,14 +22,31 @@
 }
 
 .sidebar {
-    padding-top: 10%;
+    padding-top: 5%;
     margin-left: -25%;
     width: 30%;
 }
 
 h1 {
     padding-bottom: 5%;
-    font-size: 30px;
+    font-size: 50px;
+    line-height: 1.5;
+    /* Establecer el interlineado */
+}
+
+span {
+    color: #000000;
+    font-weight: bold;
+}
+
+.unselected-image {
+    opacity: 0.5;
+    /* Esto reduce la opacidad de las imágenes no seleccionadas */
+}
+
+.selected-image {
+    opacity: 1;
+    /* Esto restaura la opacidad de la imagen seleccionada */
 }
 
 .descr {
@@ -55,10 +71,24 @@ h1 {
 }
 
 .horizontal-image {
-    width: 30%;
+    width: 20%;
     box-sizing: border-box;
     opacity: 0.5;
     transition: opacity 0.3s ease;
+}
+
+.image-small {
+    padding-top: 5%;
+    width: 55%;
+}
+
+p {
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: justify;
+    /* Justificar el texto */
+    line-height: 1.5;
+    /* Establecer el interlineado */
 }
 
 .horizontal-image:hover {

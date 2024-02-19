@@ -3,39 +3,29 @@
 </div>
 <!-- breadcrumbs -->
 <app-breadcrumbs></app-breadcrumbs>
+<!-- Contenido -->
 <div class="container">
     <div class="images">
         <div class="image-thumbnail-container">
-            <img [src]="carroSeleccionado.imagenes[0]" class="image-small" id="main-image">        
+            <img [src]="imagenSeleccionada" class="image-small" id="main-image">
         </div>
         <div class="horizontal-images-container">
-            <img *ngFor="let image of carroSeleccionado.imagenes" [src]="image" class="horizontal-image">
+            <div class="image-row">
+                <img *ngFor="let imagen of carroSeleccionado.imagenes; let i = index" [src]="imagen"
+                    class="horizontal-image" (click)="seleccionarImagen(imagen, i)"
+                    [class.unselected-image]="i !== imagenSeleccionadaIndex"
+                    [class.selected-image]="i === imagenSeleccionadaIndex">
+            </div>
         </div>
     </div>
     <div class="sidebar">
         <h1>{{ carroSeleccionado.modelo }}</h1>
         <hr>
         <div class="descr">
-            <ng-container>
-                <p>{{ carroSeleccionado.descripcion }}</p>
-                <p>Precio: {{ carroSeleccionado.precio }}</p>
-                <p>Motor: {{ carroSeleccionado.motor }}</p>
-            </ng-container>
+            <p><span>Descripción: </span>{{ carroSeleccionado.descripcion }}</p>
+            <p><span>Precio: </span>{{ carroSeleccionado.precio }}</p>
+            <p><span>Motor: </span>{{ carroSeleccionado.motor }}</p>
         </div>
         <hr>
-        <div class="datasheet">
-            <p>Sitio oficial</p>
-            <section>
-                <div class="example-button-row">
-                    <div class="example-flex-container">
-                        <div class="example-button-container">
-                            <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-                                <mat-icon>navigate_next</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
     </div>
 </div>
