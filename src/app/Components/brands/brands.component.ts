@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { data } from '../../../assets/data/info';
 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @Component({
     selector: 'app-brands',

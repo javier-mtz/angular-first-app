@@ -1,3 +1,4 @@
+
 <!-- Profile Component HTML -->
 <div class="profile-container mat-elevation-z2">
   <ng-container>
@@ -14,10 +15,10 @@
             >
             <!-- Imagen del perfil -->
             <img [src]="filteredData?.[0].logo" class="logo" />
+
           </mat-toolbar-row>
         </mat-toolbar>
       </div>
-
       <!-- Contenido del perfil -->
       <div class="profile-content">
         <ng-container *ngFor="let car of filteredData?.[0].carros; let i = index">
@@ -31,4 +32,3 @@
     </div>
   </ng-container>
 </div>
-
