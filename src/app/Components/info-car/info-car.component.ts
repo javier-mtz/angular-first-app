@@ -26,6 +26,7 @@ import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 export class InfoCarComponent implements OnInit {
   [x: string]: any;
   brand: string = ''; // Inicializando la propiedad brand
+  profile: string = ''; // Inicializando la propiedad profile
   infoCar: string = ''; // Inicializando la propiedad brand
   filteredData: any; // Suponiendo que filteredData es donde tienes almacenada la información del carro
 
@@ -56,7 +57,6 @@ export class InfoCarComponent implements OnInit {
           this.color = data[i].paletaColores[0];
           this.logo = data[i].logo;
           this.carroSeleccionado = carrosFiltrados[0];
-          // Establecer la imagen seleccionada por defecto
           this.imagenSeleccionada = this.carroSeleccionado.imagenes[0];
           break;
         }

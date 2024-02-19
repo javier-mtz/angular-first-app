@@ -5,10 +5,8 @@
     <div class="profile-container mat-elevation-z2">
       <!-- Encabezado del perfil -->
       <div class="profile-header">
-        <mat-toolbar
-          [style.background-color]="filteredData?.[0].paletaColores?.[0]"
-          class="header-toolbar"
-        >
+        <mat-toolbar [style.background-color]="filteredData?.[0].paletaColores?.[0]"
+          class="header-toolbar">
           <mat-toolbar-row>
             <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] === '#000000'">
               <span class="profile-title" style="color: white">{{filteredData?.[0].marca}}</span>

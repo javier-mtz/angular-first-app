@@ -5,12 +5,7 @@
             <div class="info-car-header">
                 <mat-toolbar [style.background-color]="color" class="header-toolbar">
                     <mat-toolbar-row>
-                        <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] === '#000000'">
-                            <span class="profile-title" style="color: white">{{ marca }} {{carroSeleccionado.modelo}}</span>
-                        </ng-template>
-                        <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] !== '#000000'">
-                            <span class="profile-title" style="color: black">{{ marca }} {{carroSeleccionado.modelo}}</span>
-                        </ng-template>
+                        <span [ngClass]="{'white-text': color === '#000000', 'black-text': color !== '#000000'}">{{ marca }} {{ carroSeleccionado.modelo }}</span>
                         <!-- Imagen del perfil -->
                         <img [src]="logo" class="logo" />
                     </mat-toolbar-row>
@@ -23,12 +18,12 @@
             <!-- Contenido -->
             <div class="container">
                 <div class="images">
-                    <div>
-                        <img [src]="imagenSeleccionada" class="image-small" id="main-image" style="border-radius: 10px; " />
+                    <div class="image-thumbnail-container">
+                        <img [src]="imagenSeleccionada" class="image-small" id="main-image">
                     </div>
                     <div class="horizontal-images-container">
                         <div class="image-row">
-                            <img *ngFor="let imagen of carroSeleccionado.imagenes; let i = index" [src]="imagen" style="border-radius: 10px;"
+                            <img *ngFor="let imagen of carroSeleccionado.imagenes; let i = index" [src]="imagen"
                                 class="horizontal-image" (click)="seleccionarImagen(imagen, i)"
                                 [class.unselected-image]="i !== imagenSeleccionadaIndex"
                                 [class.selected-image]="i === imagenSeleccionadaIndex">
@@ -37,9 +32,9 @@
                 </div>
                 <div class="sidebar">
                     <div class="descr">
-                        <h1>{{ marca }} {{ carroSeleccionado.modelo }}</h1>
+                        <h1>{{ carroSeleccionado.modelo }}</h1>
                         <p><span>Descripción: </span>{{ carroSeleccionado.descripcion }}</p>
-                        <p><span>Precio: </span>$ {{ carroSeleccionado.precio }} USD</p>
+                        <p><span>Precio: </span>{{ carroSeleccionado.precio }}</p>
                         <p><span>Motor: </span>{{ carroSeleccionado.motor }}</p>
                     </div>
                 </div>
