@@ -1,22 +1,53 @@
-<div class="container-image">
-  <img
-    src="../../../assets/img/brands/banner.avif"
-    class="img-fluid"
-    alt="..."
-  />
-</div>
-<div class="container-text">
-  <div class="image-text">Brands</div>
-</div>
+<div class="container">
+  <!-- <div class="container-image">
+    <img
+      src="../../../assets/img/brands/banner.avif"
+      class="img-fluid"
+      alt="..."
+    />
+  </div> -->
 
-<!-- breadcrumbs -->
-<app-breadcrumbs></app-breadcrumbs>
+  <div class="profile-header">
+    <mat-toolbar class="header-toolbar">
+      <mat-toolbar-row>
+        <h1 class="image-text">Brands</h1>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
 
-<!-- brands-content -->
-<div class="brands-content">
-  <mat-card *ngFor="let car of data; let i = index" class="card">
-    <a [routerLink]="['/profile', car.marca]" class="image-container">
-      <img [src]="car.logo" class="image"/>
-    </a>
-  </mat-card>
+  <!-- breadcrumbs -->
+  <app-breadcrumbs></app-breadcrumbs>
+
+  <!-- <div class="container-text">
+    <div class="image-text">Brands</div>
+  </div> -->
+  
+  <!-- brands-content -->
+  <div class="brands-content">
+    <mat-card *ngFor="let car of data; let i = index" class="card">
+      <a [routerLink]="['/profile', car.marca]" class="image-container">
+        <img [src]="car.logo" class="image"/>
+      </a>
+    </mat-card>
+    <!-- <mat-card  class="card">
+      <a class="image-container">
+        <img src="../../../assets/img/brands/Nissan_logo.png" class="secondaryImage"/>
+      </a>
+    </mat-card>
+    <mat-card class="card">
+      <a  class="image-container">
+        <img src="../../../assets/img/brands/Mitsubishi_logo.png" class="secondaryImage"/>
+      </a>
+    </mat-card>
+    <mat-card class="card">
+      <a  class="image-container">
+        <img src="../../../assets/img/brands/logoMercedes.png" class="secondaryImage"/>
+      </a>
+    </mat-card>
+    <mat-card  class="card">
+      <a  class="image-container">
+        <img src="../../../assets/img/brands/audi-logo.png" class="secondaryImage"/>
+      </a>
+    </mat-card> -->
+  </div>
 </div>

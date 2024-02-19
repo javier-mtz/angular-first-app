@@ -1,3 +1,32 @@
+.info-car-container {
+    background-image: url('../../../assets/img/carretera-atardecer.jpg');
+    background-size: cover;
+    /* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
+    background-position: center;
+    /* Centra la imagen de fondo dentro del contenedor */
+    background-repeat: no-repeat;
+    /* Evita que la imagen de fondo se repita */
+}
+
+.profile-content {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    justify-content: center;
+    padding: 20px;
+}
+
+.info-car-header {
+    text-align: center;
+}
+
+.profile-title {
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
 .container-image {
     position: relative;
     width: 100%;
@@ -13,7 +42,6 @@
 
 .container {
     display: flex;
-    margin-bottom: 5%;
 }
 
 .images {
@@ -21,10 +49,14 @@
     margin-left: 5%;
 }
 
+.bread{
+    color: #000000;
+}
+
 .sidebar {
-    padding-top: 5%;
     margin-left: -25%;
     width: 30%;
+    color: rgb(255, 255, 255);
 }
 
 h1 {
@@ -52,6 +84,10 @@ span {
 .descr {
     margin-top: 10%;
     margin-bottom: 10%;
+    padding: 5%;
+    background-color: rgba(87, 87, 87, 0.7); 
+    backdrop-filter: blur(5px); /* Desenfoque al fondo */
+    border-radius: 20px;
 }
 
 .datasheet {
@@ -85,10 +121,8 @@ span {
 p {
     font-size: 25px;
     font-family: 'Times New Roman', Times, serif;
-    text-align: justify;
-    /* Justificar el texto */
-    line-height: 1.5;
-    /* Establecer el interlineado */
+    text-align: justify; /* Justificar el texto */
+    line-height: 1.5; /* Establecer el interlineado */
 }
 
 .horizontal-image:hover {
@@ -99,32 +133,4 @@ p {
 .initial-image,
 .horizontal-image.selected {
     opacity: 1;
-}
-
-.btn-add-to-cart {
-    margin-left: 5%;
-    background-color: #041c2c;
-    border: #041c2c;
-    color: white;
-}
-
-.btn span {
-    display: none;
-}
-
-.btn:hover span {
-    display: inline;
-    color: white;
-}
-
-.example-flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 120px;
 }

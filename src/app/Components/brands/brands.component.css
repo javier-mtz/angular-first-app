@@ -1,3 +1,9 @@
+.container{
+  background-image: url('../../../assets/img/carretera-atardecer.jpg');
+  background-size: cover; /* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
+  background-position: center; /* Centra la imagen de fondo dentro del contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+}
 
 .container-image {
   position: relative;
@@ -14,22 +20,23 @@
 }
 
 .image-text {
-  padding-top: 10%;
-  padding-left: 5%;
-  font-size: 100px;
-  color: #000000;
-  font-weight: bold;
-  font-family: "Times New Roman", Times, serif;
+  padding-left: 20%;
+  font-size: 25px;
+  color: #ffffff;
 }
 
 .container-text {
-  background-color: #b9b8b8;
   padding-bottom: 5%;
   margin-top: -3%;
 }
 
 .image {
   width: 70%;
+  height: auto;
+}
+
+.secondaryImage{
+  width: 40%;
   height: auto;
 }
 

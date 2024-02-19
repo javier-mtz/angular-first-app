@@ -15,8 +15,8 @@ import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
     standalone: true,
     templateUrl: './brands.component.html',
     styleUrl: './brands.component.css',
-    imports: [MatGridListModule, RouterModule, CommonModule, MatCardModule, BreadcrumbsComponent ],
-    providers: [BreadcrumbsService],
+    imports: [MatGridListModule, RouterModule, CommonModule, MatCardModule, BreadcrumbsComponent, MatToolbarModule ],
+    providers: [BreadcrumbsService], 
 })
 export class BrandsComponent implements OnInit{
   [x: string]: any;
@@ -26,6 +26,7 @@ export class BrandsComponent implements OnInit{
   constructor(private breadcrumbsService: BreadcrumbsService) { }
 
   ngOnInit() {
+
     // Establece las migas de pan para este componente
     this.breadcrumbsService.setBreadcrumbs([
       { label: 'Home', url: '/home' },

@@ -1,31 +1,49 @@
-<div class="container-image">
-    <img src="../../../assets/img/info-car/banner.avif" class="img-fluid" alt="...">
-</div>
-<!-- breadcrumbs -->
-<app-breadcrumbs></app-breadcrumbs>
-<!-- Contenido -->
 <div class="container">
-    <div class="images">
-        <div class="image-thumbnail-container">
-            <img [src]="imagenSeleccionada" class="image-small" id="main-image">
-        </div>
-        <div class="horizontal-images-container">
-            <div class="image-row">
-                <img *ngFor="let imagen of carroSeleccionado.imagenes; let i = index" [src]="imagen"
-                    class="horizontal-image" (click)="seleccionarImagen(imagen, i)"
-                    [class.unselected-image]="i !== imagenSeleccionadaIndex"
-                    [class.selected-image]="i === imagenSeleccionadaIndex">
+    <ng-container>
+        <div class="info-car-container mat-elevation-z2">
+            <!-- Encabezado del perfil -->
+            <div class="info-car-header">
+                <mat-toolbar [style.background-color]="filteredData?.[0].paletaColores?.[0]" class="header-toolbar">
+                    <mat-toolbar-row>
+                        <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] === '#000000'">
+                            <span class="profile-title" style="color: white">Perfil del Automóvil - {{carroSeleccionado.modelo}}</span>
+                        </ng-template>
+                        <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] !== '#000000'">
+                            <span class="profile-title" style="color: black">Perfil del Automóvil - {{carroSeleccionado.modelo}}</span>
+                        </ng-template>
+                        <!-- Imagen del perfil -->
+                        <img [src]="filteredData?.[0].logo" class="logo" />
+                    </mat-toolbar-row>
+                </mat-toolbar>
+            </div>
+            <!-- breadcrumbs -->
+            <div class="bread">
+                <app-breadcrumbs></app-breadcrumbs>
+            </div>
+            <!-- Contenido -->
+            <div class="container">
+                <div class="images">
+                    <div class="image-thumbnail-container">
+                        <img [src]="imagenSeleccionada" class="image-small" id="main-image">
+                    </div>
+                    <div class="horizontal-images-container">
+                        <div class="image-row">
+                            <img *ngFor="let imagen of carroSeleccionado.imagenes; let i = index" [src]="imagen"
+                                class="horizontal-image" (click)="seleccionarImagen(imagen, i)"
+                                [class.unselected-image]="i !== imagenSeleccionadaIndex"
+                                [class.selected-image]="i === imagenSeleccionadaIndex">
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar">
+                    <div class="descr">
+                        <h1>{{ carroSeleccionado.modelo }}</h1>
+                        <p><span>Descripción: </span>{{ carroSeleccionado.descripcion }}</p>
+                        <p><span>Precio: </span>{{ carroSeleccionado.precio }}</p>
+                        <p><span>Motor: </span>{{ carroSeleccionado.motor }}</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="sidebar">
-        <h1>{{ carroSeleccionado.modelo }}</h1>
-        <hr>
-        <div class="descr">
-            <p><span>Descripción: </span>{{ carroSeleccionado.descripcion }}</p>
-            <p><span>Precio: </span>{{ carroSeleccionado.precio }}</p>
-            <p><span>Motor: </span>{{ carroSeleccionado.motor }}</p>
-        </div>
-        <hr>
-    </div>
+    </ng-container>
 </div>
