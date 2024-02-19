@@ -11,10 +11,10 @@
         >
           <mat-toolbar-row>
             <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] === '#000000'">
-              <span class="profile-title" style="color: white">Perfil del Automóvil - {{filteredData?.[0].marca}}</span>
+              <span class="profile-title" style="color: white">{{filteredData?.[0].marca}}</span>
             </ng-template>
             <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] !== '#000000'">
-              <span class="profile-title" style="color: black">Perfil del Automóvil - {{filteredData?.[0].marca}}</span>
+              <span class="profile-title" style="color: black">{{filteredData?.[0].marca}}</span>
             </ng-template>
             <!-- Imagen del perfil -->
             <img [src]="filteredData?.[0].logo" class="logo" />

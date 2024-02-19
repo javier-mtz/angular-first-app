@@ -87,7 +87,7 @@ export const data = [
             {
                 modelo: '250 GTO',
                 descripcion: 'El GTO es el desarrollo definitivo de la serie 250 de automóviles deportivos de Ferrari, y a su vez se derivó de otro exitoso automóvil de carreras de Ferrari, el 250 GT SWB. Ese modelo tenía una distancia entre ejes más corta que el 250 GT estándar para mejorar su manejo, mientras que el GTO agregó una nueva carrocería aerodinámica para ayudarlo a competir contra automóviles deportivos rivales como el Shelby Cobra y el Jaguar E-Type Lightweight.',
-                precio : '50,000,000.00',
+                precio: '50,000,000.00',
                 motor: 'V12',
                 imagenes: [
                     'https://editorial.pxcrush.net/carsales/general/editorial/1962-ferrari-250-gto-auction-14.jpeg?width=1024&height=682',
@@ -195,7 +195,7 @@ export const data = [
                     'https://media.gettyimages.com/id/1201407529/es/foto/brussels-belgium-mercedes-benz-clk-gtr-hypercar-on-display-at-brussels-expo-on-january-8-2020.jpg?s=612x612&w=0&k=20&c=KlaHGhWopuOxPxmmxtasS5rvAiZFXTDUbewgVS6i7zk='
                 ]
             },
-            {  
+            {
                 modelo: 'SLR HDK',
                 descripcion: 'El extremo delantero inspirado en la F1 ha perdido algo de carácter, con MSO eliminando algunos de los detalles de la parrilla. En general, este SLR especial se ve fantástico en blanco, completo con ruedas de carreras ligeras a juego y calcomanías rojas "03".',
                 precio: '350,000.00',
@@ -213,6 +213,7 @@ export const data = [
                 precio: '140,000,000.00',
                 motor: '8 cilindros en línea',
                 imagenes: [
+                    'https://acnews.blob.core.windows.net/imgnews/medium/NAZ_802dc30c55c5450b92e5f076237ae65e.webp',
                     'https://www.elfinanciero.com.mx/resizer/WM4Ez6JcTTS20peDs_7TIAqZqHw=/1440x0/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/UYGGC3QCORGZNDOR624MDZZKEY.jpeg',
                     'https://www.elfinanciero.com.mx/resizer/1MlhShbjYXQw38e974HeDqS0590=/1440x0/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/6QP3ZXJHWBACFOEDPFUZ6EMQIE.jpeg',
                     'https://www.elfinanciero.com.mx/resizer/47gGjboSCoq1YiimZ4HwYPG-bFc=/1440x0/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/CAY74PEFBBFHHPMBWSKYVDNY3I.jpeg'

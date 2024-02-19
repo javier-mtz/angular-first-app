@@ -38,6 +38,8 @@ export class InfoCarComponent implements OnInit {
   };
 
   marca: string = '';
+  color: string = '';
+  logo: string = '';
 
   imagenSeleccionada: string = '';
   imagenSeleccionadaIndex: number = 0;
@@ -51,6 +53,8 @@ export class InfoCarComponent implements OnInit {
         const carrosFiltrados = data[i].carros.filter(carro => carro.modelo === modelo);
         this.marca = data[i].marca;
         if (carrosFiltrados.length > 0) {
+          this.color = data[i].paletaColores[0];
+          this.logo = data[i].logo;
           this.carroSeleccionado = carrosFiltrados[0];
           // Establecer la imagen seleccionada por defecto
           this.imagenSeleccionada = this.carroSeleccionado.imagenes[0];

@@ -3,16 +3,16 @@
         <div class="info-car-container mat-elevation-z2">
             <!-- Encabezado del perfil -->
             <div class="info-car-header">
-                <mat-toolbar [style.background-color]="filteredData?.[0].paletaColores?.[0]" class="header-toolbar">
+                <mat-toolbar [style.background-color]="color" class="header-toolbar">
                     <mat-toolbar-row>
                         <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] === '#000000'">
-                            <span class="profile-title" style="color: white">Perfil del Automóvil - {{carroSeleccionado.modelo}}</span>
+                            <span class="profile-title" style="color: white">{{carroSeleccionado.modelo}}</span>
                         </ng-template>
                         <ng-template [ngIf]="filteredData?.[0].paletaColores?.[0] !== '#000000'">
-                            <span class="profile-title" style="color: black">Perfil del Automóvil - {{carroSeleccionado.modelo}}</span>
+                            <span class="profile-title" style="color: black">{{carroSeleccionado.modelo}}</span>
                         </ng-template>
                         <!-- Imagen del perfil -->
-                        <img [src]="filteredData?.[0].logo" class="logo" />
+                        <img [src]="logo" class="logo" />
                     </mat-toolbar-row>
                 </mat-toolbar>
             </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="sidebar">
                     <div class="descr">
-                        <h1>{{ carroSeleccionado.modelo }}</h1>
+                        <h1>{{ marca }} {{ carroSeleccionado.modelo }}</h1>
                         <p><span>Descripción: </span>{{ carroSeleccionado.descripcion }}</p>
                         <p><span>Precio: </span>{{ carroSeleccionado.precio }}</p>
                         <p><span>Motor: </span>{{ carroSeleccionado.motor }}</p>
