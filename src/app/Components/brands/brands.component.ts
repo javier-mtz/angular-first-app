@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router'; // Asegúrate de
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { data } from '../../../assets/data/info';
+import { HeaderComponent } from '../header/header.component';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -15,7 +16,7 @@ import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
     standalone: true,
     templateUrl: './brands.component.html',
     styleUrl: './brands.component.css',
-    imports: [MatGridListModule, RouterModule, CommonModule, MatCardModule, BreadcrumbsComponent, MatToolbarModule ],
+    imports: [MatGridListModule, RouterModule, CommonModule, MatCardModule, BreadcrumbsComponent, MatToolbarModule, HeaderComponent ],
     providers: [BreadcrumbsService], 
 })
 export class BrandsComponent implements OnInit{

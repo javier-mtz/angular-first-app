@@ -11,19 +11,19 @@ import { RouterModule } from '@angular/router';
 
 import { BreadcrumbsService } from '../../breadcrumbs.service';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true,
-  imports: [RouterOutlet, MatSlideToggleModule, MatGridListModule, MatCardModule, MatToolbarModule, CommonModule, RouterModule, BreadcrumbsComponent],
+  imports: [RouterOutlet, MatSlideToggleModule, MatGridListModule, MatCardModule, MatToolbarModule, CommonModule, RouterModule, BreadcrumbsComponent, HeaderComponent],
   providers: [BreadcrumbsService],
 })
 export class ProfileComponent implements OnInit {
   [x: string]: any;
   brand: string = ''; // Inicializando la propiedad brand
-  infoCar: string = ''; // Inicializando la propiedad brand
   filteredData: any[] | undefined = []; 
   constructor(private route: ActivatedRoute, private breadcrumbsService: BreadcrumbsService) { }
   onCardClick(index: number) {

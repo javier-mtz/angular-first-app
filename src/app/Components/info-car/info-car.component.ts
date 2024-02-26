@@ -10,6 +10,7 @@ import { data } from '../../../assets/data/info';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { HeaderComponent } from "../header/header.component";
 
 import { BreadcrumbsService } from '../../breadcrumbs.service';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
@@ -17,7 +18,7 @@ import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 @Component({
   selector: 'app-info-car',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, RouterModule, BreadcrumbsComponent,MatToolbarModule,MatCardModule ],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, RouterModule, BreadcrumbsComponent,MatToolbarModule,MatCardModule, HeaderComponent ],
   providers: [BreadcrumbsService],
   templateUrl: './info-car.component.html',
   styleUrl: './info-car.component.css'
@@ -25,9 +26,8 @@ import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 
 export class InfoCarComponent implements OnInit {
   [x: string]: any;
-  brand: string = ''; // Inicializando la propiedad brand
+  infoCar: string = '';
   profile: string = ''; // Inicializando la propiedad profile
-  infoCar: string = ''; // Inicializando la propiedad brand
   filteredData: any; // Suponiendo que filteredData es donde tienes almacenada la información del carro
 
   carroSeleccionado: Carro = {
