@@ -1,0 +1,16 @@
+.header {
+    text-align: center;
+}
+
+.title {
+    margin: 0 auto; /* Centrar horizontalmente */
+    padding-left: 20%;
+    font-size: 25px;
+    color: #ffffff;
+}
+
+.logo {
+    width: 80px;
+    margin: 0 auto;
+    display: block; 
+}

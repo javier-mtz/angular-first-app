@@ -1,0 +1,13 @@
+<div class="header">
+    <mat-toolbar [style.background-color]="filteredData && filteredData[0]?.paletaColores?.[0] ? filteredData[0].paletaColores[0] : '#b9b8b8'" class="header-toolbar">
+        <mat-toolbar-row>
+            <ng-template [ngIf]="filteredData && filteredData[0]?.paletaColores?.[0] === '#000000'">
+                <span class="title" style="color: white">{{ componentName }}</span>
+            </ng-template>
+            <ng-template [ngIf]="filteredData && filteredData[0]?.paletaColores?.[0] !== '#000000'">
+                <span class="title" style="color: black">{{ componentName }}</span>
+            </ng-template>
+            <img [src]="filteredData?.[0]?.logo" class="logo" />
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

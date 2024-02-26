@@ -1,16 +1,18 @@
 <div class="container">
     <ng-container>
         <div class="info-car-container mat-elevation-z2">
-            <!-- Encabezado del perfil -->
-            <div class="info-car-header">
+            <!-- Header -->
+            <app-header [currentComponent]="'info-car'" [componentName]="marca + ' ' + carroSeleccionado.modelo"></app-header> 
+
+            <!-- Header antiguo-->
+            <!-- <div class="info-car-header">
                 <mat-toolbar [style.background-color]="color" class="header-toolbar">
                     <mat-toolbar-row>
                         <span [ngClass]="{'white-text': color === '#000000', 'black-text': color !== '#000000'}">{{ marca }} {{ carroSeleccionado.modelo }}</span>
-                        <!-- Imagen del perfil -->
                         <img [src]="logo" class="logo" />
                     </mat-toolbar-row>
                 </mat-toolbar>
-            </div>
+            </div> -->
             <!-- breadcrumbs -->
             <div class="bread">
                 <app-breadcrumbs></app-breadcrumbs>
