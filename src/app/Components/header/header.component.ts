@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit{
           this.logo = this.filteredData[0].logo || ''; // Asigna el logo o un valor por defecto
         }
       }
+      if(this.marca === undefined && this.componentName !== null) {
+        this.marca = 'CarHistory';
+      }
     });
   }
 }

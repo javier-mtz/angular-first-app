@@ -3,10 +3,10 @@
 }
 
 .title {
-    margin: 0 auto; /* Centrar horizontalmente */
-    padding-left: 20%;
+    display: block;
+    margin: auto;
     font-size: 25px;
-    color: #ffffff;
+    color: #000000;
 }
 
 .logo {
