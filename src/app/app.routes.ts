@@ -13,7 +13,6 @@ export const routes: Routes = [
     { path: 'brands', component: BrandsComponent },
     { path: 'formulario', component: FormularioComponent },
     { path: 'info-car/:modelo', component: InfoCarComponent },
-    { path: 'profile', component: ProfileComponent },
     { path: 'profile/:brand', component: ProfileComponent } // Ruta dinámica para el perfil con parámetro brand
 ];
 

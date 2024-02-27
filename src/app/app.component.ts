@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FooterComponent } from "../app/Components/footer/footer.component";
+import { HeaderComponent } from "../app/Components/header/header.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, MatSlideToggleModule, FooterComponent, FooterComponent]
+    imports: [RouterOutlet, MatSlideToggleModule, FooterComponent, FooterComponent, HeaderComponent]
 })
 export class AppComponent {
   title = 'CarHistory';
