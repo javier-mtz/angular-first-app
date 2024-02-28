@@ -1,5 +1,5 @@
-const bcrypt = require("bcryptjs")
-const {Schema, model} = require("mongoose")
+import bcrypt from "bcryptjs";
+import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
     username: {
@@ -14,6 +14,21 @@ const userSchema = new Schema({
         type: String,
         require: true,
     },
+    status: {
+        type: Boolean,
+        require: false,
+        default: true
+    },
+    role: {
+        type: String,
+        require: false,
+        default: "USER"
+    },
+    created_at: {
+        type: Date,
+        require: false,
+        default: Date.now
+    }
 });
 
 
@@ -27,4 +42,4 @@ userSchema.methods.validatePassword = function (password) {
 }
 
 
-module.exports = model("User", userSchema);
+export default model("User", userSchema);

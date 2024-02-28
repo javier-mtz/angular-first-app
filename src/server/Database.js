@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const uri = "mongodb+srv://pablo-admin:Chuchu20032907@carhistory.phlurbk.mongodb.net/Users";
 
 

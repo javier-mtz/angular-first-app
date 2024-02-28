@@ -1,5 +1,5 @@
-const app = require("./App");
-require("./Database");
+import app from "./App.js";
+import "./Database.js";
 
 async function init () {
     await app.listen(3000);

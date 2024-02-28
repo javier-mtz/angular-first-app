@@ -1,22 +1,25 @@
-const { Router } = require("express");
-const User = require("../models/User");
-const mongoose = require("mongoose");
+import { Router } from "express";
+import User from "../models/User.js";
+import mongoose from "mongoose";
 
 const router = Router();
-const jwt = require("jsonwebtoken");
-const config = require("../Config")
-const verifyToken = require("./verifyToken")
+
+import jwt from "jsonwebtoken";
+import secret from "../Config.js";
+import verifyToken from "./verifyToken.js";
 
 router.post("/Signup", async (req,res, next) =>{
-    const { username, email, password } = req.body;
+    const { username, email, password, status, role } = req.body;
     const user = new User({
         username,
         email,
-        password
+        password,
+        status,
+        role
     })
     user.password = await user.encryptPassword(user.password);
     await user.save();
-    const token = jwt.sign({id : user._id}, config.secret,{
+    const token = jwt.sign({id : user._id}, "MySecretDomentos",{
         expiresIn: 60 * 60 * 24
     });
     res.json({auth: true, token});
@@ -32,7 +35,7 @@ router.post("/Singin", async (req,res,next) =>{
     if(!ValidPassword){
         return res.status(401).json({auth: false, token: null});
     }
-    const token = jwt.sign({id: user._id}, config.secret,{
+    const token = jwt.sign({id: user._id}, secret,{
         expiresIn: 60 * 60 * 24
     });
     res.json({auth: true, token, user});
@@ -46,4 +49,4 @@ router.get("/Inicio", verifyToken, async (req,res,next) =>{
     res.json(user);
 });
 
-module.exports = router;
+export default router;

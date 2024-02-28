@@ -1,3 +1,3 @@
-module.exports = {
-    secret: "MySecretDomentos"
-}
+export default {
+    secret: "MySecretDomentos",
+};
