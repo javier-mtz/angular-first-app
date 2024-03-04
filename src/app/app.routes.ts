@@ -17,7 +17,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'admin', component: AdminComponent, canActivate: [authGuard]},
     { path: 'user', component: HomeComponent, canActivate: [authGuard]},
-    { path: 'formulario', component: FormularioComponent },
+    { path: 'register', component: FormularioComponent },
     { path: 'info-car/:modelo', component: InfoCarComponent},
     { path: 'profile/:brand', component: ProfileComponent} // Ruta dinámica para el perfil con parámetro brand
 ];

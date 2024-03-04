@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ActivatedRoute, RouterModule } from '@angular/router'; // Asegúrate de importar RouterModule
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,13 +19,31 @@ import { HeaderComponent } from "../header/header.component";
 import { Form, FormGroup, NgForm, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertService } from '../../alert.service';
+import { MatButtonModule } from '@angular/material/button';
+
+
 @Component({
     selector: 'app-brands',
     standalone: true,
     templateUrl: './formulario.component.html',
     styleUrl: './formulario.component.css',
     providers: [BreadcrumbsService],
-    imports: [MatFormFieldModule, MatInputModule, MatGridListModule, RouterModule, CommonModule, MatCardModule, BreadcrumbsComponent, MatToolbarModule, MatCheckboxModule, HeaderComponent, FormsModule, ReactiveFormsModule]
+    imports: [MatFormFieldModule, 
+      MatInputModule, 
+      MatGridListModule, 
+      RouterModule, 
+      CommonModule, 
+      MatCardModule, 
+      BreadcrumbsComponent, 
+      MatToolbarModule, 
+      MatCheckboxModule, 
+      HeaderComponent, 
+      FormsModule, 
+      ReactiveFormsModule,
+      MatIconModule,
+      MatButtonModule
+    ]
 })
 
 export class FormularioComponent implements OnInit{
@@ -33,7 +52,7 @@ export class FormularioComponent implements OnInit{
   registro: FormGroup; // Inicializando la propiedad myForm
   data = data;
 
-  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService) {
     this.registro = this.formBuilder.group({
       nombre: ['', Validators.required],
       email: ['', Validators.required],
@@ -44,23 +63,40 @@ export class FormularioComponent implements OnInit{
    }
 
   ngOnInit() {
-
     // Establece las migas de pan para este componente
     this.breadcrumbsService.setBreadcrumbs([
       { label: 'Home', url: '/home' },
-      { label: 'Formulario', url: '/formulario' }
+      { label: 'Register', url: '/register' }
     ]);
   }
 
-  onSubmit() {
+  async onSubmit() {
     if(this.registro.valid) {
-      console.log('Form Submitted!', this.registro.value);
-      this.registro.reset();
-    } else {
-      alert('Formulario no válido, por favor revise los campos');
-    }
+      // Si el formulario es válido, validar que las contraseñas coincidan
+      if(this.registro.value.password !== this.registro.value.password2) {
+        // Si las contraseñas no coinciden, mostrar una alerta
+        this.alert.showToast('Las contraseñas no coinciden', 'info');
+        // reseteat los campos de contraseña
+        this.registro.controls['password'].reset();
+        this.registro.controls['password2'].reset();
+      } else {
+        // Si las contraseñas coinciden, hacer un POST request al servidor
+        // con los datos del formulario
+        this.alert.showLoading();
+        // Hacer un POST request al servidor
+        // Si el POST request es exitoso, mostrar una alerta de éxito
+        this.alert.showToast('Registro exitoso', 'success');
+        // resetear el formulario
+        this.registro.reset();
+        // quitar la alerta de carga
+        this.alert.closeLoading();
+        // redirigir al usuario a la página de inicio
+        this.router.navigate(['/home']);
+      }
+    } 
   }
+
   login(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 }

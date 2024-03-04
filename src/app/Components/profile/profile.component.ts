@@ -25,9 +25,11 @@ export class ProfileComponent implements OnInit {
   [x: string]: any;
   brand: string = ''; // Inicializando la propiedad brand
   filteredData: any[] | undefined = []; 
+
+  classHeader: Array<string> = [];
+
   constructor(private route: ActivatedRoute, private breadcrumbsService: BreadcrumbsService) { }
   onCardClick(index: number) {
-    console.log(`Card ${index} was clicked.`);
     //NavigationPreloadManager.navigate(['/profile', this.filteredData[index].marca]);
   }
 
@@ -37,6 +39,9 @@ export class ProfileComponent implements OnInit {
       // Puedes acceder a this.brand aquí una vez que tenga un valor asignado
       if (this.brand) {
         this.filteredData = data.filter((data) => data.marca === this.brand);
+        if (this.filteredData.length > 0) {
+          this.classHeader = [this.filteredData[0].paletaColores[0], this.filteredData[0].logo];
+        }
       }
     });
 

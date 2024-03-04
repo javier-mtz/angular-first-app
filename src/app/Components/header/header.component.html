@@ -1,20 +1,27 @@
 <div class="header">
   <mat-toolbar
-    [style.background-color]="filteredData && filteredData[0]?.paletaColores?.[0] ? filteredData[0].paletaColores[0] : '#333'"
+    [style.background-color]="headerColor"
     class="header-toolbar"
   >
     <mat-toolbar-row>
-      <ng-template
-        [ngIf]="filteredData && filteredData[0]?.paletaColores?.[0] === '#000000'"
-      >
-        <span class="title" style="color: white">{{ componentName }}</span>
-      </ng-template>
-      <ng-template
-        [ngIf]="filteredData && filteredData[0]?.paletaColores?.[0] !== '#000000'"
-      >
-        <span class="title" style="color: black">{{ componentName }}</span>
-      </ng-template>
-      <img [src]="filteredData?.[0]?.logo" class="logo" />
+      <span class="title" [style.color]="textColor">{{ currentComponent }}</span>
+      <div style="flex-grow: 1;"></div>
+      <ng-container *ngIf="userButton">
+        <button mat-icon-button *ngIf="!isLoggedIn()" (click)="goTo('login', 'login')">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <button mat-icon-button *ngIf="isLoggedIn()" [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let item of menuItems" (click)="goTo(item.route, item.type)">
+            {{ item.name }}
+          </button>
+        </mat-menu>
+      </ng-container>
+      <ng-container *ngIf="!userButton">
+        <img [src]="logo" class="logo" />
+      </ng-container>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>

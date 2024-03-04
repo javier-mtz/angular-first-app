@@ -1,8 +1,7 @@
 <div class="container">
   <ng-container>
     <app-header
-      [currentComponent]="'registrodeUsuario'"
-      [componentName]="'CarHistory'"
+      [currentComponent]="'Register'"
     ></app-header>
     <!-- breadcrumbs -->
     <div class="bread">
@@ -11,7 +10,7 @@
     <!-- Contenido -->
     <div class="container">
       <div class="wrapper">
-        <h2>Registrarte</h2>
+        <mat-icon class="large-icon">account_circle</mat-icon>
         <form [formGroup]="registro" #formDirective="ngForm">
           <mat-form-field class="example-full-width">
             <input type="text" matInput placeholder="Ingresa tu usuario" formControlName="nombre" required />
@@ -38,11 +37,15 @@
             </mat-error>
           </mat-form-field>
           <div class="policy">
-            <mat-checkbox formControlName="terms" required></mat-checkbox>
-            <h3>Acepto terminos y condiciones</h3>
+            <mat-checkbox formControlName="terms" required>
+              <span style="color: #333;">
+                Acepto los
+                <a href="#" >Terminos y Condiciones</a>
+              </span>
+            </mat-checkbox>
           </div>
           <div class="input-box button">
-            <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">
+            <button mat-raised-button color="#333" type="submit" (click)="onSubmit()">
               Registrarme
             </button>
           </div>

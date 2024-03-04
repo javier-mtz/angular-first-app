@@ -38,6 +38,9 @@ export class InfoCarComponent implements OnInit {
     imagenes: []
   };
 
+  // estilo del header
+  classHeader: Array<string> = [];
+
   marca: string = '';
   color: string = '';
   logo: string = '';
@@ -53,15 +56,15 @@ export class InfoCarComponent implements OnInit {
       for (let i = 0; i < data.length; i++) {
         const carrosFiltrados = data[i].carros.filter(carro => carro.modelo === modelo);
         this.marca = data[i].marca;
+        this.classHeader = [data[i].paletaColores[0], data[i].logo];
         if (carrosFiltrados.length > 0) {
-          this.color = data[i].paletaColores[0];
-          this.logo = data[i].logo;
           this.carroSeleccionado = carrosFiltrados[0];
           this.imagenSeleccionada = this.carroSeleccionado.imagenes[0];
           break;
         }
       }
     });
+    
 
     // Establece las migas de pan para este componente
     this.breadcrumbsService.setBreadcrumbs([

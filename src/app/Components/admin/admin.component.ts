@@ -9,9 +9,8 @@ import { AuthService } from '../../auth.service';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  authService = inject(AuthService);
   user?: any;
-  constructor() {
+  constructor(private authService: AuthService) {
     this.authService.getCurrentAuthUser().subscribe((user) => {
       this.user = user;
     });
