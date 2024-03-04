@@ -4,31 +4,38 @@ import { Schema, model } from "mongoose";
 const userSchema = new Schema({
     username: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     email: {
         type: String,
         require: true,
+        unique: true
     },
     password : {
         type: String,
         require: true,
     },
     status: {
-        type: Boolean,
-        require: false,
-        default: true
+        type: Number,
+        require: true,
+        default: 1
     },
     role: {
         type: String,
-        require: false,
-        default: "USER"
+        enum: ['User', 'Admin'],
+        default: 'User'
     },
     created_at: {
         type: Date,
+        require: true,
+        default: Date.now
+    },
+    updated_at: {
+        type: Date,
         require: false,
         default: Date.now
-    }
+    },
 });
 
 
