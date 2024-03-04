@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 interface User {
@@ -15,7 +16,7 @@ export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private loggedUser?: string;
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-
+  private router = inject(Router);
   private http = inject(HttpClient);
 
   constructor() {}
@@ -39,14 +40,14 @@ export class AuthService {
   logout() {
     localStorage.removeItem(this.JWT_TOKEN);
     this.isAuthenticatedSubject.next(false);
+    this.router.navigate(['/home']);
   }
 
   getCurrentAuthUser(){
-    let token = localStorage.getItem(this.JWT_TOKEN);
     return this.http.get('http://localhost:3000/currentUser');
   }
 
   isLoggedIn() {
-    return this.isAuthenticatedSubject.value;
+    return !!localStorage.getItem(this.JWT_TOKEN);
   }
 }
