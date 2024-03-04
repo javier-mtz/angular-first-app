@@ -19,18 +19,8 @@ import { AuthService } from './auth.service';
   ],
 })
 export class AppComponent {
-  authService = inject(AuthService);
   title = 'CarHistory';
-  user?: any;
   constructor(private router: Router) {
-    this.authService
-      .login({ username: 'Admin', password: '123' })
-      .subscribe((r) => {
-        this.authService.getCurrentAuthUser().subscribe((r) => {
-          console.log(r);
-          this.user = r;
-        });
-      });
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
