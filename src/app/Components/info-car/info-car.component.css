@@ -1,11 +1,8 @@
 .info-car-container {
-    background-image: url('../../../assets/img/carretera-atardecer.jpg');
-    background-size: cover;
-    /* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
-    background-position: center;
-    /* Centra la imagen de fondo dentro del contenedor */
-    background-repeat: no-repeat;
-    /* Evita que la imagen de fondo se repita */
+    background-image: url('../../../assets/img/carretera.jpg');
+    background-size: cover;/* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
+    background-position: center;/* Centra la imagen de fondo dentro del contenedor */
+    background-repeat: no-repeat;/* Evita que la imagen de fondo se repita */
 }
 
 .profile-content {
@@ -24,8 +21,7 @@
 }
 
 .profile-title {
-    margin: 0 auto;
-    /* Centrar horizontalmente */
+    margin: 0 auto;/* Centrar horizontalmente */
 }
 
 .container-image {
@@ -63,8 +59,7 @@
 h1 {
     padding-bottom: 5%;
     font-size: 50px;
-    line-height: 1.5;
-    /* Establecer el interlineado */
+    line-height: 1.5; /* Establecer el interlineado */
 }
 
 span {
@@ -73,13 +68,11 @@ span {
 }
 
 .unselected-image {
-    opacity: 0.5;
-    /* Esto reduce la opacidad de las imágenes no seleccionadas */
+    opacity: 0.5; /* Esto reduce la opacidad de las imágenes no seleccionadas */
 }
 
 .selected-image {
-    opacity: 1;
-    /* Esto restaura la opacidad de la imagen seleccionada */
+    opacity: 1; /* Esto restaura la opacidad de la imagen seleccionada */
 }
 
 .descr {
@@ -87,8 +80,7 @@ span {
     margin-bottom: 10%;
     padding: 5%;
     background-color: rgba(87, 87, 87, 0.7);
-    backdrop-filter: blur(5px);
-    /* Desenfoque al fondo */
+    backdrop-filter: blur(5px); /* Desenfoque al fondo */
     border-radius: 20px;
 }
 
@@ -113,6 +105,7 @@ span {
     box-sizing: border-box;
     opacity: 0.5;
     transition: opacity 0.3s ease;
+    border-radius: 20px;
 }
 
 .image-small {
@@ -123,11 +116,8 @@ span {
 
 p {
     font-size: 25px;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: justify;
-    /* Justificar el texto */
-    line-height: 1.5;
-    /* Establecer el interlineado */
+    text-align: justify; /* Justificar el texto */
+    line-height: 1.5; /* Establecer el interlineado */
 }
 
 .horizontal-image:hover {
@@ -157,4 +147,86 @@ p {
 
 .header-toolbar{
     padding-left: 22%;
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+      flex-direction: column; /* Cambia la dirección del contenedor a columna */
+    }
+
+    .horizontal-images-container{
+        padding-left: 3%;
+    }
+  
+    .images {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      overflow-x: hidden;
+      margin-bottom: 0;
+    }
+
+    .image-small {
+        margin: 5%;
+        width: 80%;
+        border-radius: 40px;
+    }
+
+    .image-row {
+        width: 150%;
+        display: flex;
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas */
+        justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+    }
+    
+    .horizontal-image {
+        width: calc(50% - 10px); /* Calcula el ancho para que dos imágenes ocupen el 100% del ancho del contenedor con un espacio entre ellas */
+        margin-bottom: 20px; /* Agrega un espacio entre las filas */
+        box-sizing: border-box; /* Incluye el borde y el relleno en el ancho y la altura */
+        border-radius: 20px;
+    }
+
+    .sidebar {
+        margin: 10%;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) { /*Tablets*/
+    .container {
+      flex-direction: column; /* Cambia la dirección del contenedor a columna */
+    }
+
+    .horizontal-images-container{
+        padding-left: 3%;
+    }
+  
+    .images {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      overflow-x: hidden;
+      margin-bottom: 0;
+    }
+
+    .image-small {
+        margin: 5%;
+        width: 80%;
+        border-radius: 40px;
+    }
+
+    .image-row {
+        width: 150%;
+        display: flex;
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas */
+        justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+    }
+    
+    .horizontal-image {
+        width: calc(50% - 10px); /* Calcula el ancho para que dos imágenes ocupen el 100% del ancho del contenedor con un espacio entre ellas */
+        margin-bottom: 20px; /* Agrega un espacio entre las filas */
+        box-sizing: border-box; /* Incluye el borde y el relleno en el ancho y la altura */
+        border-radius: 20px;
+    }
+
+    .sidebar {
+        margin: 10%;
+        width: 80%;
+    }
 }

@@ -1,4 +1,4 @@
-<nav style="margin-top: 10px; margin-left: 40px; font-size: 16px; font-family: 'Arial', sans-serif; color: #000000;">
+<nav>
     <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
         <ng-container *ngIf="!last">
             <a style="text-decoration: none; color: #000000;" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a> &gt;
