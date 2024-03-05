@@ -23,7 +23,7 @@ export class AuthService {
 
   login(user: User): Observable<any> {
     return this.http
-      .post('http://localhost:4200/login', user)
+      .post('http://localhost:3000/login', user)
       .pipe(tap((response: any) => this.doLoginUser(user.username, response.token)));
   }
 
@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   getCurrentAuthUser() {
-    return this.http.get('http://localhost:4200/currentUser');
+    return this.http.get('http://localhost:3000/currentUser');
   }
 
   isAdmin() {

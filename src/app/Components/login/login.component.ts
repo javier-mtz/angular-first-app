@@ -7,18 +7,22 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BreadcrumbsService } from '../../breadcrumbs.service';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
-import { HeaderComponent } from "../header/header.component";
+import { HeaderComponent } from '../header/header.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
-import { Form, FormGroup, NgForm, FormBuilder, Validators } from '@angular/forms';
+import {
+  Form,
+  FormGroup,
+  NgForm,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../alert.service';
-
-
 
 @Component({
   selector: 'app-login',
@@ -33,40 +37,47 @@ import { AlertService } from '../../alert.service';
     ReactiveFormsModule,
     BreadcrumbsComponent,
     HeaderComponent,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   username = '';
   password = '';
   loginForm: FormGroup;
 
-  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService, private authService: AuthService) {
+  constructor(
+    private breadcrumbsService: BreadcrumbsService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private alert: AlertService,
+    private authService: AuthService
+  ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
-
   }
 
   ngOnInit() {
     // Establece las migas de pan para este componente
     this.breadcrumbsService.setBreadcrumbs([
       { label: 'Home', url: '/home' },
-      { label: 'Login', url: '/login' }
+      { label: 'Login', url: '/login' },
     ]);
   }
 
-  async onSubmit() {
-    if (this.loginForm.valid) {
-      this.authService.login({ username: this.username, password: this.password })
-        .subscribe(() => {this.router.navigate(['/admin']);
+  onSubmit() {
+    console.log(this.loginForm.value.username, this.loginForm.value.password);
+    this.authService
+      .login({
+        username: this.loginForm.value.username,
+        password: this.loginForm.value.password,
+      })
+      .subscribe(() => {
+        this.router.navigate(['/admin']);
       });
-    } else {
-      this.alert.showToast('Por favor, rellene todos los campos', 'info');
-    }
   }
 
   register() {
