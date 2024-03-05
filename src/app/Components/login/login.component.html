@@ -1,35 +1,39 @@
-<main>
-    <app-header [currentComponent]="'Login'"></app-header>
-    <!-- breadcrumbs -->
-    <app-breadcrumbs></app-breadcrumbs>
-    <!-- Contenido -->
-    <div class="container">
-        <div class="wrapper">
-            <mat-icon class="large-icon">account_circle</mat-icon>
-            <form [formGroup]="loginForm" #formDirective="ngForm">
-                <mat-form-field>
-                    <input type="text" matInput placeholder="Ingresa tu usuario" formControlName="username"
-                        required />
-                    <mat-error>
-                        El usuario es requerido
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <input type="password" matInput placeholder="Ingresa tu contraseña" formControlName="password" 
-                        required />
-                    <mat-error>
-                        La contraseña es requerida.
-                    </mat-error>
-                </mat-form-field>
-                <div class="input-box button">
-                    <button mat-raised-button color="#f44336" type="submit" (click)="onSubmit()">
-                        Iniciar sesión
-                    </button>
-                </div>
-                <div class="text">
-                    <h3>No tienes cuenta? <a (click)="register()">Registrate</a></h3>
-                </div>
-            </form>
+<div class="contenedorgeneral">
+    <main>
+        <div class="containergeneral"></div>
+        <app-header [currentComponent]="'Login'"></app-header>
+        <!-- breadcrumbs -->
+        <app-breadcrumbs></app-breadcrumbs>
+        <!-- Contenido -->
+        <div class="container">
+            <div class="wrapper">
+                <mat-icon class="large-icon">account_circle</mat-icon>
+                <form [formGroup]="loginForm" #formDirective="ngForm">
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="Ingresa tu usuario" formControlName="username"
+                            required />
+                        <mat-error>
+                            El usuario es requerido
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="password" matInput placeholder="Ingresa tu contraseña" formControlName="password" 
+                            required />
+                        <mat-error>
+                            La contraseña es requerida.
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="input-box button">
+                        <!-- <button mat-raised-button color="#f44336" type="submit" (click)="onSubmit()">
+                            Iniciar sesión
+                        </button> -->
+                        <a href="#" class="btn6" (click)="onSubmit()"> Iniciar sesión </a>
+                    </div>
+                    <div class="text">
+                        <h3>No tienes cuenta? <a (click)="register()">Registrate</a></h3>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
+</div>
