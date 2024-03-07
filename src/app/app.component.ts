@@ -3,7 +3,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FooterComponent } from '../app/Components/footer/footer.component';
 import { HeaderComponent } from '../app/Components/header/header.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './Services/authService/auth.service';
 
 @Component({
   selector: 'app-root',

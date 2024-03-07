@@ -7,9 +7,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common'; // Asegúrate de importar CommonModule
 import { data } from '../../../assets/data/info';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 
-import { BreadcrumbsService } from '../../breadcrumbs.service';
+import { BreadcrumbsService } from '../../Services/breadcrumbService/breadcrumbs.service';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from "../header/header.component";
 
@@ -24,7 +24,7 @@ import { HeaderComponent } from "../header/header.component";
 export class ProfileComponent implements OnInit {
   [x: string]: any;
   brand: string = ''; // Inicializando la propiedad brand
-  filteredData: any[] | undefined = []; 
+  filteredData: any[] | undefined = [];
 
   classHeader: Array<string> = [];
 

@@ -8,10 +8,10 @@
       <div style="flex-grow: 1;"></div>
       <ng-container *ngIf="userButton">
         <button mat-icon-button *ngIf="!isLoggedIn()" (click)="goTo('login', 'login')">
-          <mat-icon>account_circle</mat-icon>
+          <mat-icon style="color: white;">account_circle</mat-icon>
         </button>
         <button mat-icon-button *ngIf="isLoggedIn()" [matMenuTriggerFor]="menu">
-          <mat-icon>account_circle</mat-icon>
+          <mat-icon style="color: white;">account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item *ngFor="let item of menuItems" (click)="goTo(item.route, item.type)">

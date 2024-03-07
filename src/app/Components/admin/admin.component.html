@@ -1,8 +1,29 @@
-<p>admin works!</p>
-<pre>
-    <code>
-        {{user?.username}}
-    </code>
-</pre>
-
-<button (click)="logout()">Logout</button>
+<ng-container>
+    <app-header [currentComponent]="'Admin'" [userButton]="true"></app-header>
+    <mat-card class="px-4 py-4 my-4">
+        <mat-card-header>
+            <mat-card-title>
+                <div style="background-color: #36a2f4; color: white; border-radius: 10px; padding: 0px; margin-right: 0px; text-align: center; width: 80px; height: 80px;">
+                    <mat-icon style="font-size: 80px; width: 80px; height: 80px;">admin_panel_settings</mat-icon>
+                </div>
+                <!-- <app-breadcrumbs></app-breadcrumbs> -->
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="px-4 py-4 my-4">
+                <mat-tab label="Usuarios" *ngIf="isAdmin()">
+                    <mat-divider></mat-divider>
+                    <app-user-list></app-user-list>
+                </mat-tab>
+                <mat-tab label="Marcas">
+                    <mat-divider></mat-divider>
+                    <app-brand-list></app-brand-list>
+                </mat-tab>
+                <mat-tab label="Carros">
+                    <mat-divider></mat-divider>
+                    <app-car-list></app-car-list>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</ng-container>

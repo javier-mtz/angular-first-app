@@ -12,13 +12,13 @@ import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 
-import { BreadcrumbsService } from '../../breadcrumbs.service';
+import { BreadcrumbsService } from '../../Services/breadcrumbService/breadcrumbs.service';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-info-car',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, RouterModule, BreadcrumbsComponent,MatToolbarModule,MatCardModule, HeaderComponent ],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, RouterModule, BreadcrumbsComponent, MatToolbarModule, MatCardModule, HeaderComponent],
   providers: [BreadcrumbsService],
   templateUrl: './info-car.component.html',
   styleUrl: './info-car.component.css'
@@ -64,7 +64,7 @@ export class InfoCarComponent implements OnInit {
         }
       }
     });
-    
+
 
     // Establece las migas de pan para este componente
     this.breadcrumbsService.setBreadcrumbs([

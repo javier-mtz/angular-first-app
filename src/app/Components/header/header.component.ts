@@ -3,7 +3,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { data } from '../../../assets/data/info';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../Services/authService/auth.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   @Input() currentComponent: string = 'CarHistory';
   @Input() class: Array<string> = [];
   @Input() userButton: boolean = false;
@@ -23,20 +23,20 @@ export class HeaderComponent implements OnInit{
   headerColor: string = '';
   logo: string = '';
   textColor: string = '';
-  
+
   menuItems: any[] = [
-    { name: 'Profile', route: '/profile', type: 'profile'},
-    { name: 'logout', type: 'logout'}
+    { name: 'Profile', route: '/profile', type: 'profile' },
+    { name: 'logout', type: 'logout' }
   ];
 
 
-  filteredData: any[] | undefined = []; 
-  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) {}
+  filteredData: any[] | undefined = [];
+  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
     if (this.class.length > 0) {
-      this.headerColor = this.class[0]; 
+      this.headerColor = this.class[0];
       if (this.headerColor === '#000000') {
         this.textColor = '#ffffff';
       } else {
@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit{
 
     // ver si el usuario está logueado Y si es admin, para mostrar injectar el botón de admin al menú, al incio del menu
     if (this.authService.isAdmin()) {
-      this.menuItems.unshift({ name: 'Admin', route: '/admin', type: 'admin'});
+      this.menuItems.unshift({ name: 'Admin', route: '/admin', type: 'admin' });
     }
 
   }
