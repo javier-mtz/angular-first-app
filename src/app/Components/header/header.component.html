@@ -4,7 +4,7 @@
     class="header-toolbar"
   >
     <mat-toolbar-row>
-      <span class="title" [style.color]="textColor">{{ currentComponent }}</span>
+      <span class="title" [style.color]="textColor" (click)="goTo('home', 'home')">{{ currentComponent }}</span>
       <div style="flex-grow: 1;"></div>
       <ng-container *ngIf="userButton">
         <button mat-icon-button *ngIf="!isLoggedIn()" (click)="goTo('login', 'login')">
@@ -20,7 +20,14 @@
         </mat-menu>
       </ng-container>
       <ng-container *ngIf="!userButton">
-        <img [src]="logo" class="logo" />
+        <!-- <img [src]="logo" class="logo" /> -->
+        <img [src]="logo" class="logo" *ngIf="!isLoggedIn()" (click)="goTo('login', 'login')" />
+        <img [src]="logo" class="logo" *ngIf="isLoggedIn()" [matMenuTriggerFor]="menu" />
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let item of menuItems" (click)="goTo(item.route, item.type)">
+            {{ item.name }}
+          </button>
+        </mat-menu>
       </ng-container>
     </mat-toolbar-row>
   </mat-toolbar>
