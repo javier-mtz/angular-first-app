@@ -1,7 +1,8 @@
-import router from "./controllers/authController.js";
+import express, { json, urlencoded } from "express";
 import cors from "cors";
 
-import express, { json, urlencoded } from "express";
+import authRouter from "./controllers/authController.js";
+import userRouter from "./controllers/userController.js";
 
 const app = express();
 
@@ -9,7 +10,8 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({extended: false}));
 //Es necesario que las rutas esten despues del todo
-app.use(router);
+app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 
 export default app;

@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 import secret from "../Config.js";
 import verifyToken from "./verifyToken.js";
 
-router.post("/Signup", (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const { username, email, password, status, role } = req.body;
   const user = new User({
     username,
@@ -45,7 +45,7 @@ router.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username: username });
   if (!user) {
-    res.status(404).send("The username doesn't exists");
+    return res.status(401).json({ auth: false, token: null });
   }
   const ValidPassword = await user.validatePassword(password);
   if (!ValidPassword) {

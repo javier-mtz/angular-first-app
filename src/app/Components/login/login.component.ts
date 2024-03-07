@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../Services/authService/auth.service';
 import { Router } from '@angular/router';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BreadcrumbsService } from '../../breadcrumbs.service';
+import { BreadcrumbsService } from '../../Services/breadcrumbService/breadcrumbs.service';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from '../header/header.component';
 
@@ -22,7 +22,7 @@ import {
 } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AlertService } from '../../alert.service';
+import { AlertService } from '../../Services/alertService/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -61,6 +61,9 @@ export class LoginComponent {
   }
 
   ngOnInit() {
+    // hacer log out
+    // this.authService.logout();
+
     // Establece las migas de pan para este componente
     this.breadcrumbsService.setBreadcrumbs([
       { label: 'Home', url: '/home' },
@@ -69,15 +72,25 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value.username, this.loginForm.value.password);
-    this.authService
-      .login({
-        username: this.loginForm.value.username,
-        password: this.loginForm.value.password,
-      })
-      .subscribe(() => {
-        this.router.navigate(['/admin']);
-      });
+    // console.log(this.loginForm.value.username, this.loginForm.value.password);
+    if (this.loginForm.valid) {
+      this.authService
+        .login({
+          username: this.loginForm.value.username,
+          password: this.loginForm.value.password,
+        })
+        .subscribe({
+          next: (val: any) => {
+            this.alert.showToast('Bienvenido 😄', 'success');
+            this.router.navigate(['/admin']);
+          },
+          error: (err: any) => {
+            this.alert.showToast('Usuario y/o contraseña incorrectos', 'error');
+          }
+        });
+    } else {
+      this.alert.showToast('Por favor, rellene todos los campos', 'info');
+    }
   }
 
   register() {

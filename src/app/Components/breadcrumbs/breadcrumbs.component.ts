@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadcrumbsService } from '../../breadcrumbs.service';
+import { BreadcrumbsService } from '../../Services/breadcrumbService/breadcrumbs.service';
 import { RouterModule } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';

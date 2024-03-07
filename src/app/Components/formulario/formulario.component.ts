@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { ActivatedRoute, RouterModule } from '@angular/router'; // Asegúrate de importar RouterModule
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -13,40 +13,40 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BreadcrumbsService } from '../../breadcrumbs.service';
+import { BreadcrumbsService } from '../../Services/breadcrumbService/breadcrumbs.service';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from "../header/header.component";
 import { Form, FormGroup, NgForm, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AlertService } from '../../alert.service';
+import { AlertService } from '../../Services/alertService/alert.service';
 import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
-    selector: 'app-brands',
-    standalone: true,
-    templateUrl: './formulario.component.html',
-    styleUrl: './formulario.component.css',
-    providers: [BreadcrumbsService],
-    imports: [MatFormFieldModule, 
-      MatInputModule, 
-      MatGridListModule, 
-      RouterModule, 
-      CommonModule, 
-      MatCardModule, 
-      BreadcrumbsComponent, 
-      MatToolbarModule, 
-      MatCheckboxModule, 
-      HeaderComponent, 
-      FormsModule, 
-      ReactiveFormsModule,
-      MatIconModule,
-      MatButtonModule
-    ]
+  selector: 'app-brands',
+  standalone: true,
+  templateUrl: './formulario.component.html',
+  styleUrl: './formulario.component.css',
+  providers: [BreadcrumbsService],
+  imports: [MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+    RouterModule,
+    CommonModule,
+    MatCardModule,
+    BreadcrumbsComponent,
+    MatToolbarModule,
+    MatCheckboxModule,
+    HeaderComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule
+  ]
 })
 
-export class FormularioComponent implements OnInit{
+export class FormularioComponent implements OnInit {
   [x: string]: any;
   brand: string = ''; // Inicializando la propiedad brand
   registro: FormGroup; // Inicializando la propiedad myForm
@@ -60,7 +60,7 @@ export class FormularioComponent implements OnInit{
       password2: ['', Validators.required],
       terms: [false, Validators.required]
     });
-   }
+  }
 
   ngOnInit() {
     // Establece las migas de pan para este componente
@@ -71,9 +71,9 @@ export class FormularioComponent implements OnInit{
   }
 
   async onSubmit() {
-    if(this.registro.valid) {
+    if (this.registro.valid) {
       // Si el formulario es válido, validar que las contraseñas coincidan
-      if(this.registro.value.password !== this.registro.value.password2) {
+      if (this.registro.value.password !== this.registro.value.password2) {
         // Si las contraseñas no coinciden, mostrar una alerta
         this.alert.showToast('Las contraseñas no coinciden', 'info');
         // reseteat los campos de contraseña
@@ -93,10 +93,10 @@ export class FormularioComponent implements OnInit{
         // redirigir al usuario a la página de inicio
         this.router.navigate(['/home']);
       }
-    } 
+    }
   }
 
-  login(){
+  login() {
     this.router.navigate(['/login']);
   }
 }

@@ -64,6 +64,7 @@ footer {
     position: relative;
     text-decoration: none;
     display:inline-block;
+    cursor: pointer;
   }
 
 /*=======Button 6============= */

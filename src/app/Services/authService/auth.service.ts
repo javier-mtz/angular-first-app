@@ -2,11 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Login } from '../../Interfaces/user';
 
-interface User {
-  username: string;
-  password: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +18,9 @@ export class AuthService {
 
   constructor() {}
 
-  login(user: User): Observable<any> {
+  login(user: Login): Observable<any> {
     return this.http
-      .post('http://localhost:3000/login', user)
+      .post('http://localhost:3000/auth/login', user)
       .pipe(tap((response: any) => this.doLoginUser(user.username, response.token)));
   }
 
@@ -44,7 +41,7 @@ export class AuthService {
   }
 
   getCurrentAuthUser() {
-    return this.http.get('http://localhost:3000/currentUser');
+    return this.http.get('http://localhost:3000/auth/currentUser');
   }
 
   isAdmin() {
