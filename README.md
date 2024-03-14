@@ -33,3 +33,7 @@ Para poder iniciar el proyecto es necesario irse a la terminal y correr este com
 ## Comandos para el FrontEnd
 
 Una vez con el servidor prendido para correr la aplicacion es necesario primero este comando: `npm i` para instalar las librerias, despues ejecutamos: `ng serve` para iniciar la aplicacion.
+
+## Base de datos (MongoDB)
+
+Copiar y pegar el archivo .env.example y renombrarlo a .env y agregar la URL correspondiente en las comillas;

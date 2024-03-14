@@ -12,6 +12,7 @@ npm-debug.log
 yarn-error.log
 
 # src/server generated files
+/src/server/.env
 /src/server/node_modules
 
 # IDEs and editors
