@@ -65,7 +65,6 @@ router.post("/signup", (req, res, next) => {
 //Delete user
 router.put("/delete/:id", (req, res) => {
   const id = req.params.id;
-  console.log(id, "id");
   try {
       // Verifica que el ID es válido
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -109,5 +108,6 @@ router.get("/find/:id", (req, res) => {
     }
   });
 });
+
 
 export default router;
