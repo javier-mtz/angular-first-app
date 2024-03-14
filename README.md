@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Comandos para el BackEnd
+
+Para poder iniciar el proyecto es necesario irse a la terminal y correr este comando `cd C:\angular-first-app\src\server`, despues ejecutamos `npm i`. Ahora con todas las librerias descargadas hacemos el siguiente comando para prender el servidor `npm run dev`.
+
+## Comandos para el FrontEnd
+
+Una vez con el servidor prendido para correr la aplicacion es necesario primero este comando: `npm i` para instalar las librerias, despues ejecutamos: `ng serve` para iniciar la aplicacion.
