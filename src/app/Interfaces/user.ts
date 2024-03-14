@@ -3,11 +3,10 @@ export interface Login {
     password: any;
 }
 
-export interface RegisterIUser {
-    username: String;
-    email: String;
-    password: String;
-    password2: String;
+export interface UserIRegister{
+    username: any;
+    email: any;
+    password: any;
 }
 
 export interface Dialog {
@@ -22,6 +21,7 @@ export interface User {
     email: String;
     password: String;
     status: Number;
+    role: String;
     createdAt: Date;
     updatedAt: Date;
 }

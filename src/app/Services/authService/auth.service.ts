@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { Login } from '../../Interfaces/user';
+import { Login, User, UserIRegister } from '../../Interfaces/user';
+
 
 
 @Injectable({
@@ -40,8 +41,8 @@ export class AuthService {
     this.router.navigate(['/home']);
   }
 
-  getCurrentAuthUser() {
-    return this.http.get('http://localhost:3000/auth/currentUser');
+  getCurrentAuthUser(): Observable<User> {
+    return this.http.get<User>('http://localhost:3000/auth/currentUser');
   }
 
   isAdmin() {

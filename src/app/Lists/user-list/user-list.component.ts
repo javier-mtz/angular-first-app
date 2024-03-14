@@ -86,7 +86,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  deleteUser(id: Number) {
+  deleteUser(id: String) {
     this._alert.showConfirmAlert('Eliminar usuario', '¿Estas seguro de eliminar este usuario?', 'warning', 'Eliminar', 'Cancelar', () => {
       this._user.delete(id).subscribe({
         next: (res) => {
@@ -102,7 +102,7 @@ export class UserListComponent implements OnInit {
     
   }
 
-  updateUser(id: Number) {
+  updateUser(id: String) {
     const dialogRef = this._dialog.open(UserDialogComponent, {
       data: {
         id

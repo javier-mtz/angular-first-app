@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const uri = "mongodb+srv://pablo-admin:Chuchu20032907@carhistory.phlurbk.mongodb.net/Users";
+const uri = "mongodb+srv://pablo-admin:Chuchu20032907@carhistory.phlurbk.mongodb.net/CarHistory";
 
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})

@@ -36,6 +36,10 @@ const userSchema = new Schema({
         require: false,
         default: Date.now
     },
+    publicIp: {
+        type: Array,
+        require: true
+    }
 });
 
 
