@@ -1,23 +1,23 @@
-const mongoose = require('mongoose');
+import { Schema, Types, model } from 'mongoose';
 
-const CarSchema = new mongoose.Schema({
-    modelo: {
+const CarSchema = new Schema({
+    model: {
         type: String,
         required: true
     },
-    descripcion: {
+    description: {
         type: String,
         required: true
     },
-    precio: {
+    price: {
+        type: Number,
+        required: true
+    },
+    engine: {
         type: String,
         required: true
     },
-    motor: {
-        type: String,
-        required: true
-    },
-    imagenes: {
+    images: {
         type: [String],
         required: true
     },
@@ -27,15 +27,15 @@ const CarSchema = new mongoose.Schema({
         required: true
     },
     brandId: {
-        type: mongoose.Types.ObjectId,
-        unique :true,
+        type: Types.ObjectId,
+        ref: 'Brand',
     },
     userId: {
-        type: mongoose.Types.ObjectId,
-        unique :true,
+        type: Types.ObjectId,
+        ref: 'User'
     },
 });
 
-const Car = mongoose.model('Car', CarSchema);
+const Car = model('Car', CarSchema);
 
-module.exports = Car;
+export default Car;
