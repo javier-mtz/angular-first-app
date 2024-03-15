@@ -5,7 +5,7 @@ const BrandSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    paletteColors: {
+    color: {
         type: String,
         required: true
     },
