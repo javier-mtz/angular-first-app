@@ -9,7 +9,7 @@ import verifyToken from "./verifyToken.js";
 
 router.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username: username, status: { $ne: 2 } });
+  const user = await User.findOne({ username: { $regex: new RegExp(username, "i") }, status: { $ne: 2 } });
   if (!user) {
     return res.status(401).json({ auth: false, token: null });
   }

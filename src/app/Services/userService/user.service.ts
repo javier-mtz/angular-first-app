@@ -1,17 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User, UserIRegister } from '../../Interfaces/user';
-import { Observable } from 'rxjs';
+import { User, UserICreate, UserIRegister } from '../../Interfaces/user';
+import { AuthService } from '../authService/auth.service';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
-  create(user: UserIRegister): Observable<any> {
-    return this.http.post('http://localhost:3000/user/signup', user);
+  signup(user: UserIRegister): Observable<any> {
+    return this.http.post('http://localhost:3000/user/signup', user)
+      .pipe(
+        tap((response: any) => {
+          this.authService.login({ username: user.username, password: user.password }).subscribe();
+        })
+      );
+  }
+
+  create(user: UserICreate): Observable<any> {
+    return this.http.post('http://localhost:3000/user/create', user);
   }
 
   getAll(): Observable<any> {

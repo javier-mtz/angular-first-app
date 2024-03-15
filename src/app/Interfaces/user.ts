@@ -3,10 +3,15 @@ export interface Login {
     password: any;
 }
 
-export interface UserIRegister{
-    username: any;
-    email: any;
-    password: any;
+export interface UserICreate {
+    username: String;
+    email: String;
+}
+
+export interface UserIRegister {
+    username: String;
+    email: String;
+    password: String;
 }
 
 export interface Dialog {

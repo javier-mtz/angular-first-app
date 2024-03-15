@@ -72,7 +72,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    // console.log(this.loginForm.value.username, this.loginForm.value.password);
     if (this.loginForm.valid) {
       this.authService
         .login({
@@ -82,7 +81,13 @@ export class LoginComponent {
         .subscribe({
           next: (val: any) => {
             this.alert.showToast('Bienvenido 😄', 'success');
-            this.router.navigate(['/admin']);
+            this.authService.isAdmin().subscribe(isAdmin => {
+              if (isAdmin) {
+                this.router.navigate(['/admin']);
+              } else {
+                this.router.navigate(['/home']);
+              }
+            });
           },
           error: (err: any) => {
             this.alert.showToast('Usuario y/o contraseña incorrectos', 'error');

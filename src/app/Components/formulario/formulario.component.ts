@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../Services/alertService/alert.service';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../../Services/authService/auth.service';
 
 
 @Component({
@@ -53,7 +54,7 @@ export class FormularioComponent implements OnInit {
   registerForm: FormGroup; // Inicializando la propiedad myForm
   data = data;
 
-  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService, private userServicie: UserService) {
+  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService, private userServicie: UserService, private authService: AuthService) {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
@@ -81,24 +82,24 @@ export class FormularioComponent implements OnInit {
         this.registerForm.controls['password'].reset();
         this.registerForm.controls['password2'].reset();
       } else {
-        this.userServicie.create({
+        this.userServicie.signup({
           username: this.registerForm.value.username,
           email: this.registerForm.value.email,
           password: this.registerForm.value.password,
         }).subscribe({
           next: (val: any) => {
             this.alert.showToast('Usuario creado exitosamente', 'success');
-            this.router.navigate(['/admin']);
+            if (this.authService.isAdmin()) {
+              this.router.navigate(['/admin']);
+            } else {
+              this.router.navigate(['/home']);
+            }
           },
           error: (err: any) => {
             console.log(JSON.stringify(err));
-            this.alert.showToast("Este usuario ya existe", 'error');
+            this.alert.showToast("Nombre no es seguro para el usuario", 'error');
           }
         });
-        // Si las contraseñas coinciden, hacer un POST request al servidor
-        // con los datos del formulario
-        this.alert.showLoading();
-        this.alert.closeLoading();
       }
     }
   }

@@ -19,12 +19,6 @@ router.get("/all", (req, res) => {
 router.post("/create", (req, res) => {
   // Tu código aquí
   console.log(req.body);
-  // agregar el usuario al arreglo
-  const newUser = req.body;
-  // agregarle un id
-  newUser.id = users.length + 1;
-  console.log(newUser);
-  users.push(newUser);
 
   res.json({ message: "User created" });
 });
@@ -51,7 +45,7 @@ router.post("/signup", (req, res, next) => {
       const token = jwt.sign({ id: savedUser._id }, "MySecretDomentos", {
         expiresIn: 60 * 60 * 24,
       });
-      res.json({ auth: true, token });
+      res.json({ auth: true, token, username, role: user.role});
     })
     .catch((error) => {
       if (error.code === 11000) {

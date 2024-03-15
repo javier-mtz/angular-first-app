@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { Login, User, UserIRegister } from '../../Interfaces/user';
 
 
@@ -45,8 +45,15 @@ export class AuthService {
     return this.http.get<User>('http://localhost:3000/auth/currentUser');
   }
 
-  isAdmin() {
-    return true;
+  isAdmin(): Observable<boolean> {
+    return this.getCurrentAuthUser().pipe(
+      map((user) => {
+        if (user.role === 'Admin') {
+          return true;
+        }
+        return false;
+      })
+    );
   }
 
   isLoggedIn() {

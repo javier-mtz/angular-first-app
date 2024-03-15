@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   textColor: string = '';
 
   menuItems: any[] = [
+    { name: 'Rentar', route: '/rent', type: 'rent' },
     { name: 'Profile', route: '/user', type: 'user' },
     { name: 'Logout', type: 'logout' }
   ];
@@ -48,20 +49,26 @@ export class HeaderComponent implements OnInit {
       this.logo = '';
       this.textColor = '#ffffff';
     }
-
-    // ver si el usuario está logueado Y si es admin, para mostrar injectar el botón de admin al menú, al incio del menu
-    if (this.authService.isAdmin()) {
-      this.menuItems.unshift({ name: 'Admin', route: '/admin', type: 'admin' });
+    
+    if (this.authService.isLoggedIn()) {
+      this.authService.isAdmin().subscribe(isAdmin => {
+        const adminIndex = this.menuItems.findIndex((item) => item.type === 'admin');
+        if (isAdmin) {
+          if (adminIndex === -1) {
+            this.menuItems.unshift({ name: 'Admin', route: '/admin', type: 'admin' });
+          }
+        } else {
+          if (adminIndex > -1) {
+            this.menuItems.splice(adminIndex, 1);
+          }
+        }
+      });
     }
 
   }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
-  }
-
-  isAdmin(): boolean {
-    return this.authService.isAdmin();
   }
 
   logout(): void {
