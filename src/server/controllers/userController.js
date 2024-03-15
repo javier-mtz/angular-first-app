@@ -7,17 +7,14 @@ const router = Router();
 
 
 router.get("/all", (req, res) => {
-  try {
-    const users = User.find({ status: 1 }).then((users) => {
+    User.find({ status: 1 },{ password: false }).then((users) => {
       res.json(users);
+    }).catch((error) => {
+      res.status(500).send("Internal Server Error");
     });
-  } catch (error) {
-    console.log(error);
-  }
 });
 
 router.post("/create", (req, res) => {
-  // Tu código aquí
   console.log(req.body);
 
   res.json({ message: "User created" });
@@ -48,11 +45,7 @@ router.post("/signup", (req, res, next) => {
       res.json({ auth: true, token, username, role: user.role});
     })
     .catch((error) => {
-      if (error.code === 11000) {
-        res.status(400).send("El usuario ya existe");
-      } else {
-        res.status(400).send("Error al registrarse" + error);
-      }
+      res.status(500).send("Internal Server Error");
     });
 });
 
@@ -60,7 +53,7 @@ router.post("/signup", (req, res, next) => {
 router.put("/delete/:id", (req, res) => {
   const id = req.params.id;
   try {
-      // Verifica que el ID es válido
+  // Verifica que el ID es válido
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send('No record with given id : ' + id);
   }

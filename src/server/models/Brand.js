@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const BrandSchema = new mongoose.Schema({
+const BrandSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     color: {
         type: String,
@@ -20,6 +21,6 @@ const BrandSchema = new mongoose.Schema({
     }
 });
 
-const Brand = mongoose.model('Brand', BrandSchema);
+const Brand = model('Brand', BrandSchema);
 
-module.exports = Brand;
+export default Brand;
