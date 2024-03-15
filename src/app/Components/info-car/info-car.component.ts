@@ -98,8 +98,6 @@ export class InfoCarComponent implements OnInit {
         this.imagenSeleccionada = this.carroSeleccionado.imagenes[this.imagenSeleccionadaIndex];
     }
   }
-
-
 }
 
 interface Carro {

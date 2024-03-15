@@ -1,15 +1,18 @@
-  <!-- Header -->
-  <app-header [userButton]="true"></app-header>
-  <div class="container" [ngStyle]="{'background-image': 'url(../../../assets/img/homeBackground.jpg)'}">
+<!-- Header -->
+<app-header [userButton]="true"></app-header>
+
+<body>
+  <div id="stick-parallax-header" class="container"
+    [ngStyle]="{'background-image': 'url(../../../assets/img/homeBackground.jpg)'}">
     <main>
       <section class="hero">
         <div class="hero-content" [ngStyle]="{'text-shadow': '1px 1px 2px #000000'}">
           <h1>Descubre la elegancia de los carros exóticos</h1>
           <p>Explora la historia y la belleza de los modelos más icónicos de
             <strong>
-              <span class="Ferrari">Ferrari</span>, 
-              <span class="Mercedes">Mercedes</span>, 
-              <span class="Porsche">Porsche</span> y 
+              <span class="Ferrari">Ferrari</span>,
+              <span class="Mercedes">Mercedes</span>,
+              <span class="Porsche">Porsche</span> y
               <span class="BMW">BMW</span>.
             </strong>
           </p>
@@ -18,3 +21,4 @@
       </section>
     </main>
   </div>
+</body>

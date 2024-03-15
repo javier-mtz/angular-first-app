@@ -34,7 +34,8 @@
                             <img *ngFor="let imagen of carroSeleccionado.imagenes; let i = index" [src]="imagen"
                                 class="horizontal-image" (click)="seleccionarImagen(imagen, i)"
                                 [class.unselected-image]="i !== imagenSeleccionadaIndex"
-                                [class.selected-image]="i === imagenSeleccionadaIndex">
+                                [class.selected-image]="i === imagenSeleccionadaIndex"
+                                [class.selected]="i === imagenSeleccionadaIndex">
                         </div>
                     </div>
                 </div>
