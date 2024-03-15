@@ -12,11 +12,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
-import { UserDialogComponent } from '../../Dialogs/user-dialog/user-dialog.component';
-import { UserService } from '../../Services/userService/user.service';
+import { BrandDialogComponent } from '../../Dialogs/brand-dialog/brand-dialog.component';
+import { BrandService } from '../../Services/brandService/brand.service';
 
 import { AlertService } from '../../Services/alertService/alert.service';
-import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-brand-list',
@@ -26,7 +25,7 @@ import { Dialog } from '@angular/cdk/dialog';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    UserDialogComponent,
+    BrandDialogComponent,
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
@@ -39,20 +38,20 @@ import { Dialog } from '@angular/cdk/dialog';
 })
 export class BrandListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'username', 'email', 'role', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'color', 'logo', 'actions'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public _dialog: MatDialog, private _user: UserService, private _alert: AlertService) { }
+  constructor(public _dialog: MatDialog, private _brand: BrandService, private _alert: AlertService) { }
 
   ngOnInit(): void {
     this.getBrands();
   }
 
   openDialog() {
-    const dialogRef = this._dialog.open(UserDialogComponent, {
+    const dialogRef = this._dialog.open(BrandDialogComponent, {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe({
@@ -74,7 +73,7 @@ export class BrandListComponent implements OnInit {
   }
 
   getBrands() {
-    this._user.getAll().subscribe({
+    this._brand.getAll().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.sort = this.sort;
@@ -87,12 +86,12 @@ export class BrandListComponent implements OnInit {
     });
   }
 
-  deleteUser(id: String) {
-    this._alert.showConfirmAlert('Eliminar usuario', '¿Estas seguro de eliminar este usuario?', 'warning', 'Eliminar', 'Cancelar', () => {
-      this._user.delete(id).subscribe({
+  deleteBrand(id: String) {
+    this._alert.showConfirmAlert('Eliminar marca', '¿Estas seguro de eliminar esta marca?', 'warning', 'Eliminar', 'Cancelar', () => {
+      this._brand.delete(id).subscribe({
         next: (res) => {
           this.getBrands();
-          this._alert.showAlert('Usuario eliminado', 'Usuario eliminado correctamente', 'success');
+          this._alert.showAlert('Marca eliminada', 'Marca eliminada correctamente', 'success');
         },
         error: (err: any) => {
           console.log(err);
@@ -103,8 +102,8 @@ export class BrandListComponent implements OnInit {
 
   }
 
-  updateUser(id: String) {
-    const dialogRef = this._dialog.open(UserDialogComponent, {
+  updateBrand(id: String) {
+    const dialogRef = this._dialog.open(BrandDialogComponent, {
       data: {
         id
       },
