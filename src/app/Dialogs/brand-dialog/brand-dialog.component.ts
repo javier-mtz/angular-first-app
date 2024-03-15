@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -28,6 +29,7 @@ import { BrandService } from '../../Services/brandService/brand.service';
     CommonModule,
     MatIconModule,
     ReactiveFormsModule,
+    FlexLayoutModule
   ],
   templateUrl: './brand-dialog.component.html',
   styleUrl: './brand-dialog.component.css'

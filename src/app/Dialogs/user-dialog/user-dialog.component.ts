@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +29,7 @@ import { UserService } from '../../Services/userService/user.service';
     CommonModule,
     MatIconModule,
     ReactiveFormsModule,
+    FlexLayoutModule
   ],
   templateUrl: './user-dialog.component.html',
   styleUrl: './user-dialog.component.css'

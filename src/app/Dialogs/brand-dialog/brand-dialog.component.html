@@ -6,15 +6,15 @@
     </h1>
     <form action="" [formGroup]="brandForm" (ngSubmit)="onSubmit()">
         <div mat-dialog-content style="padding-top: 10px; margin-top: 10px;">
-            <div class="row">
-                <mat-form-field appearance="outline">
+            <div class="row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Nombre</mat-label>
                     <input matInput formControlName="name">
                     <mat-error>
                         El nombre es requerido
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Color (HEX)</mat-label>
                     <input matInput formControlName="color">
                     <mat-error>
@@ -22,8 +22,8 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <div class="row">
-                <mat-form-field appearance="outline" style="width: 100%;">
+            <div class="row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex style="width: 100%;">
                     <mat-label>Logo (URL)</mat-label>
                     <input matInput formControlName="logo">
                     <mat-error>
@@ -32,11 +32,10 @@
                 </mat-form-field>
             </div>
         </div>
-        <div mat-dialog-actions>
-            <div style="flex-grow: 1;"></div>
+        <div mat-dialog-actions fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" fxLayout.lt-md="column">
             <button mat-raised-button style="background-color: rgb(255, 40, 40); color: white;" type="button"
-                [mat-dialog-close]="false">Cancelar</button>
-            <button mat-raised-button style="color: white;" color="{{ data ? 'accent' : 'primary' }}" type="submit">{{
+                [mat-dialog-close]="false" fxFlex>Cancelar</button>
+            <button mat-raised-button style="color: white;" color="{{ data ? 'accent' : 'primary' }}" type="submit" fxFlex>{{
                 data ? 'Actualizar' : 'Guardar' }}</button>
         </div>
     </form>

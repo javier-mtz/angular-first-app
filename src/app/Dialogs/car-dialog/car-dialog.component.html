@@ -1,1 +1,76 @@
-<p>car-dialog works!</p>
+<div class="container">
+    <h1 mat-dialog-title class="row"
+        style="vertical-align: middle; background-color: #36a2f4; color: white; padding-top: 10px;">
+        <mat-icon style="font-size: 40px; width: 40px; height: 40px;">directions_car</mat-icon>
+        Carro
+    </h1>
+    <form action="" [formGroup]="carForm" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content style="padding-top: 10px; margin-top: 10px;">
+            <!-- el auto tiene modelo, descripcion, precio, motor e imagenes -->
+            <!-- las imagenes las quiero agregar con un input tambien pero que este mas grande para que las separen con comas, y ponerle un 
+                boton de info para que sepa que tiene que poner -->
+            <div class="row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Modelo</mat-label>
+                    <input matInput formControlName="model">
+                    <mat-error>
+                        El modelo es requerido
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Precio</mat-label>
+                    <input matInput formControlName="price">
+                    <mat-error>
+                        El precio es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Motor</mat-label>
+                    <input matInput formControlName="engine">
+                    <mat-error>
+                        El motor es requerido
+                    </mat-error>
+                </mat-form-field>
+                <!-- select de marcas -->
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Marca</mat-label>
+                    <mat-select formControlName="brand">
+                        <mat-option *ngFor="let brand of brands" [value]="brand.id">
+                            {{brand.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error>
+                        La marca es requerida
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Descripcion</mat-label>
+                    <textarea matInput formControlName="description" maxlength="200"></textarea>
+                    <mat-hint align="end">{{carForm.get('description')?.value.length}} / 200</mat-hint>
+                    <mat-error>
+                        La descripcion es requerida
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Imagenes (URL)</mat-label>
+                    <textarea matInput formControlName="images" matTooltip="Url separado por comas, sin espacios"></textarea>
+                    <mat-error>
+                        Las imagenes son requeridas
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" fxLayout.lt-md="column">
+            <button mat-raised-button style="background-color: rgb(255, 40, 40); color: white;" type="button"
+                [mat-dialog-close]="false" fxFlex>Cancelar</button>
+            <button mat-raised-button style="color: white;" color="{{ data ? 'accent' : 'primary' }}" type="submit" fxFlex>{{
+                data ? 'Actualizar' : 'Guardar' }}</button>
+        </div>
+    </form>
+</div>

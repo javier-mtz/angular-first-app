@@ -1,5 +1,6 @@
 import { Router } from "express";
 import User from "../models/User.js";
+
 import nodeMailer from "nodemailer";
 
 import dotenv from 'dotenv';
@@ -13,7 +14,7 @@ router.post("/oneTimePass", async (req, res) => {
     console.log(process.env.EMAIL_USER);
     console.log(process.env.EMAIL_PASS);
     let configOptions = nodeMailer.createTransport({
-        host: "smtp.office365.com",
+        host: "smtp.gmail.com",
         port: 587,
         auth: {
             user: process.env.EMAIL_USER,
@@ -22,7 +23,7 @@ router.post("/oneTimePass", async (req, res) => {
     });
 
     const mailOptions = {
-        from: "CarHistory",
+        from: process.env.EMAIL_USER,
         to: req.body.email,
         subject: "Contraseña de un solo uso",
         text: `Hola ${req.body.username} tu contraseña es: ${req.body.password}`
