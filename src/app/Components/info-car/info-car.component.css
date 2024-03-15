@@ -52,7 +52,7 @@
 
 .sidebar {
     margin-left: -25%;
-    width: 30%;
+    width: 35%;
     color: rgb(255, 255, 255);
 }
 
@@ -76,6 +76,7 @@ span {
 }
 
 .descr {
+    margin-left: 10%;
     margin-top: 10%;
     margin-bottom: 10%;
     padding: 5%;
@@ -92,6 +93,7 @@ span {
     width: 55%;
     padding-bottom: 5%;
     padding-top: 5%;
+    padding-left: 7%;
 }
 
 .image-row {
@@ -148,6 +150,21 @@ p {
 .header-toolbar{
     padding-left: 22%;
 }
+
+.example-flex-container {
+    display: flex;
+    align-items: center;
+}
+
+.example-button-container {
+    margin: 0 10px;
+    padding-top: 5%;
+}
+
+.buttonclass{
+    background-color: rgba(87, 87, 87, 0.7);
+}
+
 
 @media screen and (max-width: 480px) {
     .container {

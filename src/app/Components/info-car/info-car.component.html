@@ -13,7 +13,21 @@
             <div class="container">
                 <div class="images">
                     <div class="image-thumbnail-container">
-                        <img [src]="imagenSeleccionada" class="image-small" id="main-image">
+                        <div class="example-flex-container">
+                            <div class="example-button-container">
+                                <button class="buttonclass" mat-fab aria-label="Botón anterior" (click)="imagenAnterior()">
+                                    <mat-icon>chevron_left</mat-icon>
+                                </button>
+                            </div>
+
+                            <img [src]="imagenSeleccionada" class="image-small" id="main-image">
+                            
+                            <div class="example-button-container">
+                                <button class="buttonclass" mat-fab aria-label="Botón siguiente" (click)="imagenSiguiente()">
+                                    <mat-icon>chevron_right</mat-icon>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="horizontal-images-container">
                         <div class="image-row">

@@ -80,7 +80,28 @@ export class InfoCarComponent implements OnInit {
     this.imagenSeleccionada = imagen;
     this.imagenSeleccionadaIndex = index;
   }
+
+  imagenSiguiente() {
+    // Verificar si hay una siguiente imagen disponible
+    if (this.imagenSeleccionadaIndex < this.carroSeleccionado.imagenes.length - 1) {
+        // Cambiar a la siguiente imagen
+        this.imagenSeleccionadaIndex++;
+        this.imagenSeleccionada = this.carroSeleccionado.imagenes[this.imagenSeleccionadaIndex];
+    }
+  }
+
+  imagenAnterior() {
+    // Verificar si hay una imagen anterior disponible
+    if (this.imagenSeleccionadaIndex > 0) {
+        // Cambiar a la imagen anterior
+        this.imagenSeleccionadaIndex--;
+        this.imagenSeleccionada = this.carroSeleccionado.imagenes[this.imagenSeleccionadaIndex];
+    }
+  }
+
+
 }
+
 interface Carro {
   modelo: string;
   descripcion: string;
