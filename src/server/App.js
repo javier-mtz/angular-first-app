@@ -5,7 +5,6 @@ import authRouter from "./controllers/authController.js";
 import userRouter from "./controllers/userController.js";
 import brandRouter from "./controllers/brandController.js";
 import carRouter from "./controllers/carController.js";
-import mailRouter from "./controllers/emailController.js";
 
 const app = express();
 
@@ -17,7 +16,6 @@ app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/brand', brandRouter);
 app.use('/car', carRouter);
-app.use('/mail', mailRouter);
 
 
 export default app;

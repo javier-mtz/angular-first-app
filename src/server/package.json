@@ -12,11 +12,15 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.0",
+    "node-mailjet": "^6.0.5",
     "nodemailer": "^6.9.12",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "path": "^0.12.7",
+    "urid": "^1.1.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

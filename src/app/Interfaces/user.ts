@@ -1,11 +1,13 @@
 export interface Login {
     username: any;
     password: any;
+    ip?: any;
 }
 
 export interface UserICreate {
     username: String;
     email: String;
+    password?: any;
 }
 
 export interface UserIRegister {

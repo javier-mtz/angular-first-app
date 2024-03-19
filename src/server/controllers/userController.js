@@ -2,6 +2,8 @@ import { Router } from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import { sendEmailNewPassword } from "../../server/controllers/emailController.js";
+import urid from 'urid';
 
 const router = Router();
 
@@ -15,9 +17,21 @@ router.get("/all", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
-  console.log(req.body);
+  const { username, email, role } = req.body;
+  const user = new User({
+    username,
+    email,
+    password: urid(8, 'alpha'),
+    role,
+    oneTimePassword: true,
+  });
 
-  res.json({ message: "User created" });
+  user.save().then((user) => {
+    res.json(user);
+  }).catch((error) => {
+    res.status(500).send(error);
+  });
+  sendEmailNewPassword(username, email);
 });
 
 router.post("/signup", (req, res, next) => {
@@ -29,9 +43,7 @@ router.post("/signup", (req, res, next) => {
   });
 
   new Promise((resolve, reject) => {
-    user
-      .encryptPassword(user.password)
-      .then((encryptedPassword) => {
+    user.encryptPassword(user.password).then((encryptedPassword) => {
         user.password = encryptedPassword;
         return user.save();
       })
@@ -40,7 +52,7 @@ router.post("/signup", (req, res, next) => {
   })
     .then((savedUser) => {
       const token = jwt.sign({ id: savedUser._id }, "MySecretDomentos", {
-        expiresIn: 60 * 60 * 24,
+        expiresIn: 60 * 60 * 2,
       });
       res.json({ auth: true, token, username, role: user.role});
     })

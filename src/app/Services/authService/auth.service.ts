@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { Login, User, UserIRegister } from '../../Interfaces/user';
+import { jwtDecode } from 'jwt-decode';
 
 
 
@@ -59,4 +60,18 @@ export class AuthService {
   isLoggedIn() {
     return !!localStorage.getItem(this.JWT_TOKEN);
   }
+
+  isTokenExpired() {
+    const token = localStorage.getItem(this.JWT_TOKEN);
+    if(!token) return true;
+    const decoded = jwtDecode(token);
+    if(!decoded.exp) return true;
+    const expirationDate = decoded.exp * 1000;
+    const now = new Date().getTime();
+    const isExpired = expirationDate < now;
+    if (isExpired) {
+      localStorage.removeItem(this.JWT_TOKEN); 
+    }
+    return isExpired;
+  }  
 }

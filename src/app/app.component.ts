@@ -22,8 +22,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'CarHistory';
-  ip = '';
-  constructor(private router: Router, private commonService: CommonService) {
+  constructor(private router: Router) {
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -31,10 +30,6 @@ export class AppComponent {
       if (typeof window !== 'undefined') {
         window.scrollTo(0, 0);
       }
-    });
-    this.commonService.getIPAddress().subscribe((res: any) => {
-      console.log(res);
-      this.ip = res.ip;
     });
   }
 }

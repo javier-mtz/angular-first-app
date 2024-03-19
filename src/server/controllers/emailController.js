@@ -1,45 +1,39 @@
-import { Router } from "express";
-import User from "../models/User.js";
-
-import nodeMailer from "nodemailer";
-
-import dotenv from 'dotenv';
+import Mailjet from "node-mailjet";
+import dotenv from "dotenv";
 
 dotenv.config();
 
-const router = Router();
+const mailjet = Mailjet.apiConnect(
+  process.env.MJ_APIKEY_PUBLIC,
+  process.env.MJ_APIKEY_PRIVATE
+);
 
-router.post("/oneTimePass", async (req, res) => {
-    console.log(req.body);
-    console.log(process.env.EMAIL_USER);
-    console.log(process.env.EMAIL_PASS);
-    let configOptions = nodeMailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        }
+
+export async function sendEmailNewPassword(username, email) {
+  const request = mailjet.post("send", { version: "v3.1" }).request({
+    Messages: [
+      {
+        From: {
+          Email: "pablo72h@proton.me",
+          Name: "CarHistory",
+        },
+        To: [
+          {
+            Email: email,
+            Name: username,
+          },
+        ],
+        TemplateID: 5794553,
+        TemplateLanguage: true,
+        Subject: "Bienvenido a CarHistory",
+      },
+    ],
+  });
+  request
+    .then((result) => {
+      console.log(result.body);
+    })
+    .catch((err) => {
+      console.log(err.statusCode);
     });
-
-    const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: req.body.email,
-        subject: "Contraseña de un solo uso",
-        text: `Hola ${req.body.username} tu contraseña es: ${req.body.password}`
-    }
-
-    configOptions.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-            return res.status(500).
-            json({message: "Error al enviar el correo"});
-        }
-
-        return res.json({message: "Correo enviado"});
-    });
-
-
-});
-
-export default router;
+}

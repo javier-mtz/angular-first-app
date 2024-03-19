@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../Services/authService/auth.service';
 import { Router } from '@angular/router';
+import { CommonService } from '../../common.service';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -45,6 +46,7 @@ import { AlertService } from '../../Services/alertService/alert.service';
 export class LoginComponent {
   username = '';
   password = '';
+  ip = {};
   loginForm: FormGroup;
 
   constructor(
@@ -52,11 +54,15 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private alert: AlertService,
-    private authService: AuthService
+    private authService: AuthService,
+    private commonService: CommonService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+    });
+    this.commonService.getIPAddress().subscribe((res: any) => {
+      this.ip = res;
     });
   }
 
@@ -77,6 +83,7 @@ export class LoginComponent {
         .login({
           username: this.loginForm.value.username,
           password: this.loginForm.value.password,
+          ip: this.ip,
         })
         .subscribe({
           next: (val: any) => {
