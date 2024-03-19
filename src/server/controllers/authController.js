@@ -10,7 +10,7 @@ import verifyToken from "./verifyToken.js";
 router.post("/login", async (req, res, next) => {
   const { username, password, ip } = req.body;
   let publicIp = {};
-  
+  console.log(ip);
   const user = await User.findOne({ username: { $regex: new RegExp(username, "i") }, status: { $ne: 2 } });
   if (!user) {
     return res.status(401).json({ auth: false, token: null });
@@ -27,7 +27,7 @@ router.post("/login", async (req, res, next) => {
       ip: ip.ip,
       network : ip.network,   
     }
-    if (!user.publicIp.some(existingIp => existingIp.network === publicIp.network)) {
+    if (!user.publicIp.some(existingIp => existingIp.ip === publicIp.ip)) {
       user.publicIp.push(publicIp);
       await user.save();
     }
