@@ -26,6 +26,10 @@ const userSchema = new Schema({
         enum: ['User', 'Admin'],
         default: 'User'
     },
+    oneTimePassword: {
+        type: Boolean,
+        default: false
+    },
     created_at: {
         type: Date,
         require: true,
@@ -36,6 +40,10 @@ const userSchema = new Schema({
         require: false,
         default: Date.now
     },
+    publicIp: {
+        type: Array,
+        require: true
+    }
 });
 
 

@@ -1,0 +1,116 @@
+.contenedorgeneral {
+    background-image: url('../../../assets/img/carretera.jpg');
+    background-size: cover; /* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo dentro del contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+}
+
+.wrapper {
+    max-width: 400px;
+    margin: 150px auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(87, 87, 87, 0.7);
+    backdrop-filter: blur(5px); /* Desenfoque al fondo */
+}
+
+.wrapper h2 {
+    color: #000000;
+}
+
+.input-box {
+    margin-bottom: 20px;
+}
+
+.text {
+    margin-top: 20px;
+}
+
+.text a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.text a:hover {
+    cursor: pointer;
+}
+
+.large-icon {
+    font-size: 70px;
+    height: 70px;
+    width: 70px;
+    margin-bottom: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.btn6{
+    padding: 15px 100px;
+    margin:10px 4px;
+    color: #fff;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    display:inline-block;
+    cursor: pointer;
+  }
+
+/*=======Button 6============= */
+.btn6{
+    border:1px solid transparent; 
+     -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+  }
+  
+.btn6::before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: -1;
+    width: 0%;
+    height: 1px;
+    background: #2d2d2d;
+    box-shadow: inset 0px 0px 0px #2d2d2d;
+    display: block;
+    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
+}
+
+.btn6:hover::before {
+    width: 100%;
+}
+
+.btn6::after {
+    content: '';
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: -1;
+    width: 0%;
+    height: 1px;
+    background: #2d2d2d;
+    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
+}
+
+.btn6:hover::after {
+    width: 100%;
+}
+
+.btn6:hover {
+    border-left: 1px solid #2d2d2d;
+    border-right: 1px solid #2d2d2d;
+}

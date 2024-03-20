@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { Login, User, UserIRegister } from '../../Interfaces/user';
+import { jwtDecode } from 'jwt-decode';
 
-interface User {
-  username: string;
-  password: string;
-}
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +20,9 @@ export class AuthService {
 
   constructor() {}
 
-  login(user: User): Observable<any> {
+  login(user: Login): Observable<any> {
     return this.http
-      .post('http://localhost:3000/login', user)
+      .post('http://localhost:3000/auth/login', user)
       .pipe(tap((response: any) => this.doLoginUser(user.username, response.token)));
   }
 
@@ -43,11 +42,36 @@ export class AuthService {
     this.router.navigate(['/home']);
   }
 
-  getCurrentAuthUser(){
-    return this.http.get('http://localhost:3000/currentUser');
+  getCurrentAuthUser(): Observable<User> {
+    return this.http.get<User>('http://localhost:3000/auth/currentUser');
+  }
+
+  isAdmin(): Observable<boolean> {
+    return this.getCurrentAuthUser().pipe(
+      map((user) => {
+        if (user.role === 'Admin') {
+          return true;
+        }
+        return false;
+      })
+    );
   }
 
   isLoggedIn() {
     return !!localStorage.getItem(this.JWT_TOKEN);
   }
+
+  isTokenExpired() {
+    const token = localStorage.getItem(this.JWT_TOKEN);
+    if(!token) return true;
+    const decoded = jwtDecode(token);
+    if(!decoded.exp) return true;
+    const expirationDate = decoded.exp * 1000;
+    const now = new Date().getTime();
+    const isExpired = expirationDate < now;
+    if (isExpired) {
+      localStorage.removeItem(this.JWT_TOKEN); 
+    }
+    return isExpired;
+  }  
 }

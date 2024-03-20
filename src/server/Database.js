@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
-const uri = "mongodb+srv://pablo-admin:Chuchu20032907@carhistory.phlurbk.mongodb.net/Users";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const uri = process.env.MONGODB_URI;
 
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})

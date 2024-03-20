@@ -1,1 +1,74 @@
-<p>user works!</p>
+<div class="container">
+    <ng-container>
+        <div class="contenedorprincipal">
+            <app-header [currentComponent]="'Profile'" [userButton]="true"></app-header>
+            <main>
+                <!-- card con 2 columnas -->
+                <mat-card class="px-4 py-4 my-4" class="card">
+                    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+                        <div class="row">
+                            <!-- icono de usuario -->
+                            <div class="icono">
+                                <div class="col-md-12">
+                                    <mat-icon class="icon"
+                                        style="font-size: 100px; height: 100px; width: 100px;">account_circle</mat-icon>
+                                    <!-- poner el nombre del user -->
+                                    <h2>Nombre de Usuario</h2>
+                                </div>
+                            </div>
+                            <div class="datos">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Usuario</mat-label>
+                                        <input matInput name="username" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Ingresa tu correo</mat-label>
+                                        <input matInput placeholder="pat@example.com" required>
+                                        @if (email.invalid) {
+                                        <mat-error>{{getErrorMessage()}}</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="datos">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Contraseña</mat-label>
+                                        <input matInput [type]="hide ? 'password' : 'text'">
+                                        <button mat-icon-button matSuffix (click)="hide = !hide"
+                                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        </button>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6"></div>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Roles</mat-label>
+                                    <mat-select>
+                                        <mat-option value="admin">Admin</mat-option>
+                                        <mat-option value="user">User</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <div class="col-md-6">
+                                    <div class="example-button-container">
+                                        <button mat-fab color="primary">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button class="botondelete" mat-fab color="warn">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </main>
+        </div>
+    </ng-container>
+</div>

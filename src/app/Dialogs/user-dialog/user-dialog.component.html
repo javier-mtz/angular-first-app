@@ -1,0 +1,45 @@
+<div class="container">
+    <h1 mat-dialog-title class="row" style="vertical-align: middle; background-color: #36a2f4; color: white; padding-top: 10px;">
+        <mat-icon style="font-size: 40px; width: 40px; height: 40px;">person</mat-icon>
+        Usuario
+    </h1>
+    <form action="" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content style="padding-top: 10px; margin-top: 10px;">
+            <div class="row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-error>
+                        El usuario es requerido
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Correo</mat-label>
+                    <input matInput formControlName="email" type="email">
+                    <mat-error>
+                        El correo es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex style="width: 100%;">
+                    <mat-label>Rol</mat-label>
+                    <mat-select formControlName="role">
+                        <mat-option *ngFor="let role of roles" [value]="role">
+                            {{role}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error>
+                        El rol es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" fxLayout.lt-md="column">
+            <button mat-raised-button style="background-color: rgb(255, 40, 40); color: white;" type="button"
+                [mat-dialog-close]="false" fxFlex>Cancelar</button>
+            <button mat-raised-button style="color: white;" color="{{ data ? 'accent' : 'primary' }}" type="submit" fxFlex>{{
+                data ? 'Actualizar' : 'Guardar' }}</button>
+        </div>
+    </form>
+</div>

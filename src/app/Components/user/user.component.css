@@ -1,0 +1,72 @@
+.contenedorprincipal {
+    background-image: url('../../../assets/img/carretera.jpg');
+    background-size: cover;/* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
+    background-position: center;/* Centra la imagen de fondo dentro del contenedor */
+    background-repeat: no-repeat;/* Evita que la imagen de fondo se repita */
+    padding-bottom: 1%;
+}
+
+.card {
+    height:100%;
+    max-width: 80%;
+    margin: 5%;
+    margin-left: 10%;
+    background-color: rgba(87, 87, 87, 0.7);
+    backdrop-filter: blur(5px); /* Desenfoque al fondo */
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+mat-card-content{
+    margin-left: 5%;
+}
+
+mat-form-field{
+    margin: 10px;
+    width: 70%;
+}
+
+mat-icon{
+    margin-left: 3%;
+}
+
+.datos{
+    margin-left: 15%;
+}
+
+.botondelete{
+    margin-left: 5%;
+}
+
+/* main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+ */
+
+ /* 
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    
+} */
+
+@media screen and (max-width: 480px) {
+    .icono{
+        margin-left: 20%;
+    }
+
+    mat-icon{
+        margin-left: 10%;
+    }
+
+    .example-button-container{
+        padding-left: 10%;
+        margin: 2%;
+    }
+}

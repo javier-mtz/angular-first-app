@@ -1,56 +1,61 @@
-<div class="container">
-  <ng-container>
-    <app-header
-      [currentComponent]="'registrodeUsuario'"
-      [componentName]="'CarHistory'"
-    ></app-header>
-    <!-- breadcrumbs -->
-    <div class="bread">
-      <app-breadcrumbs></app-breadcrumbs>
-    </div>
-    <!-- Contenido -->
-    <div class="container">
-      <div class="wrapper">
-        <h2>Registrarte</h2>
-        <form [formGroup]="registro" #formDirective="ngForm">
-          <mat-form-field class="example-full-width">
-            <input type="text" matInput placeholder="Ingresa tu usuario" formControlName="nombre" required />
-            <mat-error>
-              El usuario es requerido
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input type="email" matInput placeholder="Ingresa tu correo" formControlName="email" required />
-            <mat-error>
-              El correo es requerido.
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input type="password" matInput placeholder="Crea una contraseña" formControlName="password" required />
-            <mat-error>
-              La contraseña es requerida.
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input type="password" matInput placeholder="Confirma tu contraseña" formControlName="password2" required />
-            <mat-error>
-              La contraseña es requerida.
-            </mat-error>
-          </mat-form-field>
-          <div class="policy">
-            <mat-checkbox formControlName="terms" required></mat-checkbox>
-            <h3>Acepto terminos y condiciones</h3>
-          </div>
-          <div class="input-box button">
-            <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">
-              Registrarme
-            </button>
-          </div>
-          <div class="text">
-            <h3>Ya tienes cuenta? <a (click)="login()">Inicia Sesion</a></h3>
-          </div>
-        </form>
+<div class="contenedorgeneral">
+  <div class="container">
+    <ng-container>
+      <app-header [currentComponent]="'Register'"></app-header>
+      <!-- breadcrumbs -->
+      <div class="bread">
+        <app-breadcrumbs></app-breadcrumbs>
       </div>
-    </div>
-  </ng-container>
+      <!-- Contenido -->
+      <div class="container-formulario">
+        <div class="wrapper">
+          <mat-icon class="large-icon">account_circle</mat-icon>
+          <form [formGroup]="registerForm" #formDirective="ngForm">
+            <mat-form-field class="example-full-width">
+              <input type="text" matInput placeholder="Ingresa tu usuario" formControlName="username" required />
+              <mat-error>
+                El usuario es requerido
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input type="email" matInput placeholder="Ingresa tu correo" formControlName="email" required />
+              <mat-error>
+                El correo es requerido.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input type="password" matInput placeholder="Crea una contraseña" formControlName="password" required />
+              <mat-error>
+                La contraseña es requerida.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input type="password" matInput placeholder="Confirma tu contraseña" formControlName="password2"
+                required />
+              <mat-error>
+                La contraseña es requerida.
+              </mat-error>
+            </mat-form-field>
+            <div class="policy">
+              <mat-checkbox formControlName="terms" required>
+                <span style="color: #333;">
+                  Acepto los
+                  <a href="#">Terminos y Condiciones</a>
+                </span>
+              </mat-checkbox>
+            </div>
+            <div class="input-box button">
+              <!-- <button mat-raised-button color="#333" type="submit" (click)="onSubmit()">
+                Registrarme
+              </button> -->
+              <a class="btn6" (click)="onSubmit()"> Registrarme </a>
+            </div>
+            <div class="text">
+              <h3>Ya tienes cuenta? <a (click)="login()">Inicia Sesion</a></h3>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>

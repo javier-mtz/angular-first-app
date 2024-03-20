@@ -1,10 +1,9 @@
-
 <!-- Profile Component HTML -->
 <div class="profile-container mat-elevation-z2">
   <ng-container>
     <div class="profile-container mat-elevation-z2">
       <!-- Header -->
-      <app-header [currentComponent]="'profile'" [componentName]="filteredData?.[0]?.marca"></app-header>
+      <app-header [currentComponent]="filteredData?.[0]?.marca" [class]="classHeader"></app-header>
 
       <!-- breadcrumbs -->
       <app-breadcrumbs></app-breadcrumbs>

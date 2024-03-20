@@ -6,11 +6,12 @@
     display: block;
     margin: auto;
     font-size: 25px;
-    color: #000000;
+    cursor: pointer;
 }
 
 .logo {
     width: 80px;
     margin: 0 auto;
     display: block; 
+    cursor: pointer;
 }

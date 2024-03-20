@@ -7,9 +7,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common'; // Asegúrate de importar CommonModule
 import { data } from '../../../assets/data/info';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 
-import { BreadcrumbsService } from '../../breadcrumbs.service';
+import { BreadcrumbsService } from '../../Services/breadcrumbService/breadcrumbs.service';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from "../header/header.component";
 
@@ -24,10 +24,12 @@ import { HeaderComponent } from "../header/header.component";
 export class ProfileComponent implements OnInit {
   [x: string]: any;
   brand: string = ''; // Inicializando la propiedad brand
-  filteredData: any[] | undefined = []; 
+  filteredData: any[] | undefined = [];
+
+  classHeader: Array<string> = [];
+
   constructor(private route: ActivatedRoute, private breadcrumbsService: BreadcrumbsService) { }
   onCardClick(index: number) {
-    console.log(`Card ${index} was clicked.`);
     //NavigationPreloadManager.navigate(['/profile', this.filteredData[index].marca]);
   }
 
@@ -37,6 +39,9 @@ export class ProfileComponent implements OnInit {
       // Puedes acceder a this.brand aquí una vez que tenga un valor asignado
       if (this.brand) {
         this.filteredData = data.filter((data) => data.marca === this.brand);
+        if (this.filteredData.length > 0) {
+          this.classHeader = [this.filteredData[0].paletaColores[0], this.filteredData[0].logo];
+        }
       }
     });
 

@@ -3,7 +3,8 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FooterComponent } from '../app/Components/footer/footer.component';
 import { HeaderComponent } from '../app/Components/header/header.component';
-import { AuthService } from './auth.service';
+import { CommonService } from '../app/common.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { AuthService } from './auth.service';
     FooterComponent,
     FooterComponent,
     HeaderComponent,
+    HttpClientModule,
   ],
 })
 export class AppComponent {
@@ -27,10 +29,6 @@ export class AppComponent {
       }
       if (typeof window !== 'undefined') {
         window.scrollTo(0, 0);
-      }
-      // cuando sea la ruta / redirigir a /home
-      if (evt.url === '/') {
-        this.router.navigate(['/home']);
       }
     });
   }

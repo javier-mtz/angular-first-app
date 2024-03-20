@@ -1,5 +1,5 @@
 .container{
-  background-image: url('../../../assets/img/carretera-atardecer.jpg');
+  background-image: url('../../../assets/img/carretera.jpg');
   background-size: cover; /* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
   background-position: center; /* Centra la imagen de fondo dentro del contenedor */
   background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
@@ -31,7 +31,7 @@
 }
 
 .image {
-  width: 70%;
+  width: 80%;
   height: auto;
 }
 
@@ -42,14 +42,15 @@
 
 .card {
   margin: 2%;
-  flex-basis: calc(100% / 4 - 4%);
-  background-color: #b9b8b8;
+  flex: 0 1 20%; /* Establece el tamaño de las cards para mostrar 3 en una fila */
+  background-color: rgba(87, 87, 87, 0.7);
+  backdrop-filter: blur(5px); /* Desenfoque al fondo */
   box-sizing: border-box;
   height: 45vh;
   background-size: cover;
   background-position: center;
   transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
-  border-radius: 5vh; /* Ajusta este valor según tus necesidades */
+  border-radius: 5vh;
 }
 
 .brands-content {
@@ -66,6 +67,7 @@
 .card:active {
   transform: scale(0.95);
 }
+
 .card:hover {
   cursor: pointer;
   filter: brightness(80%);
@@ -76,4 +78,40 @@
     justify-content: center; 
     align-items: center; 
     height: 100%; 
+}
+
+@media screen and (max-width: 768px) { /*Tablets*/
+  .brands-content {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    flex: 0 1 40%; /* Si la pantalla es más estrecha, muestra solo 2 cards en una fila */
+  }
+
+  .image {
+    width: 110%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 480px) { /*Celulares*/
+  .brands-content {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    flex: 0 1 100%; /* Si la pantalla es aún más estrecha, muestra solo 1 card por fila */
+  }
+
+  .image {
+    width: 110%;
+    height: auto;
+  }
 }

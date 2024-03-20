@@ -1,3 +1,9 @@
+.container{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .navbar {
     background-color: #333;
     color: white;
@@ -26,12 +32,36 @@
     z-index: 2; /* Selecciona un número mayor que el z-index de la imagen */
   }
   
-  .hero h2 {
-    margin-bottom: 20px;
+  .hero h1 {
+    margin-bottom: 5%;
+  }
+
+  h1{
+    font-size: xx-large;
+  }
+
+  p{
+    font-size: large;
+  }
+  
+  .Ferrari{
+    color: #f93d38;
+  }
+  
+  .Mercedes{
+    color: #000000;
+  }
+  
+  .Porsche{
+    color: #9db1ba;
+  }
+  
+  .BMW{
+    color: #1c69d4;
   }
   
   .hero p {
-    margin-bottom: 30px;
+    margin-bottom: 5%;
   }
   
   .hero button {
@@ -41,6 +71,7 @@
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
+    border-radius: 20px;
   }
   
   .hero button:hover {
@@ -54,7 +85,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -1;
+    z-index: 1;
   }
   
   .image-section img {
@@ -65,4 +96,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
+  }
+
+  @media screen and (max-width: 480px) {
+    .image-section img {
+      width: 430px;
+      height: 930px;
+    }
+  
+    .hero-content {
+      width: 90%; /* Reduce el ancho del contenedor del texto */
+      left: 5%; /* Alinea el contenedor del texto más cerca del borde izquierdo */
+      transform: none; /* Elimina la transformación para centrar verticalmente */
+      text-align: center; /* Alinea el texto a la izquierda */
+    }
   }

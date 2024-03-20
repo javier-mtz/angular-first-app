@@ -9,15 +9,19 @@ import { FormularioComponent } from './Components/formulario/formulario.componen
 import { authGuard } from './auth.guard';
 import { LoginComponent } from './Components/login/login.component';
 import { AdminComponent } from './Components/admin/admin.component';
+import { UserComponent } from './Components/user/user.component';
+import { AdminGuard } from '../app/admin.guard';
 
 
 export const routes: Routes = [
+    { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'brands', component: BrandsComponent},
     { path: 'login', component: LoginComponent},
-    { path: 'admin', component: AdminComponent, canActivate: [authGuard]},
-    { path: 'user', component: HomeComponent, canActivate: [authGuard]},
-    { path: 'formulario', component: FormularioComponent },
+    { path: 'rent', component: HomeComponent, canActivate: [authGuard]},
+    { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
+    { path: 'user', component: UserComponent, canActivate: [authGuard]},
+    { path: 'register', component: FormularioComponent },
     { path: 'info-car/:modelo', component: InfoCarComponent},
     { path: 'profile/:brand', component: ProfileComponent} // Ruta dinámica para el perfil con parámetro brand
 ];

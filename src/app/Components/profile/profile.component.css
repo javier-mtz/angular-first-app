@@ -1,5 +1,5 @@
 .profile-container {
-  background-image: url('../../../assets/img/carretera-atardecer.jpg');
+  background-image: url('../../../assets/img/carretera.jpg');
   background-size: cover; /* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
   background-position: center; /* Centra la imagen de fondo dentro del contenedor */
   background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
@@ -40,7 +40,7 @@
 
 .card {
   margin: 2%;
-  flex-basis: calc(100% / 4 - 4%);
+  flex: 0 1 20%; /* Establece el tamaño de las cards para mostrar 3 en una fila */
   box-sizing: border-box;
   height: 45vh;
   background-size: cover;
@@ -60,4 +60,16 @@
 
 .profile-title {
   margin: 0 auto; /* Centrar horizontalmente */
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    flex: 0 1 40%; /* Si la pantalla es más estrecha, muestra solo 2 cards en una fila */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    flex: 0 1 100%; /* Si la pantalla es aún más estrecha, muestra solo 1 card por fila */
+  }
 }
