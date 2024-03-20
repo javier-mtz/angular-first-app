@@ -34,22 +34,21 @@ router.get("/all", async (req, res) => {
         },
       },
     ]);
-
-    res.json({ cars });
+    res.json(cars);
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }
 });
 
 router.post("/create", (req, res) => {
-  const { model, description, price, engine, images, brandId } = req.body;
+  const { model, description, price, engine, images, brand } = req.body;
   const car = new Car({
     model,
     description,
     price,
     engine,
     images,
-    brandId,
+    brandId: brand,
   });
   car.save()
     .then((car) => {
@@ -60,15 +59,53 @@ router.post("/create", (req, res) => {
     });
 });
 
+router.put("/update/:id", (req, res) => {
+  const id = req.params.id;
+  const { model, description, price, engine, images, brand } = req.body;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send("No record with given id : " + id);
+  }
+  const car = {
+    model,
+    description,
+    price,
+    engine,
+    images,
+    brandId: brand,
+  };
+  Car.findByIdAndUpdate(id, car, { new: true })
+    .then((car) => {
+      res.json({ message: "Car updated" });
+    })
+    .catch((error) => {
+      res.status(500).send("Internal Server Error");
+    });
+});
+
 router.get("/find/:id", (req, res) => {
     const id = req.params.id;
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send("No record with given id : " + id);
     }
-    Car.findById(id)
+    Car.findById(id, { busy: false, __v: false })
         .populate('brandId')
         .then((car) => {
-        res.json({ car });
+        res.json(car);
+        })
+        .catch((error) => {
+        res.status(500).send("Internal Server Error");
+        });
+});
+
+router.delete("/delete/:id", (req, res) => {
+  console.log(req.params.id);
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send("No record with given id : " + id);
+    }
+    Car.findByIdAndDelete(id)
+        .then((car) => {
+        res.json({ message: "Car deleted" });
         })
         .catch((error) => {
         res.status(500).send("Internal Server Error");

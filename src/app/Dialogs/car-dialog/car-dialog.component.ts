@@ -18,6 +18,7 @@ import { AlertService } from '../../Services/alertService/alert.service';
 import { CarService } from '../../Services/carService/car.service';
 import { BrandService } from '../../Services/brandService/brand.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-car-dialog',
@@ -40,13 +41,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 export class CarDialogComponent implements OnInit {
   carForm: FormGroup;
   // el brand va a traer id y nombre
-  brands: any[] = [
-    { id: 1, name: 'Toyota' },
-    { id: 2, name: 'Mazda' },
-    { id: 3, name: 'Nissan' },
-    { id: 4, name: 'Chevrolet' },
-    { id: 5, name: 'Ford' },
-  ];
+  brands: any[] = [];
 
   constructor(private fb: FormBuilder, private _alert: AlertService, private _car: CarService, private _brand: BrandService, private _dialogRef: MatDialogRef<CarDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.carForm = this.fb.group({
@@ -76,7 +71,7 @@ export class CarDialogComponent implements OnInit {
             description: val.description,
             price: val.price,
             engine: val.engine,
-            brand: val.brand,
+            brand: val.brandId.name,
             images: val.images
           });
         },
@@ -90,7 +85,6 @@ export class CarDialogComponent implements OnInit {
   onSubmit() {
     if (this.carForm.valid) {
       if (this.data) {
-        // se le tiene que pasar el id y el formvalue
         this._car.update({ _id: this.data.id, ...this.carForm.value }).subscribe({
           next: (val: any) => {
             this._alert.showAlert('Carro actualizado', 'success', 'success');
@@ -119,14 +113,31 @@ export class CarDialogComponent implements OnInit {
   }
 
   getBrandsForSelect() {
-    this._brand.getAll().subscribe({
+    this._brand.getAll().pipe(
+      tap((brands: any[]) => {
+        this.brands = brands.map((brand: any) => {
+          return {
+            id: brand._id!,
+            name: brand.name
+          };
+        });
+      }),
+      switchMap(() => this.data && this.data.id ? this._car.find(this.data.id) : of(null))
+    ).subscribe({
       next: (val: any) => {
-        // solo se necesita el nombre y el id
-        
-        this.brands = val;
+        if(val){
+          this.carForm.setValue({
+            model: val.model,
+            description: val.description,
+            price: val.price,
+            engine: val.engine,
+            brand: val.brandId && val.brandId._id ? val.brandId._id : null,
+            images: val.images
+          });
+        }
       },
       error: (err: any) => {
-        console.log(err);
+        console.error(err);
         this._alert.showToast('Error en el servidor, si el problema persiste contacte con el administrador', 'error');
       }
     });

@@ -19,7 +19,7 @@ export class CarService {
   }
 
   delete(id: String): Observable<any> {
-    return this.http.put(`http://localhost:3000/car/delete/${id}`, {});
+    return this.http.delete(`http://localhost:3000/car/delete/${id}`);
   }
 
   update(car: Car): Observable<any> {
