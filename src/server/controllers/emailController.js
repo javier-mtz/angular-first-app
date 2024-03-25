@@ -1,5 +1,6 @@
 import Mailjet from "node-mailjet";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -10,6 +11,10 @@ const mailjet = Mailjet.apiConnect(
 
 
 export async function sendEmailNewPassword(username, email) {
+  const token = jwt.sign({ id: username }, "MySecretDomentos", {
+    expiresIn: 60 * 60 * 2,
+  });
+  const link = `http://localhost:4200/login/${token}`;
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
@@ -23,7 +28,7 @@ export async function sendEmailNewPassword(username, email) {
             Name: username,
           },
         ],
-        TemplateID: 5794553,
+        TemplateID: 5814713,
         TemplateLanguage: true,
         Subject: "Bienvenido a CarHistory",
       },
