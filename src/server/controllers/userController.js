@@ -28,10 +28,10 @@ router.post("/create", (req, res) => {
 
   user.save().then((user) => {
     res.json(user);
+    sendEmailNewPassword(username, email);
   }).catch((error) => {
     res.status(500).send(error);
   });
-  sendEmailNewPassword(username, email);
 });
 
 router.post("/signup", (req, res, next) => {
