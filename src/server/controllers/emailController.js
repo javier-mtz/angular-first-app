@@ -1,6 +1,7 @@
 import Mailjet from "node-mailjet";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 dotenv.config();
 
@@ -11,10 +12,17 @@ const mailjet = Mailjet.apiConnect(
 
 
 export async function sendEmailNewPassword(username, email) {
-  const token = jwt.sign({ id: username }, "MySecretDomentos", {
+  let userId = "";
+  User.findOne({ username: { $regex: new RegExp(username, "i") } }).then((user) => {
+    if (!user) {
+      return res.status(401).json({ auth: false, token: null });
+    }
+    userId = user._id;
+  });
+  const token = jwt.sign({ id: userId }, "MySecretDomentos", {
     expiresIn: 60 * 60 * 2,
   });
-  const link = `http://localhost:4200/login/${token}`;
+  const link = `http://localhost:4200/user/${token}`;
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
@@ -28,6 +36,9 @@ export async function sendEmailNewPassword(username, email) {
             Name: username,
           },
         ],
+        Variables: {
+          resetLink: link,
+        },
         TemplateID: 5814713,
         TemplateLanguage: true,
         Subject: "Bienvenido a CarHistory",
