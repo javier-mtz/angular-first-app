@@ -19,7 +19,10 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <input type="email" matInput placeholder="Ingresa tu correo" formControlName="email" required />
-              <mat-error>
+              <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+                El correo no es válido.
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
                 El correo es requerido.
               </mat-error>
             </mat-form-field>

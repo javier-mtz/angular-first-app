@@ -17,5 +17,13 @@ app.use('/user', userRouter);
 app.use('/brand', brandRouter);
 app.use('/car', carRouter);
 
+// Redirigir todas las solicitudes de directorios a la página de inicio
+app.use((req, res, next) => {
+  if (req.path.endsWith('/') && req.path !== '/') {
+    res.redirect('/');
+  } else {
+    next();
+  }
+});
 
 export default app;

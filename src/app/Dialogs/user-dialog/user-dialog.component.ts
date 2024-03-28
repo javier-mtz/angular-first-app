@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule, validateBasis } from '@angular/flex-layout';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -49,7 +49,7 @@ export class UserDialogComponent implements OnInit {
     });
     // los campos del formulario son requeridos
     this.userForm.controls['username'].setValidators([Validators.required]);
-    this.userForm.controls['email'].setValidators([Validators.required]);
+    this.userForm.controls['email'].setValidators([Validators.required, Validators.email]);
     this.userForm.controls['role'].setValidators([Validators.required]);
 
     this.editable = true;

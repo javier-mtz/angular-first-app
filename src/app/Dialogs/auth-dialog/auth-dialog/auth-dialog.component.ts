@@ -74,17 +74,26 @@ export class AuthDialogComponent {
   onSubmit() {
     if (this.passwordForm.value.password !== this.passwordForm.value.confirmPassword) {
       this._alert.showToast('Las contraseñas no coinciden', 'error');
+      // vaciar los campos
+      this.passwordForm.controls['password'].setValue('');
+      this.passwordForm.controls['confirmPassword'].setValue('');
       return;
     }
-    this._user.changePassword(this.passwordForm.value, this.user).subscribe({
-      next: (res) => {
-        this._alert.showToast('Contraseña actualizada con éxito', 'success');
-        this._dialogRef.close(true);
-      },
-      error: (err) => {
-        this._alert.showToast('Hubo un error al guardar la contraseña', 'error');
-      }
-    });
+    // validar que el formulario sea valido
+    if (this.passwordForm.valid) {
+      this._user.changePassword(this.passwordForm.value, this.user).subscribe({
+        next: (res) => {
+          this._alert.showToast('Contraseña actualizada con éxito', 'success');
+          this._dialogRef.close(true);
+        },
+        error: (err) => {
+          this._alert.showToast('Hubo un error al guardar la contraseña', 'error');
+        }
+      });
+    } else {
+      this._alert.showToast('Por favor, rellene todos los campos', 'info');
+      return;
+    }
   }
 
 }

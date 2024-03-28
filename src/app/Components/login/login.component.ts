@@ -109,7 +109,9 @@ export class LoginComponent {
   }
 
   forgotPassword() {
-    const dialogRef = this._dialog.open(ForgotPasswordDialogComponent);
+    const dialogRef = this._dialog.open(ForgotPasswordDialogComponent, {
+      width: '30%',
+    });
   }
 
   register() {

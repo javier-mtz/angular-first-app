@@ -59,7 +59,7 @@ export class FormularioComponent implements OnInit {
   constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService, private userServicie: UserService, private authService: AuthService, private _dialog: MatDialog) {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       password2: ['', Validators.required],
       terms: [false, Validators.required]
@@ -75,6 +75,13 @@ export class FormularioComponent implements OnInit {
   }
 
   async onSubmit() {
+
+    // validar que el checkbox de términos y condiciones esté marcado
+    if (!this.registerForm.value.terms) {
+      this.alert.showToast('Debe aceptar los términos y condiciones', 'info');
+      return;
+    }
+
     if (this.registerForm.valid) {
       // Si el formulario es válido, validar que las contraseñas coincidan
       if (this.registerForm.value.password !== this.registerForm.value.password2) {
