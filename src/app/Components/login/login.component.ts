@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../Services/alertService/alert.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ForgotPasswordDialogComponent } from '../../Dialogs/forgot-password/forgot-password-dialog/forgot-password-dialog.component';
+import { ForgotPasswordDialogComponent } from '../../Dialogs/forgot-password/forgot-password-dialog.component';
 
 @Component({
   selector: 'app-login',

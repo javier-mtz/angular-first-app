@@ -14,9 +14,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { AlertService } from '../../../Services/alertService/alert.service';
-import { UserService } from '../../../Services/userService/user.service';
-import { User } from '../../../Interfaces/user';
+import { AlertService } from '../../Services/alertService/alert.service';
+import { UserService } from '../../Services/userService/user.service';
+import { User } from '../../Interfaces/user';
 
 @Component({
   selector: 'app-auth-dialog',

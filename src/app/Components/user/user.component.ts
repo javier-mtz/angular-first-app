@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../Services/authService/auth.service';
 import { UserDialogComponent } from '../../Dialogs/user-dialog/user-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthDialogComponent } from '../../Dialogs/auth-dialog/auth-dialog/auth-dialog.component';
+import { AuthDialogComponent } from '../../Dialogs/auth-dialog/auth-dialog.component';
 
 @Component({
   selector: 'app-user',

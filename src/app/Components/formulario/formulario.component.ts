@@ -24,7 +24,7 @@ import { AlertService } from '../../Services/alertService/alert.service';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../Services/authService/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConditionsDialogComponent } from '../../Dialogs/conditions/conditions-dialog/conditions-dialog.component';
+import { ConditionsDialogComponent } from '../../Dialogs/conditions/conditions-dialog.component';
 
 
 @Component({
