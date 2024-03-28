@@ -11,6 +11,8 @@ import { LoginComponent } from './Components/login/login.component';
 import { AdminComponent } from './Components/admin/admin.component';
 import { UserComponent } from './Components/user/user.component';
 import { AdminGuard } from '../app/admin.guard';
+import { MailTokenGuard } from './mailtoken.guard';
+import { LoaderComponent } from './Components/loader/loader/loader.component';
 
 
 export const routes: Routes = [
@@ -21,6 +23,7 @@ export const routes: Routes = [
     { path: 'rent', component: HomeComponent, canActivate: [authGuard]},
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
     { path: 'user', component: UserComponent, canActivate: [authGuard]},
+    { path: 'mailtoken/:token', canActivate: [MailTokenGuard], component: LoaderComponent },
     { path: 'register', component: FormularioComponent },
     { path: 'info-car/:modelo', component: InfoCarComponent},
     { path: 'profile/:brand', component: ProfileComponent} // Ruta dinámica para el perfil con parámetro brand

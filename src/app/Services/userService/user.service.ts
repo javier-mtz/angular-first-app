@@ -36,6 +36,10 @@ export class UserService {
     return this.http.put(`http://localhost:3000/user/update/${user._id}`, user);
   }
 
+  changePassword(password: String, user: User): Observable<any> {
+    return this.http.put(`http://localhost:3000/user/resetPassword/${user._id}`, password);
+  }
+
   find(id: String): Observable<any> {
     return this.http.get(`http://localhost:3000/user/find/${id}`);
   }

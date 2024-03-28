@@ -23,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../Services/alertService/alert.service';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../Services/authService/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConditionsDialogComponent } from '../../Dialogs/conditions/conditions-dialog/conditions-dialog.component';
 
 
 @Component({
@@ -54,7 +56,7 @@ export class FormularioComponent implements OnInit {
   registerForm: FormGroup; // Inicializando la propiedad myForm
   data = data;
 
-  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService, private userServicie: UserService, private authService: AuthService) {
+  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService, private userServicie: UserService, private authService: AuthService, private _dialog: MatDialog) {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
@@ -106,5 +108,16 @@ export class FormularioComponent implements OnInit {
 
   login() {
     this.router.navigate(['/login']);
+  }
+
+  conditions() {
+    const dialogRef = this._dialog.open(ConditionsDialogComponent, {
+      disableClose: true,
+      width: '40%',
+      height: '60%',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.registerForm.controls['terms'].setValue(true);
+    });
   }
 }

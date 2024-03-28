@@ -38,11 +38,11 @@
             </mat-form-field>
             <div class="policy">
               <mat-checkbox formControlName="terms" required>
-                <span style="color: #333;">
-                  Acepto los
-                  <a href="#">Terminos y Condiciones</a>
-                </span>
               </mat-checkbox>
+              <span style="color: #333;">
+                Acepto los
+                <a (click)="conditions()">Terminos y Condiciones</a>
+              </span>
             </div>
             <div class="input-box button">
               <!-- <button mat-raised-button color="#333" type="submit" (click)="onSubmit()">

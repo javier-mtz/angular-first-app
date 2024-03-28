@@ -24,6 +24,8 @@ import {
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../Services/alertService/alert.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ForgotPasswordDialogComponent } from '../../Dialogs/forgot-password/forgot-password-dialog/forgot-password-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -55,7 +57,8 @@ export class LoginComponent {
     private router: Router,
     private alert: AlertService,
     private authService: AuthService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private _dialog: MatDialog
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -103,6 +106,10 @@ export class LoginComponent {
     } else {
       this.alert.showToast('Por favor, rellene todos los campos', 'info');
     }
+  }
+
+  forgotPassword() {
+    const dialogRef = this._dialog.open(ForgotPasswordDialogComponent);
   }
 
   register() {

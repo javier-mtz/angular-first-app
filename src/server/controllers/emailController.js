@@ -12,18 +12,22 @@ const mailjet = Mailjet.apiConnect(
 
 
 export async function sendEmailNewPassword(username, email) {
-  let userId = "";
-  User.findOne({ username: { $regex: new RegExp(username, "i") } }).then((user) => {
-    if (user) {
-      userId = user._id;
-    } else {
+  
+  const user = await User.findOne({ username: { $regex: new RegExp(username, "i") } });
+    if (!user) {
       console.log('No user found');
+      return;
     }
-  });
-  const token = jwt.sign({ id: userId }, "MySecretDomentos", {
-    expiresIn: 60 * 60 * 2,
-  });
-  const link = `http://localhost:4200/mailtoken/${token}`;
+
+    const userId = user._id;
+
+    const token = jwt.sign({ id: userId }, "MySecretDomentos", {
+      expiresIn: 60 * 60 * 2,
+    });
+
+    const link = `http://localhost:4200/mailtoken/${token}`;
+    console.log('link', link);
+
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {

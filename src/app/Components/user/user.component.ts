@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../Services/authService/auth.service';
 import { UserDialogComponent } from '../../Dialogs/user-dialog/user-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthDialogComponent } from '../../Dialogs/auth-dialog/auth-dialog/auth-dialog.component';
 
 @Component({
   selector: 'app-user',
@@ -38,6 +39,9 @@ export class UserComponent {
   constructor(private _auth: AuthService, private _dialog: MatDialog) {
     this._auth.getCurrentAuthUser().subscribe(user => {
       this.user = user;
+      if (user.oneTimePassword !== undefined && user.oneTimePassword) {
+        this.changeMailPassword();
+      }
     });
   }
 
@@ -60,7 +64,27 @@ export class UserComponent {
     });
   }
 
+  changePassword() {
+    const dialogRef = this._dialog.open(AuthDialogComponent, {
+      data: {
+        id: this.user._id
+      },
+      disableClose: true
+    });
+  }
+
+  changeMailPassword() {
+    const dialogRef = this._dialog.open(AuthDialogComponent, {
+      data: {
+        id: this.user._id,
+        newPassword: true
+      },
+      disableClose: true
+    });
+  }
+
   ngOnInit(): void {
+    
   }
   
 

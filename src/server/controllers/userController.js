@@ -21,17 +21,27 @@ router.post("/create", (req, res) => {
   const user = new User({
     username,
     email,
-    password: urid(8, 'alpha'),
+    // password: urid(8, 'alpha'),
+    password: '123', // borrar esta linea
     role,
     oneTimePassword: true,
   });
-
-  user.save().then((user) => {
-    res.json(user);
-    sendEmailNewPassword(username, email);
-  }).catch((error) => {
-    res.status(500).send(error);
-  });
+  
+  new Promise((resolve, reject) => {
+    user.encryptPassword(user.password).then((encryptedPassword) => {
+        user.password = encryptedPassword;
+        return user.save();
+      })
+      .then(resolve)
+      .catch(reject);
+  })
+    .then((savedUser) => {
+      res.json(savedUser);
+      sendEmailNewPassword(username, email);
+    })
+    .catch((error) => {
+      res.status(500).send("Internal Server Error");
+    });
 });
 
 router.post("/signup", (req, res, next) => {
@@ -107,6 +117,29 @@ router.get("/find/:id", (req, res) => {
     }
   });
 });
+
+router.put("/resetPassword/:id", (req, res) => {
+  const { password } = req.body;
+  const id = req.params.id;
+
+  new Promise((resolve, reject) => {
+    User.findById(id).then((user) => {
+      user.encryptPassword(password).then((encryptedPassword) => {
+        user.password = encryptedPassword;
+        if (user.oneTimePassword) {
+          user.set({ oneTimePassword: undefined });
+        }
+        return user.save();
+      });
+    }).then(resolve).catch(reject);
+  }).then((savedUser) => {
+    res.json(savedUser);
+  }).catch((error) => {
+    res.status(500).send("Internal Server Error");
+  });
+
+});
+
 
 
 export default router;

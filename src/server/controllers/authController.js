@@ -10,7 +10,7 @@ import verifyToken from "./verifyToken.js";
 router.post("/login", async (req, res, next) => {
   const { username, password, ip } = req.body;
   let publicIp = {};
-  console.log(ip);
+
   const user = await User.findOne({ username: { $regex: new RegExp(username, "i") }, status: { $ne: 2 } });
   if (!user) {
     return res.status(401).json({ auth: false, token: null });
@@ -42,6 +42,25 @@ router.get("/currentUser", verifyToken, async (req, res, next) => {
     return res.status(404).send("No user found");
   }
   res.json(user);
+});
+
+router.get("/mailToken", verifyToken, async (req, res, next) => {
+  const user = await User.findById(req.userId, { __v: false });
+  if (!user) {
+    return res.status(404).send("No user found");
+  }
+
+  if (!user.oneTimePassword) {
+    return res.status(404).send("No user found");
+  }
+
+  const token = jwt.sign({ id: user._id }, "MySecretDomentos", {
+    expiresIn: 60 * 60 * 2,
+  });
+
+  const username = user.username;
+
+  res.json({ auth: true, token, username, role: user.role});
 });
 
 
