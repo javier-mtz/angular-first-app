@@ -16,6 +16,9 @@ import { UserDialogComponent } from '../../Dialogs/user-dialog/user-dialog.compo
 import { MatDialog } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../../Dialogs/auth-dialog/auth-dialog.component';
 
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -36,8 +39,12 @@ import { AuthDialogComponent } from '../../Dialogs/auth-dialog/auth-dialog.compo
 export class UserComponent {
   user: any = {};
 
-  constructor(private _auth: AuthService, private _dialog: MatDialog) {
+  constructor(private _auth: AuthService, private _dialog: MatDialog, private router: Router) {
     this._auth.getCurrentAuthUser().subscribe(user => {
+      if (user === null) {
+        this.router.navigate(['/login']);
+        return;
+      }
       this.user = user;
       if (user.oneTimePassword !== undefined && user.oneTimePassword) {
         this.changeMailPassword();
@@ -57,6 +64,10 @@ export class UserComponent {
       next: (res) => {
         if (res) {
           this._auth.getCurrentAuthUser().subscribe(user => {
+            if (user === null) {
+              this.router.navigate(['/login']);
+              return;
+            }
             this.user = user;
           });
         }

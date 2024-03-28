@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from './Services/authService/auth.service';
-import { AlertService } from './Services/alertService/alert.service';
+import { AuthService } from '../Services/authService/auth.service';
+import { AlertService } from '../Services/alertService/alert.service';
 import { combineLatest } from 'rxjs';
 
 export const MailTokenGuard: CanActivateFn = (route, state) => {

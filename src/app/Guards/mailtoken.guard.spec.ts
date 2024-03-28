@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { adminGuard } from './admin.guard';
+import { MailTokenGuard } from './mailtoken.guard';
 
-describe('adminGuard', () => {
+describe('mailtokenGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => adminGuard(...guardParameters));
+    TestBed.runInInjectionContext(() => MailTokenGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

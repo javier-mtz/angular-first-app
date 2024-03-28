@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../Services/authService/auth.service';
 import { Router } from '@angular/router';
-import { CommonService } from '../../common.service';
+import { CommonService } from '../../Services/getApiService/common.service';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
