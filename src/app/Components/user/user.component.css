@@ -11,6 +11,8 @@
     height:100%;
     max-width: 100%;
     margin: 5%;
+    margin-bottom: 0;
+    padding-bottom: 0;
     background-color: rgba(87, 87, 87, 0.7);
     backdrop-filter: blur(5px); /* Desenfoque al fondo */
     border-radius: 20px;
