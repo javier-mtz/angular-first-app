@@ -40,6 +40,10 @@ export class UserService {
     return this.http.put(`http://localhost:3000/user/resetPassword/${user._id}`, password);
   }
 
+  forgotPassword(email: String): Observable<any> {
+    return this.http.post('http://localhost:3000/user/forgotPassword', { email });
+  }
+
   find(id: String): Observable<any> {
     return this.http.get(`http://localhost:3000/user/find/${id}`);
   }

@@ -2,7 +2,7 @@ import { Router } from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import { sendEmailNewPassword } from "../../server/controllers/emailController.js";
+import { sendEmailNewPassword, sendForgotPasswordEmail } from "../../server/controllers/emailController.js";
 import urid from 'urid';
 
 const router = Router();
@@ -136,6 +136,28 @@ router.put("/resetPassword/:id", (req, res) => {
     res.json(savedUser);
   }).catch((error) => {
     res.status(500).send("Internal Server Error");
+  });
+
+});
+
+router.post("/forgotPassword", (req, res) => {
+  const { email } = req.body;
+  // bsucar usuario por email sin importar mayúsculas o minúsculas
+  User.findOne({ email: { $regex: new RegExp(email, "i") } }).then((user) => {
+    if (!user) {
+      res.status(404).send("Intenta de nuevo con otro email");
+    } else {
+      // agregarle al usuario una contraseña temporal
+      user.set({ password: urid(8, 'alpha') });
+      user.set({ oneTimePassword: true });
+      user.save().then((savedUser) => {
+        sendForgotPasswordEmail(savedUser.username, email).then(() => {
+          res.json({ message: "Email sent" });
+        }).catch((error) => {
+          res.status(500).send("Internal Server Error");
+        });
+      });
+    }
   });
 
 });
