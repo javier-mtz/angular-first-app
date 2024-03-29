@@ -44,7 +44,7 @@ export async function sendEmailNewPassword(username, email) {
         Variables: {
           resetLink: link,
         },
-        TemplateID: 5814713,
+        TemplateID: 5831458,
         TemplateLanguage: true,
         Subject: "Bienvenido a CarHistory",
       },
@@ -91,7 +91,7 @@ export async function sendForgotPasswordEmail(username, email) {
         Variables: {
           resetLink: link,
         },
-        TemplateID: 5814713,
+        TemplateID: 5831450,
         TemplateLanguage: true,
         Subject: "Bienvenido a CarHistory",
       },
