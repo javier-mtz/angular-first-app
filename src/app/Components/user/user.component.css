@@ -19,22 +19,26 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-
-/* main {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+.inner-card {
+    border: 1px solid black;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
 }
- */
 
- /* 
-.table-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
+.inner-car-card {
+    width: 300px;
+    margin-right: 10px;
+}
+
+.car-button {
     width: 100%;
-    height: 100%;
-    
-} */
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.hovereffect:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+
 

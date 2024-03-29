@@ -39,7 +39,7 @@ import { CarService } from '../../Services/carService/car.service';
 })
 export class UserComponent {
   user: any = {};
-  car: any = {};
+  cars: any[] = [];
 
   constructor(private _auth: AuthService, private _dialog: MatDialog, private router: Router, private _car: CarService) {
     this._auth.getCurrentAuthUser().subscribe(user => {
@@ -52,8 +52,8 @@ export class UserComponent {
         if (car === null) {
           return;
         }
-        this.car = car;
-        console.log(this.car)
+        this.cars = car;
+        console.log(this.cars);
       });
       if (user.oneTimePassword !== undefined && user.oneTimePassword) {
         this.changeMailPassword();
@@ -103,6 +103,15 @@ export class UserComponent {
       },
       disableClose: true
     });
+  }
+
+  carDetails(car: any) {
+    console.log('detalle', car);
+  }
+
+  returnCar(event: any, car: any) {
+    event.stopPropagation(); // Detiene la propagación del evento
+    console.log('return', car);
   }
 
   ngOnInit(): void {
