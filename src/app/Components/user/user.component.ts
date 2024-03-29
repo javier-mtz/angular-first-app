@@ -17,6 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../../Dialogs/auth-dialog/auth-dialog.component';
 
 import { Router } from '@angular/router';
+import { CarService } from '../../Services/carService/car.service';
 
 
 @Component({
@@ -38,18 +39,28 @@ import { Router } from '@angular/router';
 })
 export class UserComponent {
   user: any = {};
+  car: any = {};
 
-  constructor(private _auth: AuthService, private _dialog: MatDialog, private router: Router) {
+  constructor(private _auth: AuthService, private _dialog: MatDialog, private router: Router, private _car: CarService) {
     this._auth.getCurrentAuthUser().subscribe(user => {
       if (user === null) {
         this.router.navigate(['/login']);
         return;
       }
       this.user = user;
+      this._car.findCarbyUser(this.user._id).subscribe(car => {
+        if (car === null) {
+          return;
+        }
+        this.car = car;
+        console.log(this.car)
+      });
       if (user.oneTimePassword !== undefined && user.oneTimePassword) {
         this.changeMailPassword();
       }
     });
+
+
   }
 
   updateUser() {

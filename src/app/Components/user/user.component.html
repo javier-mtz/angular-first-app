@@ -25,15 +25,19 @@
                         <mat-card class="card">
                             <h3 style="text-align: center; margin-top: 2%;" mat-card-title>Autos rentados</h3>
                             <mat-card-content>
-                                <!-- Contenido del card de autos rentados -->
+                                <div *ngFor="let car of car">
+                                    {{ car.model }}
+                                </div>
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
                         <mat-card class="card">
                             <h3 style="text-align: center; margin-top: 2%;" mat-card-title>Historial de inicios de sesión</h3>
-                            <mat-card-content>
-                                <!-- Contenido del card de inicios de sesión -->
+                            <mat-card-content style = "overflow-y: scroll; justify-content: center; max-height: 200px;">
+                                <div *ngFor="let ipObject of user.publicIp">
+                                    {{ ipObject.ip }}
+                                </div>
                             </mat-card-content>
                         </mat-card>
                     </div>

@@ -97,6 +97,22 @@ router.get("/find/:id", (req, res) => {
         });
 });
 
+router.get("/findbyuser/:id", (req, res) => {
+  const id = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send("No record with given id : " + id);
+  }
+  Car.find({userId: id})
+      .populate('brandId').populate('userId')
+      .then((car) => {
+      res.json(car);
+      })
+      .catch((error) => {
+      res.status(500).send("Internal Server Error");
+      });
+});
+
+
 router.delete("/delete/:id", (req, res) => {
   console.log(req.params.id);
     const id = req.params.id;
@@ -110,6 +126,39 @@ router.delete("/delete/:id", (req, res) => {
         .catch((error) => {
         res.status(500).send("Internal Server Error");
         });
+});
+
+router.get("/rentCar/:userId/:carId", (req, res) => {
+  const userId = req.params.userId;
+  const carId = req.params.carId;
+
+  if (!mongoose.Types.ObjectId.isValid(userId) || !mongoose.Types.ObjectId.isValid(carId)) {
+    return res.status(400).send("Invalid user or car id");
+  }
+
+  Car.findByIdAndUpdate(carId, { busy: true, userId: userId }, { new: true })
+    .then((car) => {
+      res.json({ message: "Car rented" });
+    })
+    .catch((error) => {
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+router.get("/returnCar/:carId", (req, res) => {
+  const carId = req.params.carId;
+
+  if (!mongoose.Types.ObjectId.isValid(carId)) {
+    return res.status(400).send("Invalid car id");
+  }
+
+  Car.findByIdAndUpdate(carId, { busy: false, userId: null }, { new: true })
+    .then((car) => {
+      res.json({ message: "Car returned" });
+    })
+    .catch((error) => {
+      res.status(500).send("Internal Server Error");
+    });
 });
 
 

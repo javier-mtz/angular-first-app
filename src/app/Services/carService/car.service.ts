@@ -29,4 +29,9 @@ export class CarService {
   find(id: String): Observable<any> {
     return this.http.get(`http://localhost:3000/car/find/${id}`);
   }
+  
+  findCarbyUser(id: String): Observable<any> {
+    console.log(id, 'id');
+    return this.http.get(`http://localhost:3000/car/findbyuser/${id}`);
+  }
 }
