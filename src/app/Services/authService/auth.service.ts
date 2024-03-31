@@ -2,10 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { Login, User, UserIRegister, mailLogin } from '../../Interfaces/user';
+import { AuthResponse, Login, User, UserIRegister, mailLogin } from '../../Interfaces/user';
 import { jwtDecode } from 'jwt-decode';
-
-
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +18,9 @@ export class AuthService {
 
   constructor() {}
 
-  login(user: Login): Observable<any> {
+  login(user: Login): Observable<AuthResponse> {
     return this.http
-      .post('http://localhost:3000/auth/login', user)
+      .post('http://localhost:3000/api/auth/login', user)
       .pipe(tap((response: any) => this.doLoginUser(user.username, response.token)));
   }
 
@@ -30,7 +28,7 @@ export class AuthService {
     this.doLoginUser(user.username, user.token);
   }
 
-  private doLoginUser(username: string, token: any) {
+  private doLoginUser(username: string, token: string) {
     this.loggedUser = username;
     this.storeJwtToken(token);
     this.isAuthenticatedSubject.next(true);
@@ -47,7 +45,7 @@ export class AuthService {
   }
 
   getCurrentAuthUser(): Observable<User> {
-    return this.http.get<User>('http://localhost:3000/auth/currentUser');
+    return this.http.get<User>('http://localhost:3000/api/auth/currentUser');
   }
 
   isAdmin(): Observable<boolean> {
@@ -68,11 +66,19 @@ export class AuthService {
   isTokenExpired() {
     const token = localStorage.getItem(this.JWT_TOKEN);
     if(!token) return true;
-    const decoded = jwtDecode(token);
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+    } catch (error) {
+      console.error('Error decoding token');
+      localStorage.removeItem(this.JWT_TOKEN); 
+      return true;
+    }
     if(!decoded.exp) return true;
     const expirationDate = decoded.exp * 1000;
     const now = new Date().getTime();
     const isExpired = expirationDate < now;
+
     if (isExpired) {
       localStorage.removeItem(this.JWT_TOKEN); 
     }

@@ -12,39 +12,40 @@ export class UserService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   signup(user: UserIRegister): Observable<any> {
-    return this.http.post('http://localhost:3000/user/signup', user)
+    return this.http.post('http://localhost:3000/api/user/signup', user)
       .pipe(
         tap((response: any) => {
+          console.log(user.username, user.password);
           this.authService.login({ username: user.username, password: user.password }).subscribe();
         })
       );
   }
 
   create(user: UserICreate): Observable<any> {
-    return this.http.post('http://localhost:3000/user/create', user);
+    return this.http.post('http://localhost:3000/api/user/create', user);
   }
 
   getAll(): Observable<any> {
-    return this.http.get('http://localhost:3000/user/all');
+    return this.http.get('http://localhost:3000/api/user/all');
   }
 
   delete(id: String): Observable<any> {
-    return this.http.put(`http://localhost:3000/user/delete/${id}`, {});
+    return this.http.put(`http://localhost:3000/api/user/delete/${id}`, {});
   }
 
   update(user: User): Observable<any> {
-    return this.http.put(`http://localhost:3000/user/update/${user._id}`, user);
+    return this.http.put(`http://localhost:3000/api/user/update/${user._id}`, user);
   }
 
   changePassword(password: String, user: User): Observable<any> {
-    return this.http.put(`http://localhost:3000/user/resetPassword/${user._id}`, password);
+    return this.http.put(`http://localhost:3000/api/user/resetPassword/${user._id}`, password);
   }
 
   forgotPassword(email: String): Observable<any> {
-    return this.http.post('http://localhost:3000/user/forgotPassword', { email });
+    return this.http.post('http://localhost:3000/api/user/forgotPassword', { email });
   }
 
   find(id: String): Observable<any> {
-    return this.http.get(`http://localhost:3000/user/find/${id}`);
+    return this.http.get(`http://localhost:3000/api/user/find/${id}`);
   }
 }

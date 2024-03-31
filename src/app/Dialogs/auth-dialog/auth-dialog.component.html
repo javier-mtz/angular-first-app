@@ -10,10 +10,10 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Contraseña</mat-label>
                     <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
                     <mat-error>
                         La contraseña es requerida
                     </mat-error>
@@ -23,7 +23,7 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Contraseña</mat-label>
                     <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="confirmPassword">
-                    <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+                    <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hide2">
                         <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>

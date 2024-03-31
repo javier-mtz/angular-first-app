@@ -11,7 +11,7 @@ export const MailTokenGuard: CanActivateFn = (route, state) => {
 
   const token = route.paramMap.get('token');
   if (token) {
-    fetch('http://localhost:3000/auth/mailToken', {
+    fetch('http://localhost:3000/api/auth/mailToken', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

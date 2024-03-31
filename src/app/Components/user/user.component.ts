@@ -5,9 +5,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {
+  FormControl,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { CommonModule } from '@angular/common';
@@ -18,7 +23,7 @@ import { AuthDialogComponent } from '../../Dialogs/auth-dialog/auth-dialog.compo
 
 import { Router } from '@angular/router';
 import { CarService } from '../../Services/carService/car.service';
-
+import { AlertService } from '../../Services/alertService/alert.service';
 
 @Component({
   selector: 'app-user',
@@ -35,46 +40,49 @@ import { CarService } from '../../Services/carService/car.service';
     FlexLayoutModule,
   ],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
 })
 export class UserComponent {
   user: any = {};
   cars: any[] = [];
 
-  constructor(private _auth: AuthService, private _dialog: MatDialog, private router: Router, private _car: CarService) {
-    this._auth.getCurrentAuthUser().subscribe(user => {
+  constructor(
+    private _auth: AuthService,
+    private _dialog: MatDialog,
+    private router: Router,
+    private _car: CarService,
+    private _alert: AlertService
+  ) {
+    this._auth.getCurrentAuthUser().subscribe((user) => {
       if (user === null) {
         this.router.navigate(['/login']);
         return;
       }
       this.user = user;
-      this._car.findCarbyUser(this.user._id).subscribe(car => {
+      this._car.findCarbyUser(this.user._id).subscribe((car) => {
         if (car === null) {
           return;
         }
         this.cars = car;
-        console.log(this.cars);
       });
       if (user.oneTimePassword !== undefined && user.oneTimePassword) {
         this.changeMailPassword();
       }
     });
-
-
   }
 
   updateUser() {
     const dialogRef = this._dialog.open(UserDialogComponent, {
       data: {
         id: this.user._id,
-        editable: false
+        editable: false,
       },
-      disableClose: true
+      disableClose: true,
     });
     dialogRef.afterClosed().subscribe({
       next: (res) => {
         if (res) {
-          this._auth.getCurrentAuthUser().subscribe(user => {
+          this._auth.getCurrentAuthUser().subscribe((user) => {
             if (user === null) {
               this.router.navigate(['/login']);
               return;
@@ -82,16 +90,16 @@ export class UserComponent {
             this.user = user;
           });
         }
-      }
+      },
     });
   }
 
   changePassword() {
     const dialogRef = this._dialog.open(AuthDialogComponent, {
       data: {
-        id: this.user._id
+        id: this.user._id,
       },
-      disableClose: true
+      disableClose: true,
     });
   }
 
@@ -99,9 +107,9 @@ export class UserComponent {
     const dialogRef = this._dialog.open(AuthDialogComponent, {
       data: {
         id: this.user._id,
-        newPassword: true
+        newPassword: true,
       },
-      disableClose: true
+      disableClose: true,
     });
   }
 
@@ -109,14 +117,30 @@ export class UserComponent {
     console.log('detalle', car);
   }
 
-  returnCar(event: any, car: any) {
+  validateReturnCar(event: any, car: any) {
     event.stopPropagation(); // Detiene la propagación del evento
-    console.log('return', car);
+    this._alert.showConfirmAlert(
+      'Devolver coche',
+      '¿Estás seguro de que deseas devolver el coche?',
+      'info',
+      'Devolver',
+      'Cancelar',
+      () => {
+        this.returnCar(car);
+      }
+    );
   }
 
-  ngOnInit(): void {
-    
+  returnCar(car: any) {
+    this._car.returnCar(car._id).subscribe((res) => {
+      if (res.success) {
+        this._car.findCarbyUser(this.user._id).subscribe((car) => {
+          this.cars = car;
+        });
+        this._alert.showToast('Coche devuelto', 'success');
+      }
+    });
   }
-  
 
+  ngOnInit(): void {}
 }

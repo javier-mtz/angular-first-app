@@ -6,6 +6,74 @@ const router = Router();
 
 import jwt from "jsonwebtoken";
 import verifyToken from "./verifyToken.js";
+import { to } from 'await-to-js';
+import CustomError from "../utils/customError.js";
+import AuthService from "../services/authService.js";
+
+
+
+class AuthController {
+
+  constructor() {
+    this.authService = new AuthService();
+  }
+
+  login = async (httpRequest) => {
+    const { username, password, ip } = httpRequest.body;
+
+    if(!username || !password){
+      throw new CustomError("Someone is missing", 400);
+    }
+    
+    const [err, result] = await to(this.authService.login(username, password, ip));
+  
+    if(!result){
+      throw new CustomError("Unauthorized", 401);
+    }
+
+    if (err) throw err;
+
+    return result;
+  };
+
+  currentUser = async (httpRequest) => {
+    const { userId } = httpRequest;
+    if(!userId){
+      throw new CustomError("Someone is missing", 400);
+    }
+
+    const [err, result] = await to(this.authService.currentUser(userId));
+
+    if(!result){
+      throw new CustomError("Unauthorized", 401);
+    }
+
+    if (err) throw err;
+
+    return result;
+  };
+
+  mailToken = async (httpRequest) => {
+    const { userId } = httpRequest;
+    if(!userId){
+      throw new CustomError("Someone is missing", 400);
+    }
+
+    const [err, result] = await to(this.authService.mailToken(userId));
+
+    if(!result){
+      throw new CustomError("Unauthorized", 401);
+    }
+
+    if (err) throw err;
+
+    return result;
+  };
+}
+
+const authController = new AuthController();
+
+export default authController;
 
 router.post("/login", async (req, res, next) => {
   const { username, password, ip } = req.body;
@@ -65,4 +133,4 @@ router.get("/mailToken", verifyToken, async (req, res, next) => {
 
 
 
-export default router;
+//export default router;

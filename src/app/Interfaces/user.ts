@@ -38,3 +38,10 @@ export interface User {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface AuthResponse {
+  auth: boolean;
+  token: string;
+  username: string;
+  role: string;
+}

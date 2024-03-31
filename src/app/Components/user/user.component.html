@@ -30,7 +30,7 @@
                                         <mat-card class="inner-car-card" style="border-radius: 10px; max-width: 150px; cursor: pointer;">
                                             <mat-card-content  fxLayout="row" [style.background-image]="'url(' + car.images[0] + ')'" style="background-size: cover; background-position: center; background-repeat: no-repeat; height: 200px; border-radius: 10px;" (click)="carDetails(car)" class="hovereffect">
                                                 <p style="color: white; font-size: 20px; font-weight: bold; margin-top: 10px; margin-left: 10px; position: absolute;">{{ car.model }}</p>
-                                                <button mat-raised-button class="car-button" (click)="returnCar($event, car)">Devolver</button>
+                                                <button mat-raised-button class="car-button" (click)="validateReturnCar($event, car)">Devolver</button>
                                             </mat-card-content>
                                         </mat-card>
                                     </ng-container>

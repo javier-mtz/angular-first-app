@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Car } from '../../Interfaces/car';
+import { Car, CarResponse, DeleteResponse } from '../../Interfaces/car';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -10,28 +10,31 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
-  create(car: Car): Observable<any> {
-    return this.http.post('http://localhost:3000/car/create', car);
+  create(car: Car): Observable<CarResponse> {
+    return this.http.post<CarResponse>('http://localhost:3000/api/car/create', car);
   }
 
-  getAll(): Observable<any> {
-    return this.http.get('http://localhost:3000/car/all');
+  getAll(): Observable<CarResponse[]> {
+    return this.http.get<CarResponse[]>('http://localhost:3000/api/car/all');
   }
 
-  delete(id: String): Observable<any> {
-    return this.http.delete(`http://localhost:3000/car/delete/${id}`);
+  delete(id: String): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>(`http://localhost:3000/api/car/delete/${id}`);
   }
 
-  update(car: Car): Observable<any> {
-    return this.http.put(`http://localhost:3000/car/update/${car._id}`, car);
+  update(car: Car): Observable<CarResponse> {
+    return this.http.put<CarResponse>(`http://localhost:3000/api/car/update/${car._id}`, car);
   }
 
-  find(id: String): Observable<any> {
-    return this.http.get(`http://localhost:3000/car/find/${id}`);
+  find(id: String): Observable<CarResponse> {
+    return this.http.get<CarResponse>(`http://localhost:3000/api/car/find/${id}`);
   }
   
-  findCarbyUser(id: String): Observable<any> {
-    console.log(id, 'id');
-    return this.http.get(`http://localhost:3000/car/findbyuser/${id}`);
+  findCarbyUser(id: String): Observable<CarResponse[]> {
+    return this.http.get<CarResponse[]>(`http://localhost:3000/api/car/findbyuser/${id}`);
+  }
+
+  returnCar(id: String): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/api/car/returnCar/${id}`);
   }
 }

@@ -7,3 +7,15 @@ export interface Brand {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface BrandResponse {
+    name: string;
+    color: string;
+    logo: string;
+    status: number;
+    _id: string;
+  }
+
+export interface DeleteResponse {
+    message: string;
+  }
