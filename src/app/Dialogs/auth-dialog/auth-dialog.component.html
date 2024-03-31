@@ -1,0 +1,41 @@
+<div class="container">
+    <h1 mat-dialog-title class="row"
+        style="vertical-align: middle; background-color: #36a2f4; color: white; padding-top: 10px;">
+        <mat-icon style="font-size: 40px; width: 40px; height: 40px;">lock</mat-icon>
+        {{ title }}
+    </h1>
+    <form action="" [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content style="padding-top: 10px; margin-top: 10px;">
+            <div class="row" fxLayout="row" fxLayout.lt-md="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                    <mat-error>
+                        La contraseña es requerida
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row" fxLayout="row" fxLayout.lt-md="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="confirmPassword">
+                    <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide2">
+                        <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error>
+                        Confirmar la contraseña es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" fxLayout.lt-md="column">
+            <button mat-raised-button style="color: white;" type="button" color="primary" *ngIf="!newPassword" [mat-dialog-close]="false" fxFlex>Cancelar</button>
+            <button mat-raised-button style="color: white;" color="warn" type="submit" fxFlex>{{ buttonText }}</button>
+        </div>
+    </form>
+</div>

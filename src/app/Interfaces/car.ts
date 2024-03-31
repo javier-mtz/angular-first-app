@@ -12,3 +12,17 @@ export interface Car {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface CarResponse {
+    _id: String;
+    model: String;
+    description: String;
+    price: String;
+    engine: String;
+    brand: String;
+    images: [String];
+  }
+
+export interface DeleteResponse {
+    message: string;
+  }

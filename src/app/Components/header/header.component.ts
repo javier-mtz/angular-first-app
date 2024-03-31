@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
       this.textColor = '#ffffff';
     }
     
-    if (this.authService.isLoggedIn()) {
+    if (!this.authService.isTokenExpired()) {
       this.authService.isAdmin().subscribe(isAdmin => {
         const adminIndex = this.menuItems.findIndex((item) => item.type === 'admin');
         if (isAdmin) {
@@ -68,7 +68,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
+    return !this.authService.isTokenExpired();
   }
 
   logout(): void {

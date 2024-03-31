@@ -15,6 +15,7 @@ import { CarListComponent } from '../../Lists/car-list/car-list.component';
 import { BrandListComponent } from '../../Lists/brand-list/brand-list.component';
 import { UserListComponent } from '../../Lists/user-list/user-list.component';
 import { CommonModule } from '@angular/common';
+import { User } from '../../Interfaces/user';
 
 
 @Component({
@@ -37,7 +38,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  user?: any;
+  user?: User;
 
   constructor(private authService: AuthService, private breadcrumbsService: BreadcrumbsService) {
 

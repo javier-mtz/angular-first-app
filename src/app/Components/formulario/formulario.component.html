@@ -19,7 +19,10 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <input type="email" matInput placeholder="Ingresa tu correo" formControlName="email" required />
-              <mat-error>
+              <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+                El correo no es válido.
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
                 El correo es requerido.
               </mat-error>
             </mat-form-field>
@@ -38,11 +41,11 @@
             </mat-form-field>
             <div class="policy">
               <mat-checkbox formControlName="terms" required>
-                <span style="color: #333;">
-                  Acepto los
-                  <a href="#">Terminos y Condiciones</a>
-                </span>
               </mat-checkbox>
+              <span style="color: #333;">
+                Acepto los
+                <a (click)="conditions()">Terminos y Condiciones</a>
+              </span>
             </div>
             <div class="input-box button">
               <!-- <button mat-raised-button color="#333" type="submit" (click)="onSubmit()">

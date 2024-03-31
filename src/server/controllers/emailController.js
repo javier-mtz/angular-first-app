@@ -1,6 +1,7 @@
 import Mailjet from "node-mailjet";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 dotenv.config();
 
@@ -11,10 +12,22 @@ const mailjet = Mailjet.apiConnect(
 
 
 export async function sendEmailNewPassword(username, email) {
-  const token = jwt.sign({ id: username }, "MySecretDomentos", {
-    expiresIn: 60 * 60 * 2,
-  });
-  const link = `http://localhost:4200/login/${token}`;
+  
+  const user = await User.findOne({ username: { $regex: new RegExp(username, "i") } });
+    if (!user) {
+      console.log('No user found');
+      return;
+    }
+
+    const userId = user._id;
+
+    const token = jwt.sign({ id: userId }, "MySecretDomentos", {
+      expiresIn: 60 * 60 * 2,
+    });
+
+    const link = `http://localhost:4200/mailtoken/${token}`;
+    console.log('link', link);
+
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
@@ -28,7 +41,57 @@ export async function sendEmailNewPassword(username, email) {
             Name: username,
           },
         ],
-        TemplateID: 5814713,
+        Variables: {
+          resetLink: link,
+        },
+        TemplateID: 5831458,
+        TemplateLanguage: true,
+        Subject: "Bienvenido a CarHistory",
+      },
+    ],
+  });
+  request
+    .then((result) => {
+      console.log(result.body);
+    })
+    .catch((err) => {
+      console.log(err.statusCode);
+    });
+}
+
+export async function sendForgotPasswordEmail(username, email) {
+  const user = await User.findOne({ username: { $regex: new RegExp(username, "i") } });
+    if (!user) {
+      console.log('No user found');
+      return;
+    }
+
+    const userId = user._id;
+
+    const token = jwt.sign({ id: userId }, "MySecretDomentos", {
+      expiresIn: 60 * 60 * 2,
+    });
+
+    const link = `http://localhost:4200/mailtoken/${token}`;
+    console.log('link', link);
+
+  const request = mailjet.post("send", { version: "v3.1" }).request({
+    Messages: [
+      {
+        From: {
+          Email: "pablo72h@proton.me",
+          Name: "CarHistory",
+        },
+        To: [
+          {
+            Email: email,
+            Name: username,
+          },
+        ],
+        Variables: {
+          resetLink: link,
+        },
+        TemplateID: 5831450,
         TemplateLanguage: true,
         Subject: "Bienvenido a CarHistory",
       },

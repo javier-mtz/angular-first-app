@@ -1,3 +1,8 @@
+export interface mailLogin {
+    username: any;
+    token: any;
+}
+
 export interface Login {
     username: any;
     password: any;
@@ -28,7 +33,15 @@ export interface User {
     email: String;
     password: String;
     status: Number;
+    oneTimePassword: undefined;
     role: String;
     createdAt: Date;
     updatedAt: Date;
+}
+
+export interface AuthResponse {
+  auth: boolean;
+  token: string;
+  username: string;
+  role: string;
 }

@@ -23,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../Services/alertService/alert.service';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../Services/authService/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConditionsDialogComponent } from '../../Dialogs/conditions/conditions-dialog.component';
 
 
 @Component({
@@ -54,10 +56,10 @@ export class FormularioComponent implements OnInit {
   registerForm: FormGroup; // Inicializando la propiedad myForm
   data = data;
 
-  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService, private userServicie: UserService, private authService: AuthService) {
+  constructor(private breadcrumbsService: BreadcrumbsService, private formBuilder: FormBuilder, private router: Router, private alert: AlertService, private userServicie: UserService, private authService: AuthService, private _dialog: MatDialog) {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       password2: ['', Validators.required],
       terms: [false, Validators.required]
@@ -73,6 +75,13 @@ export class FormularioComponent implements OnInit {
   }
 
   async onSubmit() {
+
+    // validar que el checkbox de términos y condiciones esté marcado
+    if (!this.registerForm.value.terms) {
+      this.alert.showToast('Debe aceptar los términos y condiciones', 'info');
+      return;
+    }
+
     if (this.registerForm.valid) {
       // Si el formulario es válido, validar que las contraseñas coincidan
       if (this.registerForm.value.password !== this.registerForm.value.password2) {
@@ -106,5 +115,16 @@ export class FormularioComponent implements OnInit {
 
   login() {
     this.router.navigate(['/login']);
+  }
+
+  conditions() {
+    const dialogRef = this._dialog.open(ConditionsDialogComponent, {
+      disableClose: true,
+      width: '40%',
+      height: '60%',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.registerForm.controls['terms'].setValue(true);
+    });
   }
 }

@@ -6,31 +6,34 @@ import { BrandsComponent } from './Components/brands/brands.component';
 import { InfoCarComponent } from './Components/info-car/info-car.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { FormularioComponent } from './Components/formulario/formulario.component';
-import { authGuard } from './auth.guard';
+import { authGuard } from './Guards/auth.guard';
 import { LoginComponent } from './Components/login/login.component';
 import { AdminComponent } from './Components/admin/admin.component';
 import { UserComponent } from './Components/user/user.component';
-import { AdminGuard } from '../app/admin.guard';
+import { AdminGuard } from './Guards/admin.guard';
+import { MailTokenGuard } from './Guards/mailtoken.guard';
+import { LoaderComponent } from './Components/loader/loader/loader.component';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full'},
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'brands', component: BrandsComponent},
-    { path: 'login', component: LoginComponent},
-    { path: 'rent', component: HomeComponent, canActivate: [authGuard]},
-    { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
-    { path: 'user', component: UserComponent, canActivate: [authGuard]},
+    { path: 'brands', component: BrandsComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'rent', component: HomeComponent, canActivate: [authGuard] },
+    { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+    { path: 'user', component: UserComponent, canActivate: [authGuard] },
+    { path: 'mailtoken/:token', canActivate: [MailTokenGuard], component: LoaderComponent },
     { path: 'register', component: FormularioComponent },
-    { path: 'info-car/:modelo', component: InfoCarComponent},
-    { path: 'profile/:brand', component: ProfileComponent} // Ruta dinámica para el perfil con parámetro brand
+    { path: 'info-car/:modelo', component: InfoCarComponent },
+    { path: 'profile/:brand', component: ProfileComponent } // Ruta dinámica para el perfil con parámetro brand
 ];
 
 @NgModule({
     declarations: [],
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
-    
+
 })
 
 export class AppRoutingModule { }
