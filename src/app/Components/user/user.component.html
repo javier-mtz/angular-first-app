@@ -24,8 +24,8 @@
                     <div fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
                         <mat-card class="card">
                             <h3 style="text-align: center; margin-top: 2%; color: white;" mat-card-title>Autos rentados</h3>
-                            <mat-card-content style="overflow-x: scroll; display: flex; scrollbar-width: none;">
-                                <ng-container *ngIf="cars.length > 0">
+                            <ng-container *ngIf="cars.length > 0">
+                                <mat-card-content style="overflow-x: scroll; display: flex; scrollbar-width: none;">
                                     <ng-container *ngFor="let car of cars">
                                         <mat-card class="inner-car-card" style="border-radius: 10px; max-width: 150px; cursor: pointer;">
                                             <mat-card-content  fxLayout="row" [style.background-image]="'url(' + car.images[0] + ')'" style="background-size: cover; background-position: center; background-repeat: no-repeat; height: 200px; border-radius: 10px;" (click)="carDetails(car)" class="hovereffect">
@@ -34,11 +34,13 @@
                                             </mat-card-content>
                                         </mat-card>
                                     </ng-container>
+                                </mat-card-content>
+                            </ng-container>
+                            <ng-container *ngIf="cars.length == 0">
+                                    <mat-card-content style="overflow-x: scroll; display: flex; scrollbar-width: none; justify-content: center;">
+                                        <p style="color: white; text-align: center; align-items: center;">No tienes autos rentados</p>
+                                    </mat-card-content> 
                                 </ng-container>
-                                <ng-container *ngIf="cars.length == 0">
-                                    <p style="color: white; text-align: center; align-items: center;">No tienes autos rentados</p>
-                                </ng-container>
-                            </mat-card-content>
                         </mat-card>
                     </div>
 
