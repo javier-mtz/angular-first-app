@@ -38,7 +38,7 @@ class BrandController {
 
   deleteBrand = async (httpRequest) => {
     const { id } = httpRequest.params;
-    console.log(id, 'edww');
+
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new CustomError("No record with given id : " + id, 400);
     }

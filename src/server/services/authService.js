@@ -40,7 +40,7 @@ class AuthService {
       }
       return { auth: true, token, username: user.username, role: user.role };
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 

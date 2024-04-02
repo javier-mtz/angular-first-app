@@ -15,7 +15,7 @@ export async function sendEmailNewPassword(username, email) {
   
   const user = await User.findOne({ username: { $regex: new RegExp(username, "i") } });
     if (!user) {
-      console.log('No user found');
+      console.error('No user found');
       return;
     }
 
@@ -26,7 +26,6 @@ export async function sendEmailNewPassword(username, email) {
     });
 
     const link = `http://localhost:4200/mailtoken/${token}`;
-    console.log('link', link);
 
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
@@ -55,14 +54,14 @@ export async function sendEmailNewPassword(username, email) {
       console.log(result.body);
     })
     .catch((err) => {
-      console.log(err.statusCode);
+      console.error(err.statusCode);
     });
 }
 
 export async function sendForgotPasswordEmail(username, email) {
   const user = await User.findOne({ username: { $regex: new RegExp(username, "i") } });
     if (!user) {
-      console.log('No user found');
+      console.error('No user found');
       return;
     }
 
@@ -73,7 +72,6 @@ export async function sendForgotPasswordEmail(username, email) {
     });
 
     const link = `http://localhost:4200/mailtoken/${token}`;
-    console.log('link', link);
 
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
@@ -102,6 +100,6 @@ export async function sendForgotPasswordEmail(username, email) {
       console.log(result.body);
     })
     .catch((err) => {
-      console.log(err.statusCode);
+      console.error(err.statusCode);
     });
 }

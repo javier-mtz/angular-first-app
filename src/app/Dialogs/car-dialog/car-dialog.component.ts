@@ -100,7 +100,7 @@ export class CarDialogComponent implements OnInit {
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.log(err);
+            console.error(err);
             this._alert.showToast('Error en el servidor, si el problema persiste contacte con el administrador', 'error');
           }
         });
@@ -111,7 +111,7 @@ export class CarDialogComponent implements OnInit {
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.log(err);
+            console.error(err);
             this._alert.showToast('Error en el servidor, si el problema persiste contacte con el administrador', 'error');
           }
         });

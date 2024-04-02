@@ -15,7 +15,6 @@ export class UserService {
     return this.http.post('http://localhost:3000/api/user/signup', user)
       .pipe(
         tap((response: any) => {
-          console.log(user.username, user.password);
           this.authService.login({ username: user.username, password: user.password }).subscribe();
         })
       );
