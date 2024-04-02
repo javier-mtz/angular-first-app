@@ -26,8 +26,8 @@ export class CarService {
     return this.http.put<CarResponse>(`http://localhost:3000/api/car/update/${car._id}`, car);
   }
 
-  find(id: String): Observable<CarResponse> {
-    return this.http.get<CarResponse>(`http://localhost:3000/api/car/find/${id}`);
+  find(id: String): Observable<Car> {
+    return this.http.get<Car>(`http://localhost:3000/api/car/find/${id}`);
   }
   
   findCarbyUser(id: String): Observable<CarResponse[]> {
@@ -36,5 +36,17 @@ export class CarService {
 
   returnCar(id: String): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/api/car/returnCar/${id}`);
+  }
+
+  rentCar(user_id: String, id: String): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/api/car/rentCar/${user_id}/${id}`);
+  }
+
+  getBrandCars(id: String): Observable<CarResponse[]> {
+    return this.http.get<CarResponse[]>(`http://localhost:3000/api/car/getBrandCars/${id}`);
+  }
+
+  getRentedCars(): Observable<CarResponse[]> {
+    return this.http.get<CarResponse[]>('http://localhost:3000/api/car/getRentedCars');
   }
 }

@@ -17,4 +17,8 @@ export class HomeComponent {
   navigateToBrands() {
     this.router.navigate(['/brands']);
   }
+
+  navigateToRental() {
+    this.router.navigate(['/rental']);
+  }
 }

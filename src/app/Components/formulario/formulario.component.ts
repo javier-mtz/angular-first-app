@@ -105,7 +105,7 @@ export class FormularioComponent implements OnInit {
             }
           },
           error: (err: any) => {
-            console.log(JSON.stringify(err));
+            console.error(err);
             this.alert.showToast("Nombre no es seguro para el usuario", 'error');
           }
         });

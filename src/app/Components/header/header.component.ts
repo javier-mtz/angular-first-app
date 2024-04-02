@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   textColor: string = '';
 
   menuItems: any[] = [
-    { name: 'Rentar', route: '/rent', type: 'rent' },
+    { name: 'Rentar', route: '/rental', type: 'rental' },
     { name: 'Profile', route: '/user', type: 'user' },
     { name: 'Logout', type: 'logout' }
   ];

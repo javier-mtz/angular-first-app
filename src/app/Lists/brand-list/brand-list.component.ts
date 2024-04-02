@@ -80,7 +80,7 @@ export class BrandListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
       error: (err: any) => {
-        console.log(err);
+        console.error(err);
         this._alert.showAlert('Error', 'Error interno, si el problema persiste contacte con el administrador', 'error');
       }
     });
@@ -94,7 +94,7 @@ export class BrandListComponent implements OnInit {
           this._alert.showAlert('Marca eliminada', 'Marca eliminada correctamente', 'success');
         },
         error: (err: any) => {
-          console.log(err);
+          console.error(err);
           this._alert.showToast('Error en el servidor, si el problema persiste contacte con el administrador', 'error');
         }
       });

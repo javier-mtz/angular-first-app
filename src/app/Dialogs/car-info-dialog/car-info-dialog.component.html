@@ -1,0 +1,45 @@
+<div class="row" fxLayout.lt-md="column" fxLayoutAlign="center center">
+    <div fxLayout="column" fxFlex="50" fxFlex.lt-md="100" style="margin-top: 20px;">
+            <div>
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                    <div>
+                        <button aria-label="Botón anterior" (click)="imagenAnterior()" style="background-color: transparent; border: none; cursor: pointer; margin-right: 10px;" [style.visibility]="disabledButton ? 'hidden' : 'visible'">
+                            <mat-icon>chevron_left</mat-icon>
+                        </button>
+                    </div>
+        
+                    <img [src]="imagenSeleccionada" class="image-small">
+        
+                    <div>
+                        <button aria-label="Botón siguiente" (click)="imagenSiguiente()" style="background-color: transparent; border: none; cursor: pointer; margin-left: 10px;" [style.visibility]="disabledButton ? 'hidden' : 'visible'">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="image-row" fxLayout="row wrap" fxLayoutGap="10px">
+                    <img *ngFor="let image of car.images; let i = index" [src]="image"
+                        class="horizontal-image" (click)="seleccionarImagen(image, i)"
+                        [class.unselected-image]="i !== imagenSeleccionadaIndex"
+                        [class.selected-image]="i === imagenSeleccionadaIndex" [class.selected]="i === imagenSeleccionadaIndex">
+                </div>
+            </div>
+            <div style="margin-top: 10px; text-align: center; width: 100%; height: 100%; justify-content: center; align-items: center;">
+                <h3 style="font-weight: bold;">Descripción</h3>
+                <p>{{ car.description }}</p>
+            </div>
+    </div>
+    <div fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
+        <div style="margin-top: -10px;">
+            <h3 style="font-weight: bold;">Información del vehículo</h3>
+            <p><span style="font-weight: bold;">Marca: </span>{{ car.brandId?.name }}</p>
+            <p><span style="font-weight: bold;">Nombre: </span>{{ car.model }}</p>
+            <p><span style="font-weight: bold;">Motor: </span>{{ car.engine }}</p>
+            <p><span style="font-weight: bold;">Precio: </span>{{ car.price | currency:'USD':'symbol' }}</p>
+        </div>
+        <div style="max-width: 80%; margin: 0 auto;">
+            <button mat-raised-button color="primary" [disabled]="disabled" (click)="validateButton()">{{ buttonTitle }}</button>
+        </div>
+    </div>
+</div>

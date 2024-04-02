@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -44,21 +44,17 @@ export class CarDialogComponent implements OnInit {
   brands: any[] = [];
 
   constructor(private fb: FormBuilder, private _alert: AlertService, private _car: CarService, private _brand: BrandService, private _dialogRef: MatDialogRef<CarDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.carForm = this.fb.group({
-      model: [''],
-      description: ['', [Validators.maxLength(200)]],
-      price: [''],
-      engine: [''],
-      brand: [''],
-      images: [''],
+    this.carForm = new FormGroup({
+      model: new FormControl('', Validators.required), // [valor por defecto, validaciones
+      description: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
+      engine: new FormControl('', Validators.required),
+      brand: new FormControl('', Validators.required),
+      images: new FormArray([
+        new FormControl('', Validators.required)
+      ])
     });
-    // los campos del formulario son requeridos
-    this.carForm.controls['model'].setValidators([Validators.required]);
-    this.carForm.controls['description'].setValidators([Validators.required]);
-    this.carForm.controls['price'].setValidators([Validators.required]);
-    this.carForm.controls['engine'].setValidators([Validators.required]);
-    this.carForm.controls['brand'].setValidators([Validators.required]);
-    this.carForm.controls['images'].setValidators([Validators.required]);
+
   }
 
   ngOnInit() {
@@ -66,14 +62,26 @@ export class CarDialogComponent implements OnInit {
     if (this.data) {
       this._car.find(this.data.id).subscribe({
         next: (val: any) => {
-          this.carForm.setValue({
+          this.carForm.patchValue({
             model: val.model,
             description: val.description,
             price: val.price,
             engine: val.engine,
-            brand: val.brandId.name,
-            images: val.images
+            brand: val.brandId.name
           });
+
+          // Obtén la referencia al FormArray de imágenes
+          const imagesArray = this.carForm.get('images') as FormArray;
+
+          // Eliminar todas las imágenes existentes del formulario
+          while (imagesArray.length) {
+            imagesArray.removeAt(0);
+          }
+
+          // Iterar sobre las imágenes del carro y agregarlas al formulario
+          for (const imageUrl of val.images) {
+            imagesArray.push(this.fb.control(imageUrl, Validators.required));
+          }
         },
         error: (err: any) => {
           this._alert.showToast('Error en el servidor, si el problema persiste contacte con el administrador', 'error');
@@ -84,25 +92,26 @@ export class CarDialogComponent implements OnInit {
 
   onSubmit() {
     if (this.carForm.valid) {
+      const formValue = { ...this.carForm.value };
       if (this.data) {
-        this._car.update({ _id: this.data.id, ...this.carForm.value }).subscribe({
+        this._car.update({ _id: this.data.id, ...formValue }).subscribe({
           next: (val: any) => {
             this._alert.showAlert('Carro actualizado', 'success', 'success');
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.log(err);
+            console.error(err);
             this._alert.showToast('Error en el servidor, si el problema persiste contacte con el administrador', 'error');
           }
         });
       } else {
-        this._car.create(this.carForm.value).subscribe({
+        this._car.create(formValue).subscribe({
           next: (val: any) => {
             this._alert.showAlert('Carro creado', 'success', 'success');
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.log(err);
+            console.error(err);
             this._alert.showToast('Error en el servidor, si el problema persiste contacte con el administrador', 'error');
           }
         });
@@ -110,6 +119,20 @@ export class CarDialogComponent implements OnInit {
     } else {
       this._alert.showToast('Por favor, rellene todos los campos', 'info');
     }
+  }
+
+  get images(): FormArray {
+    return this.carForm.get('images') as FormArray;
+  }
+
+  addImage() {
+    this.images.push(
+      new FormControl('', Validators.required)
+    );
+  }
+
+  removeImage(index: number) {
+    this.images.removeAt(index);
   }
 
   getBrandsForSelect() {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { AuthService } from '../../Services/authService/auth.service';
 
 import { MatTabsModule } from '@angular/material/tabs';
@@ -14,9 +14,9 @@ import { MatDivider } from '@angular/material/divider';
 import { CarListComponent } from '../../Lists/car-list/car-list.component';
 import { BrandListComponent } from '../../Lists/brand-list/brand-list.component';
 import { UserListComponent } from '../../Lists/user-list/user-list.component';
+import { RentedListComponent } from '../../Lists/rented-list/rented-list.component';
 import { CommonModule } from '@angular/common';
 import { User } from '../../Interfaces/user';
-
 
 @Component({
   selector: 'app-admin',
@@ -31,6 +31,7 @@ import { User } from '../../Interfaces/user';
     CarListComponent,
     BrandListComponent,
     UserListComponent,
+    RentedListComponent,
     CommonModule,
     MatDivider,
   ],
@@ -51,10 +52,6 @@ export class AdminComponent {
       this.user = user;
     });
 
-  }
-
-  isAdmin() {
-    return true;
-  }
+  }    
 
 }

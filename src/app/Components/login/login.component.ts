@@ -48,7 +48,7 @@ import { ForgotPasswordDialogComponent } from '../../Dialogs/forgot-password/for
 export class LoginComponent {
   username = '';
   password = '';
-  ip = {};
+  ip? = {};
   loginForm: FormGroup;
 
   constructor(

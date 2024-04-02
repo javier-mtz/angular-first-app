@@ -1,7 +1,6 @@
 <!-- Header -->
 <app-header [userButton]="true"></app-header>
 
-<body>
   <div id="stick-parallax-header" class="container"
     [ngStyle]="{'background-image': 'url(../../../assets/img/homeBackground.jpg)'}">
     <main>
@@ -21,4 +20,14 @@
       </section>
     </main>
   </div>
-</body>
+  <div class="container" [ngStyle]="{'background-image': 'url(../../../assets/img/rental.jpeg)'}">
+    <main>
+      <section class="hero">
+        <div class="hero-content" [ngStyle]="{'text-shadow': '1px 1px 2px #000000'}">
+          <h1>¿Quieres rentar un auto?</h1>
+          <p>Explora nuestra colección de autos exóticos y elige el que más te guste.</p>
+          <button (click)="navigateToRental()" style="border-radius: 20px;">Rentar</button>
+        </div>
+      </section>
+    </main>
+  </div>

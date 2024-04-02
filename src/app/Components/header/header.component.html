@@ -4,7 +4,7 @@
     class="header-toolbar"
   >
     <mat-toolbar-row>
-      <span class="title" [style.color]="textColor" (click)="goTo('home', 'home')">{{ currentComponent }}</span>
+      <span class="title" (click)="goTo('home', 'home')">{{ currentComponent }}</span>
       <div style="flex-grow: 1;"></div>
       <ng-container *ngIf="userButton">
         <button mat-icon-button *ngIf="!isLoggedIn()" (click)="goTo('login', 'login')">

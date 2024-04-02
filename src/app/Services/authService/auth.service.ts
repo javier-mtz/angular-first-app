@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { AuthResponse, Login, User, UserIRegister, mailLogin } from '../../Interfaces/user';
 import { jwtDecode } from 'jwt-decode';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -64,24 +65,22 @@ export class AuthService {
   }
 
   isTokenExpired() {
-    const token = localStorage.getItem(this.JWT_TOKEN);
-    if(!token) return true;
-    let decoded;
     try {
-      decoded = jwtDecode(token);
+      const token = localStorage.getItem(this.JWT_TOKEN);
+      if(!token) return true;
+      const decoded = jwtDecode(token);
+      if(!decoded.exp) return true;
+      const expirationDate = decoded.exp * 1000;
+      const now = new Date().getTime();
+      const isExpired = expirationDate < now;
+  
+      if (isExpired) {
+        localStorage.removeItem(this.JWT_TOKEN); 
+      }
+      return isExpired;
     } catch (error) {
-      console.error('Error decoding token');
       localStorage.removeItem(this.JWT_TOKEN); 
       return true;
     }
-    if(!decoded.exp) return true;
-    const expirationDate = decoded.exp * 1000;
-    const now = new Date().getTime();
-    const isExpired = expirationDate < now;
-
-    if (isExpired) {
-      localStorage.removeItem(this.JWT_TOKEN); 
-    }
-    return isExpired;
   }  
 }
