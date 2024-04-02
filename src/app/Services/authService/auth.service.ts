@@ -66,14 +66,7 @@ export class AuthService {
   isTokenExpired() {
     const token = localStorage.getItem(this.JWT_TOKEN);
     if(!token) return true;
-    let decoded;
-    try {
-      decoded = jwtDecode(token);
-    } catch (error) {
-      console.error('Error decoding token');
-      localStorage.removeItem(this.JWT_TOKEN); 
-      return true;
-    }
+    const decoded = jwtDecode(token);
     if(!decoded.exp) return true;
     const expirationDate = decoded.exp * 1000;
     const now = new Date().getTime();

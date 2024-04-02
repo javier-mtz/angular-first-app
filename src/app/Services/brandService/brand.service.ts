@@ -30,4 +30,8 @@ export class BrandService {
   find(id: String): Observable<BrandResponse> {
     return this.http.get<BrandResponse>(`http://localhost:3000/api/brand/find/${id}`);
   }
+
+  brandsWithCars(): Observable<BrandResponse[]> {
+    return this.http.get<BrandResponse[]>('http://localhost:3000/api/brand/findbrandwithcars');
+  }
 }

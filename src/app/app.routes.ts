@@ -13,6 +13,7 @@ import { UserComponent } from './Components/user/user.component';
 import { AdminGuard } from './Guards/admin.guard';
 import { MailTokenGuard } from './Guards/mailtoken.guard';
 import { LoaderComponent } from './Components/loader/loader/loader.component';
+import { RentalBrandsComponent } from './Components/rental-brands/rental-brands.component';
 
 
 export const routes: Routes = [
@@ -20,13 +21,13 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'brands', component: BrandsComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'rent', component: HomeComponent, canActivate: [authGuard] },
+    { path: 'rental', component: RentalBrandsComponent, canActivate: [authGuard] },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: 'user', component: UserComponent, canActivate: [authGuard] },
     { path: 'mailtoken/:token', canActivate: [MailTokenGuard], component: LoaderComponent },
     { path: 'register', component: FormularioComponent },
     { path: 'info-car/:modelo', component: InfoCarComponent },
-    { path: 'profile/:brand', component: ProfileComponent } // Ruta dinámica para el perfil con parámetro brand
+    { path: 'profile/:brand', component: ProfileComponent }
 ];
 
 @NgModule({

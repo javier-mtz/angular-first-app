@@ -94,7 +94,6 @@ class BrandService {
             createdAt: false,
             updatedAt: false,
             color: false,
-            logo: false,
             "cars.__v": false,
             "cars.status": false,
             "cars.createdAt": false,

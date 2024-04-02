@@ -130,13 +130,44 @@ class CarService {
 
     async getRentedCars() {
         try {
-            const cars = await Car.find({ busy: true }, {
-                __v: false,
-                status: false,
-                createdAt: false,
-                updatedAt: false,
-                brandId: false,
-            });
+            const cars = await Car.aggregate([
+                {
+                    $match: { busy: true }
+                },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "userId",
+                        foreignField: "_id",
+                        as: "user"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "brands",
+                        localField: "brandId",
+                        foreignField: "_id",
+                        as: "brand"
+                    }
+                },
+                {
+                    $unwind: "$user"
+                },
+                {
+                    $unwind: "$brand"
+                },
+                {
+                    $project: {
+                        model: 1,
+                        description: 1,
+                        price: 1,
+                        engine: 1,
+                        images: 1,
+                        "user.username": 1,
+                        "brand.name": 1
+                    }
+                }
+            ]);
             return cars;
         } catch (error) {
             return error;

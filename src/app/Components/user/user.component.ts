@@ -24,6 +24,8 @@ import { AuthDialogComponent } from '../../Dialogs/auth-dialog/auth-dialog.compo
 import { Router } from '@angular/router';
 import { CarService } from '../../Services/carService/car.service';
 import { AlertService } from '../../Services/alertService/alert.service';
+import { CarInfoDialogComponent } from '../../Dialogs/car-info-dialog/car-info-dialog.component';
+import { Car } from '../../Interfaces/car';
 
 @Component({
   selector: 'app-user',
@@ -59,6 +61,7 @@ export class UserComponent {
         return;
       }
       this.user = user;
+      this.user.publicIp = this.user.publicIp.reverse();
       this._car.findCarbyUser(this.user._id).subscribe((car) => {
         if (car === null) {
           return;
@@ -81,15 +84,13 @@ export class UserComponent {
     });
     dialogRef.afterClosed().subscribe({
       next: (res) => {
-        if (res) {
-          this._auth.getCurrentAuthUser().subscribe((user) => {
-            if (user === null) {
-              this.router.navigate(['/login']);
-              return;
-            }
-            this.user = user;
-          });
-        }
+        this._auth.getCurrentAuthUser().subscribe((user) => {
+          if (user === null) {
+            this.router.navigate(['/login']);
+            return;
+          }
+          this.user = user;
+        });
       },
     });
   }
@@ -113,10 +114,6 @@ export class UserComponent {
     });
   }
 
-  carDetails(car: any) {
-    console.log('detalle', car);
-  }
-
   validateReturnCar(event: any, car: any) {
     event.stopPropagation(); // Detiene la propagación del evento
     this._alert.showConfirmAlert(
@@ -133,12 +130,25 @@ export class UserComponent {
 
   returnCar(car: any) {
     this._car.returnCar(car._id).subscribe((res) => {
-      if (res.success) {
+      this._car.findCarbyUser(this.user._id).subscribe((car) => {
+        this.cars = car;
+      });
+      this._alert.showToast('Coche devuelto', 'success');
+    });
+  }
+
+  showCar(car: Car) {
+    const dialogRef = this._dialog.open(CarInfoDialogComponent, {
+      data: car,
+      width: '75%',
+      height: '65%'
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (res) => {
         this._car.findCarbyUser(this.user._id).subscribe((car) => {
           this.cars = car;
         });
-        this._alert.showToast('Coche devuelto', 'success');
-      }
+      },
     });
   }
 

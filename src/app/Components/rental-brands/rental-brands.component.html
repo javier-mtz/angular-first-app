@@ -1,0 +1,45 @@
+<div class="container">
+    <app-header [userButton]="true"></app-header>
+    <ng-container *ngIf="step === 1">
+        <div class="row" fxLayout.lt-md="column">
+            <mat-card class="card">
+                <h3 style="text-align: center; margin-top: 2%; color: white;" mat-card-title>Marcas Disponibles</h3>
+                <mat-card-content style="overflow-x: scroll; display: flex; scrollbar-width: none;">
+                    <ng-container *ngFor="let brand of brands">
+                        <mat-card class="inner-car-card" style="border-radius: 10px; max-width: 150px; cursor: pointer;" (click)="selectBrand(brand)">
+                            <mat-card-content fxLayout="row" style="height: 200px; border-radius: 10px;" class="hovereffect">
+                                <img src="{{ brand.logo }}" style="width: 80%; margin: auto; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <p style="color: rgb(0, 0, 0); font-size: 20px; font-weight: bold; margin-top: 10px; margin-left: 10px; position: absolute;">{{ brand.name }}</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </ng-container>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="step === 2">
+        <div class="row" fxLayout.lt-md="column">
+            <mat-card class="card">
+                <div mat-card-content fxLayout="row" fxLayoutAlign="center center">
+                    <button mat-icon-button (click)="step = 1" style="margin-right: 0px; position: absolute; margin-left: 10px; background-color: transparent; border: none; cursor: pointer; margin-top: 2%;">
+                        <mat-icon style="color: white;">arrow_back</mat-icon>
+                    </button>
+                    <h3 style="text-align: center; margin-top: 2%; color: white;" mat-card-title>Autos Disponibles</h3>
+                </div>
+                <mat-card-content style="overflow-x: scroll; display: flex; scrollbar-width: none;">
+                    <ng-container *ngFor="let car of cars">
+                        <mat-card class="inner-car-card" style="border-radius: 10px; max-width: 150px; cursor: pointer;">
+                            <mat-card-content fxLayout="row" [style.background-image]="'url(' + car.images[0] + ')'"
+                                style="background-size: cover; background-position: center; background-repeat: no-repeat; height: 200px; border-radius: 10px;"
+                                (click)="showCar(car)" class="hovereffect">
+                                <p
+                                    style="color: rgb(0, 0, 0); font-size: 20px; font-weight: bold; margin-top: 10px; margin-left: 10px; position: absolute;">
+                                    {{ car.model }}</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </ng-container>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-container>
+</div>
