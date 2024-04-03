@@ -43,37 +43,30 @@ class UserService {
   };
 
   signup = async (username, email, password) => {
-
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      throw new Error('Username already exists');
-    }
-    const user = new User({
-      username,
-      email,
-      password,
-    });
-
-    new Promise((resolve, reject) => {
-      user
-        .encryptPassword(user.password)
-        .then((encryptedPassword) => {
-          user.password = encryptedPassword;
-          user.save();
-          return { message: "User created" };
-        })
-        .then(resolve)
-        .catch(reject);
-    })
-      .then((savedUser) => {
-        const token = jwt.sign({ id: savedUser._id }, "MySecretDomentos", {
-          expiresIn: 60 * 60 * 2,
-        });
-        return { auth: true, token, username, role: user.role };
-      })
-      .catch((error) => {
-        return error;
+    try {
+      console.log(username, email, password);
+      const existingUser = await User.findOne({ username });
+      if (existingUser) {
+        throw new Error('Username already exists');
+      }
+      const user = new User({
+        username,
+        email,
+        password,
       });
+  
+      const encryptedPassword = await user.encryptPassword(user.password);
+      user.password = encryptedPassword;
+      const savedUser = await user.save();
+  
+      const token = jwt.sign({ id: savedUser._id }, "MySecretDomentos", {
+        expiresIn: 60 * 60 * 2,
+      });
+  
+      return { auth: true, token, username, role: user.role };
+    } catch (error) {
+      throw error;
+    }
   };
 
   deleteUser = async (id) => {
