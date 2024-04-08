@@ -33,7 +33,7 @@ export class InfoCarComponent implements OnInit {
   carroSeleccionado: Carro = {
     modelo: '',
     descripcion: '',
-    precio: '',
+    precio: 0,
     motor: '',
     imagenes: []
   };
@@ -103,7 +103,7 @@ export class InfoCarComponent implements OnInit {
 interface Carro {
   modelo: string;
   descripcion: string;
-  precio: string;
+  precio: number;
   motor: string;
   imagenes: string[];
 }

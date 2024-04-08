@@ -12,7 +12,7 @@ class BrandService {
       );
       return brands;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -33,7 +33,7 @@ class BrandService {
         return { message: "Brand created" };
       }
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -43,7 +43,7 @@ class BrandService {
 
       return { message: "Brand deleted" };
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -53,7 +53,7 @@ class BrandService {
 
       return { message: "Brand updated" };
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -67,7 +67,7 @@ class BrandService {
       });
       return brand;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -107,7 +107,7 @@ class BrandService {
       ]);
       return cars;
     } catch (error) {
-      return error;
+      throw error;
     }
   };
 }

@@ -40,6 +40,9 @@ const userSchema = new Schema({
         require: false,
         default: Date.now
     },
+    deleted_at: {
+        type: Date,
+    },
     publicIp: {
         type: Array,
         require: true

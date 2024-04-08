@@ -8,14 +8,25 @@ class UserService {
 
   getAllUsers = async () => {
     try {
-      const users = await User.find({ status: 1 }, { password: false });
+      const users = await User.find({ 
+        status: 1, 
+        $or: [
+          { deletedAt: { $exists: false } },
+          { deletedAt: null }
+        ] 
+      }, { password: false });
       return users;
     } catch (error) {
-      return error;
+      throw error;
     }
   };
 
   createUser = async (username, email, role) => {
+
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      throw new Error('Username already exists');
+    }
     const user = new User({
         username,
         email,
@@ -38,32 +49,44 @@ class UserService {
           return savedUser;
         })
         .catch((error) => {
-          return error;
+          throw error;
         });
   };
 
   signup = async (username, email, password) => {
     try {
-      console.log(username, email, password);
       const existingUser = await User.findOne({ username });
-      if (existingUser) {
+      if (!existingUser) {
+        const user = new User({
+          username,
+          email,
+          password,
+        });
+        const encryptedPassword = await user.encryptPassword(user.password);
+        user.password = encryptedPassword;
+        const savedUser = await user.save();
+      
+        const token = jwt.sign({ id: user._id }, "MySecretDomentos", {
+          expiresIn: 60 * 60 * 2,
+        });
+      
+        return { auth: true, token, username, role: user.role };
+      } else if (existingUser.deleted_at instanceof Date) {
+        const encryptedPassword = await existingUser.encryptPassword(password);
+        const updatedUser = await User.findOneAndUpdate(
+          { username },
+          { email, password: encryptedPassword, deletedAt: null },
+          { new: true }
+        );
+      
+        const token = jwt.sign({ id: updatedUser._id }, "MySecretDomentos", {
+          expiresIn: 60 * 60 * 2,
+        });
+      
+        return { auth: true, token, username, role: updatedUser.role };
+      } else {
         throw new Error('Username already exists');
       }
-      const user = new User({
-        username,
-        email,
-        password,
-      });
-  
-      const encryptedPassword = await user.encryptPassword(user.password);
-      user.password = encryptedPassword;
-      const savedUser = await user.save();
-  
-      const token = jwt.sign({ id: savedUser._id }, "MySecretDomentos", {
-        expiresIn: 60 * 60 * 2,
-      });
-  
-      return { auth: true, token, username, role: user.role };
     } catch (error) {
       throw error;
     }
@@ -74,6 +97,7 @@ class UserService {
       const user = await User.findByIdAndUpdate(
         id,
         { status: 2 },
+        { deleted_at: Date.now()}, 
         { new: true }
       );
       if (!user) {
@@ -86,11 +110,37 @@ class UserService {
     }
   };
 
-  updateUser = async (id, username, email, role) => {
+  deleteUserbySelf = async (id) => {
     try {
       const user = await User.findByIdAndUpdate(
+        { _id: id, status: 1 },
+        { deleted_at: Date.now() },
+        { new: true }
+      );
+      if (!user) {
+        return new Error("No user found");
+      }
+      return { message: "User deleted" };
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  updateUser = async (id, username, email, role) => {
+    try {
+      const existingUser = await User.findOne({
+        $or: [
+          { username },
+          { email }
+        ],
+        _id: { $ne: id }
+      });
+      if (existingUser) {
+        throw new Error('Username or email already exists');
+      }
+      const user = await User.findByIdAndUpdate(
         id,
-        { username, email, role },
+        { username, email, role, updated_at: Date.now()},
         { new: true }
       );
       if (!user) {
@@ -99,7 +149,7 @@ class UserService {
         return user;
       }
     } catch (error) {
-      return error;
+      throw error;
     }
   };
 
@@ -112,7 +162,7 @@ class UserService {
         return user;
       }
     } catch (error) {
-      return error;
+      throw error;
     }
   };
 
@@ -136,7 +186,7 @@ class UserService {
         return savedUser;
       })
       .catch((error) => {
-        return error;
+        throw error;
       });
   };
 
@@ -153,7 +203,7 @@ class UserService {
         return { message: "Email sent" };
       }
     } catch (error) {
-      return error;
+      throw error;
     }
   };
 }

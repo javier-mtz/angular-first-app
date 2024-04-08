@@ -35,7 +35,7 @@ class CarService {
             ]);
             return cars;
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 
@@ -52,7 +52,7 @@ class CarService {
             car.save();
             return { message: "Car created" };
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 
@@ -68,7 +68,7 @@ class CarService {
             }, { new: true });
             return { message: "Car updated" };
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 
@@ -77,7 +77,7 @@ class CarService {
             await Car.findByIdAndDelete(id);
             return { message: "Car deleted" };
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 
@@ -91,7 +91,7 @@ class CarService {
             }).populate('brandId');
             return car;
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 
@@ -106,7 +106,7 @@ class CarService {
             });
             return cars;
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 
@@ -115,7 +115,7 @@ class CarService {
             const car = await Car.findByIdAndUpdate(carId, { userId, busy: true }, { new: true });
             return { message: "Car rented" };
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 
@@ -124,7 +124,7 @@ class CarService {
             const car = await Car.findByIdAndUpdate(carId, { userId: null, busy: false }, { new: true });
             return { message: "Car returned" };
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 
@@ -170,7 +170,7 @@ class CarService {
             ]);
             return cars;
         } catch (error) {
-            return error;
+            throw error;
         }
     };
 
@@ -185,7 +185,7 @@ class CarService {
             });
             return cars;
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 }

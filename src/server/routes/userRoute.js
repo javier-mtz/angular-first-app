@@ -12,6 +12,8 @@ userRouter.route('/signup').post(controllerHandler(UserController.signup));
 
 userRouter.route('/delete/:id').put(controllerHandler(UserController.deleteUser));
 
+userRouter.route('/deleteUser/:id').put(controllerHandler(UserController.deleteUserbySelf));
+
 userRouter.route('/update/:id').put(controllerHandler(UserController.updateUser));
 
 userRouter.route('/find/:id').get(controllerHandler(UserController.findUser));

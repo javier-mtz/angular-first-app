@@ -12,20 +12,22 @@ const mailjet = Mailjet.apiConnect(
 
 
 export async function sendEmailNewPassword(username, email) {
+  try {
+    const user = await User.findOne({ username });
+      if (!user) {
+        console.error('No user found');
+        return;
+      }
   
-  const user = await User.findOne({ username: { $regex: new RegExp(username, "i") } });
-    if (!user) {
-      console.error('No user found');
-      return;
-    }
-
-    const userId = user._id;
-
-    const token = jwt.sign({ id: userId }, "MySecretDomentos", {
-      expiresIn: 60 * 60 * 2,
-    });
-
-    const link = `http://localhost:4200/mailtoken/${token}`;
+      const userId = user._id;
+  
+      const token = jwt.sign({ id: userId }, "MySecretDomentos", {
+        expiresIn: 60 * 60 * 2,
+      });
+  
+      const link = `http://localhost:4200/mailtoken/${token}`;
+  
+      console.log(link);
 
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
@@ -56,10 +58,14 @@ export async function sendEmailNewPassword(username, email) {
     .catch((err) => {
       console.error(err.statusCode);
     });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function sendForgotPasswordEmail(username, email) {
-  const user = await User.findOne({ username: { $regex: new RegExp(username, "i") } });
+  try {
+    const user = await User.findOne({ username });
     if (!user) {
       console.error('No user found');
       return;
@@ -72,6 +78,8 @@ export async function sendForgotPasswordEmail(username, email) {
     });
 
     const link = `http://localhost:4200/mailtoken/${token}`;
+
+    console.log(link);
 
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
@@ -102,4 +110,7 @@ export async function sendForgotPasswordEmail(username, email) {
     .catch((err) => {
       console.error(err.statusCode);
     });
+  } catch (error) {
+    console.error(error);
+  }
 }
