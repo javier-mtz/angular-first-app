@@ -32,6 +32,10 @@ export class UserService {
     return this.http.put(`http://localhost:3000/api/user/delete/${id}`, {});
   }
 
+  deleteUser(id: string): Observable<any> {
+    return this.http.put(`http://localhost:3000/api/user/deleteUser/${id}`, {});
+  }
+
   update(user: User): Observable<any> {
     return this.http.put(`http://localhost:3000/api/user/update/${user._id}`, user);
   }

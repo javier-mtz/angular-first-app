@@ -26,6 +26,7 @@ import { CarService } from '../../Services/carService/car.service';
 import { AlertService } from '../../Services/alertService/alert.service';
 import { CarInfoDialogComponent } from '../../Dialogs/car-info-dialog/car-info-dialog.component';
 import { Car } from '../../Interfaces/car';
+import { UserService } from '../../Services/userService/user.service';
 
 @Component({
   selector: 'app-user',
@@ -50,6 +51,7 @@ export class UserComponent {
 
   constructor(
     private _auth: AuthService,
+    private _user: UserService,
     private _dialog: MatDialog,
     private router: Router,
     private _car: CarService,
@@ -93,6 +95,23 @@ export class UserComponent {
         });
       },
     });
+  }
+
+  deleteUser() {
+    this._alert.showConfirmAlert(
+      'Eliminar usuario',
+      '¿Estás seguro de que deseas eliminar tu cuenta?',
+      'error',
+      'Eliminar',
+      'Cancelar',
+      () => {
+        this._user.deleteUser(this.user._id).subscribe(() => {
+          console.log('Usuario eliminado');
+          this._auth.logout();
+          this.router.navigate(['/login']);
+        });
+      }
+    );
   }
 
   changePassword() {

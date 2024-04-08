@@ -1,11 +1,6 @@
-import { Router } from "express";
-import User from "../models/User.js";
-import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import { sendEmailNewPassword, sendForgotPasswordEmail } from "../../server/controllers/emailController.js";
 import { to } from "await-to-js";
 import CustomError from "../utils/customError.js";
-import urid from 'urid';
 import UserService from "../services/userService.js";
 
 class UserController {
@@ -15,10 +10,6 @@ class UserController {
 
   getAllUsers = async () => {
     const [err, result] = await to(this.userService.getAllUsers());
-
-    if(!result){
-      throw new CustomError("Internal Server Error", 500);
-    }
 
     if (err) throw err;
 
@@ -46,10 +37,6 @@ class UserController {
     }
     const [err, result] = await to(this.userService.signup(username, email, password));
 
-    if(!result){
-      throw new CustomError("Internal Server Error", 500);
-    }
-
     if (err) throw err;
 
     return result;
@@ -62,9 +49,18 @@ class UserController {
     }
     const [err, result] = await to(this.userService.deleteUser(id));
 
-    if(!result){
-      throw new CustomError("Internal Server Error", 500);
+    if (err) throw err;
+
+    return result;
+  };
+
+  deleteUserbySelf = async (httpRequest) => {
+    const { id } = httpRequest.params;
+    if(!id){
+      throw new CustomError("Someone is missing", 400);
     }
+
+    const [err, result] = await to(this.userService.deleteUserbySelf(id));
 
     if (err) throw err;
 
@@ -78,11 +74,7 @@ class UserController {
       throw new CustomError("No record with given id : " + id, 400);
     }
     const [err, result] = await to(this.userService.updateUser(id, username, email, role));
-
-    if(!result){
-      throw new CustomError("Internal Server Error", 500);
-    }
-
+    
     if (err) throw err;
 
     return result;
@@ -95,10 +87,6 @@ class UserController {
     }
     
     const [err, result] = await to(this.userService.findUser(id));
-
-    if(!result){
-      throw new CustomError("Internal Server Error", 500);
-    }
 
     if (err) throw err;
 
@@ -114,10 +102,6 @@ class UserController {
     
     const [err, result] = await to(this.userService.resetPassword(id, password));
 
-    if(!result){
-      throw new CustomError("Internal Server Error", 500);
-    }
-
     if (err) throw err;
 
     return result;
@@ -126,10 +110,6 @@ class UserController {
   forgotPassword = async (httpRequest) => {
     const { email } = httpRequest.body;
     const [err, result] = await to(this.userService.forgotPassword(email));
-
-    if(!result){
-      throw new CustomError("Internal Server Error", 500);
-    }
 
     if (err) throw err;
 

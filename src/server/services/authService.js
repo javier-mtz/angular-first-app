@@ -11,6 +11,7 @@ class AuthService {
       const user = await User.findOne({
         username: { $regex: new RegExp(username, "i") },
         status: { $ne: 2 },
+        deletedAt: null,
       });
       if (!user) {
         throw new Error("No user found");
@@ -52,7 +53,7 @@ class AuthService {
       }
       return user;
     } catch (error) {
-        return error;
+        throw error;
     }
   }
 
@@ -75,7 +76,7 @@ class AuthService {
 
     return { auth: true, token, username, role: user.role };
     } catch (error) {
-        return error;
+        throw error;
     }
   }
 }

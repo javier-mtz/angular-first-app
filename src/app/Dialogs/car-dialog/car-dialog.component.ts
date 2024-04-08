@@ -47,7 +47,10 @@ export class CarDialogComponent implements OnInit {
     this.carForm = new FormGroup({
       model: new FormControl('', Validators.required), // [valor por defecto, validaciones
       description: new FormControl('', Validators.required),
-      price: new FormControl('', Validators.required),
+      price: new FormControl('', [
+        Validators.required,
+        Validators.pattern("^[0-9]+$")
+      ]),
       engine: new FormControl('', Validators.required),
       brand: new FormControl('', Validators.required),
       images: new FormArray([
