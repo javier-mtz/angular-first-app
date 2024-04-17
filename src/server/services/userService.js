@@ -11,8 +11,8 @@ class UserService {
       const users = await User.find({ 
         status: 1, 
         $or: [
-          { deletedAt: { $exists: false } },
-          { deletedAt: null }
+          { deleted_at: { $exists: false } },
+          { deleted_at: null }
         ] 
       }, { password: false });
       return users;
@@ -75,7 +75,7 @@ class UserService {
         const encryptedPassword = await existingUser.encryptPassword(password);
         const updatedUser = await User.findOneAndUpdate(
           { username },
-          { email, password: encryptedPassword, deletedAt: null },
+          { email, password: encryptedPassword, deleted_at: null },
           { new: true }
         );
       
